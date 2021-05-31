@@ -1,7 +1,7 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice } from '@reduxjs/toolkit';
 
 export const allProjects = createSlice({
-  name: "allProjects",
+  name: 'allProjects',
   initialState: {
     projectsList: [],
   },
@@ -14,7 +14,7 @@ export const allProjects = createSlice({
 
 export const fetchProjects = () => {
   return (dispatch, getState) => {
-    fetch("http://localhost:8080/projects")
+    fetch('http://localhost:8080/projects')
       .then((res) => res.json())
       .then((json) => {
         dispatch(allProjects.actions.setProjectList(json));
@@ -24,9 +24,9 @@ export const fetchProjects = () => {
 
 export const fetchUpload = (username, projectsList) => {
   return (dispatch, getState) => {
-    fetch("http://localhost:8080/upload", {
-      method: "POST",
-      headers: { "Content-type": "application/json" },
+    fetch('http://localhost:8080/upload', {
+      method: 'POST',
+      headers: { 'Content-type': 'application/json' },
       body: JSON.stringify({ userName: username }),
     })
       .then((res) => res.json())

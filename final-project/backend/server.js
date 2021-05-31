@@ -1,6 +1,8 @@
 import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
+import crypto from 'crypto';
+import bcrypt from 'bcrypt-nodejs';
 
 const mongoUrl =
   process.env.MONGO_URL || 'mongodb://localhost/bootcamp-projects';
@@ -11,10 +13,27 @@ mongoose.connect(mongoUrl, {
 });
 mongoose.Promise = Promise;
 
+//Schemas
 const userSchema = new mongoose.Schema({
   userName: {
     type: String,
     required: true,
+  },
+  email: {
+    type: String,
+    unique: true,
+    match: [
+      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
+      'Please enter a valid email address',
+    ],
+  },
+  password: {
+    type: String,
+    required: true,
+  },
+  accessToken: {
+    type: String,
+    default: () => crypto.randomBytes(128).toString('hex'),
   },
 });
 
@@ -61,19 +80,17 @@ const projectSchema = new mongoose.Schema({
   },
 });
 
+//Models
 const Project = mongoose.model('Project', projectSchema);
+const User = mongoose.model('User', userSchema);
 
-// Defines the port the app will run on. Defaults to 8080, but can be
-// overridden when starting the server. For example:
-//
-//   PORT=9000 npm start
 const port = process.env.PORT || 8080;
 const app = express();
 
-// Add middlewares to enable cors and json body parsing
 app.use(cors());
 app.use(express.json());
 
+//Paths
 app.get('/', (req, res) => {
   res.send('Hello World');
 });
@@ -99,12 +116,76 @@ app.post('/upload', async (req, res) => {
   }
 });
 
-app.post('/login', (req, res) => {
-  //Login Page
+app.post('/signup', async (req, res) => {
+  const salt = bcrypt.genSaltSync();
+  const { userName, email, password } = req.body;
+  try {
+    let user = await User.findOne({
+      userName,
+    });
+    if (user) {
+      res.status(403).json({
+        errorCode: 'User Name exists',
+        message: 'A user with that User Name already exists',
+      });
+      return;
+    }
+
+    user = new User({
+      userName,
+      email,
+      password: bcrypt.hashSync(password, salt),
+    });
+    console.log(user);
+    user.save();
+    res.status(201).json({ id: user._id, accessToken: user.accessToken });
+  } catch (error) {
+    console.log(error);
+    res.status(400).json({
+      errorCode: 'uknown-error',
+      message: 'Could not create user',
+      error,
+    });
+  }
 });
 
-app.post('/signup', (req, res) => {
-  //Sign Up Page
+//Just for development
+app.get('/users', async (req, res) => {
+  const users = await User.find();
+  res.json(users);
+});
+
+app.post('/login', async (req, res) => {
+  const { userName, password } = req.body;
+
+  try {
+    const user = await User.findOne({ userName });
+    if (!user) {
+      res.status(401).json({
+        errorCode: 'invalid-credentials',
+        message: 'Invalid credentials',
+      });
+      return;
+    }
+
+    if (!bcrypt.compareSync(password, user.password)) {
+      res.status(401).json({
+        errorCode: 'invalid-credentials',
+        message: 'Invalid credentials',
+      });
+      return;
+    }
+
+    res.json({
+      id: user._id,
+      email: user.email,
+      accessToken: user.accessToken,
+    });
+  } catch (error) {
+    res
+      .status(400)
+      .json({ errorCode: 'uknown-error', message: 'Invalid request', error });
+  }
 });
 
 // Start the server
