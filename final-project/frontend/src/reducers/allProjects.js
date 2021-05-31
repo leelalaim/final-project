@@ -22,12 +22,18 @@ export const fetchProjects = () => {
   };
 };
 
-export const fetchProjects = () => {
+export const fetchUpload = (username, projectsList) => {
   return (dispatch, getState) => {
-    fetch("http://localhost:8080/projects")
+    fetch("http://localhost:8080/upload", {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify({ userName: username }),
+    })
       .then((res) => res.json())
-      .then((json) => {
-        dispatch(allProjects.actions.setProjectList(json));
+      .then((uploadedProject) => {
+        dispatch(
+          allProjects.actions.setProjectList([uploadedProject, ...projectsList])
+        );
       });
   };
 };

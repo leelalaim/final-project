@@ -20,6 +20,6 @@ export const Projects = () => {
       {projects.map((project) => (
         <div>{project.userName}</div>
       ))}
-    </>
+     </>
   );
 };

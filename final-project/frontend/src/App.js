@@ -4,6 +4,7 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import { Provider } from "react-redux";
 
 import { Projects } from "./components/Projects";
+import { Upload } from "./components/Upload";
 import { allProjects } from "./reducers/allProjects";
 import { ui } from "./reducers/ui";
 import { users } from "./reducers/users";
@@ -21,6 +22,7 @@ export const App = () => {
         <Switch>
           <Route exact path="/" />
           <Route path="/projects" component={Projects} />
+          <Route path="/upload" component={Upload} />
         </Switch>
       </BrowserRouter>
     </Provider>
