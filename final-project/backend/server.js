@@ -4,8 +4,14 @@ import mongoose from "mongoose";
 
 const mongoUrl =
   process.env.MONGO_URL || "mongodb://localhost/bootcamp-projects";
-mongoose.connect(mongoUrl, { useNewUrlParser: true, useUnifiedTopology: true });
+mongoose.connect(mongoUrl, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+  useCreateIndex: true,
+});
 mongoose.Promise = Promise;
+
+//User unique e-mail
 
 const projectSchema = new mongoose.Schema({
   userName: {
@@ -14,40 +20,43 @@ const projectSchema = new mongoose.Schema({
   },
   bootcamp: {
     type: String,
-    required: true
+    // required: true,
   },
   projectName: {
-    type: String
+    type: String,
   },
   email: {
     type: String,
-    unique: [true, "Email taken"],
     trim: true,
     validate: {
       validator: (value) => {
         return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value);
       },
-    message: "Please, enter a valid email",
+      message: "Please, enter a valid email",
+    },
   },
-},
   url: {
     type: String,
   },
   stack: {
-    type: String
+    type: String,
   },
   // hearts: {
-  //   type: 
+  //   type:
   // },
   description: {
-    type: String
+    type: String,
   },
   week: {
-    type: String
-  }
-})
+    type: String,
+  },
+  createdAt: {
+    type: Date,
+    default: Date.now,
+  },
+});
 
-const Project = mongoose.model("Project", projectSchema)
+const Project = mongoose.model("Project", projectSchema);
 
 // Defines the port the app will run on. Defaults to 8080, but can be
 // overridden when starting the server. For example:
@@ -61,21 +70,28 @@ app.use(cors());
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  //Landing page
+  res.send("Hello World");
 });
 
-//MVP 
-app.get("/projects", (req, res) => {
-  //Landing page / project filtering
-
-  //Display all the projects
-  //Filter the projects - start to do that in the frontend, if possible to add it to the backend. 
-
+//MVP
+app.get("/projects", async (req, res) => {
+  const projects = await Project.find().sort({ createdAt: -1 }).limit(10);
+  res.json(projects);
 });
 
-//MVP 
-app.post("/upload", (req, res) => {
-  //Upload Page
+//MVP
+app.post("/upload", async (req, res) => {
+  const { userName, url } = req.body;
+
+  try {
+    const newProject = await new Project({
+      userName,
+      url,
+    }).save();
+    res.status(200).json(newProject);
+  } catch (err) {
+    res.status(400).json({ message: "Could not save", errors: err });
+  }
 });
 
 app.post("/login", (req, res) => {
