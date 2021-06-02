@@ -39,8 +39,8 @@ const userSchema = new mongoose.Schema({
 
 const projectSchema = new mongoose.Schema({
   userName: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    type: String,
+    required: true,
   },
   bootcamp: {
     type: String,
@@ -104,6 +104,8 @@ app.get("/projects", async (req, res) => {
 //MVP
 app.post("/upload", async (req, res) => {
   const { userName, url } = req.body;
+
+  console.log(userName);
 
   try {
     const newProject = await new Project({

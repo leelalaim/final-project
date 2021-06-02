@@ -3,19 +3,15 @@ import { createSlice } from "@reduxjs/toolkit";
 export const allProjects = createSlice({
   name: "allProjects",
   initialState: {
-    userName: null,
-    bootcamp: null,
-    projectName: null,
-    email: null,
-    url: null,
-    stack: null,
-    description: null,
-    week: null,
+    projectList: []
   },
   reducers: {
-    setUserName: (store, action) => {
-      store.username = action.payload;
+    addProject: (store, action) => {
+      store.projectList = [...store.projectList, action.payload];
     },
+    setProjectList: (store, action) => {
+      store.projectList = action.payload;
+    }
   },
 });
 
@@ -23,28 +19,22 @@ export const fetchProjects = () => {
   return (dispatch, getState) => {
     fetch("http://localhost:8080/projects")
       .then((res) => res.json())
-      .then((json) => {
-        dispatch(allProjects.actions.setUserName(json));
+      .then((projectList) => {
+        dispatch(allProjects.actions.setProjectList(projectList));
       });
   };
 };
 
-export const fetchUpload = () => {
+export const uploadProject = (project) => {
   return (dispatch, getState) => {
     fetch("http://localhost:8080/upload", {
       method: "POST",
       headers: { "Content-type": "application/json" },
-      body: JSON.stringify({
-        userName: getState().allProjects.userName,
-      }),
+      body: JSON.stringify(project),
     })
-      .then((res) => {
-        res.json();
-        console.log(res);
-      })
-      .then((userName) => {
-        dispatch(allProjects.actions.setUserName(userName));
-        // console.log(userName);
+      .then((res) => res.json())
+      .then((project) => {
+        dispatch(allProjects.actions.addProject(project));
       });
   };
 };
