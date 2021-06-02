@@ -2,6 +2,7 @@ import React from 'react';
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 
+import { allProjects } from '../reducers/allProjects'
 import { fetchUpload } from '../reducers/allProjects'
 
 export const Upload = () => {
@@ -19,9 +20,17 @@ export const Upload = () => {
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    dispatch(fetchUpload(userName))
+    dispatch(allProjects.actions.setUserName(userName))
+    dispatch(fetchUpload(userName));
+    // console.log(userName);
     setUserName("");
   }
+
+  // const onSetName = (event) => {
+  //   event.preventDefault()
+  //   dispatch(game.actions.setUserName(value))
+  //   dispatch(generateQuestion(value))
+  // };
 
     return (
         <section>
