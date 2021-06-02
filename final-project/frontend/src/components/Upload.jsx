@@ -6,7 +6,7 @@ import { fetchUpload } from '../reducers/allProjects'
 
 export const Upload = () => {
   const dispatch = useDispatch();
-  const [username, setUsername] = useState("");
+  const [userName, setUserName] = useState("");
   // const [email, setEmail] = useState("");
   // const [bootcamp, setBootcamp] = useState("");
   // const [projectName, setProjectName] = useState("");
@@ -19,7 +19,8 @@ export const Upload = () => {
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    dispatch(fetchUpload(username))
+    dispatch(fetchUpload(userName))
+    setUserName("");
   }
 
     return (
@@ -27,8 +28,8 @@ export const Upload = () => {
           <form onSubmit={onFormSubmit}>
             <input
               type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={userName}
+              onChange={(e) => setUserName(e.target.value)}
             ></input>
             {/* <input
               type="text"

@@ -1,7 +1,7 @@
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice } from "@reduxjs/toolkit";
 
 export const allProjects = createSlice({
-  name: 'allProjects',
+  name: "allProjects",
   initialState: {
     projectsList: [],
   },
@@ -14,7 +14,7 @@ export const allProjects = createSlice({
 
 export const fetchProjects = () => {
   return (dispatch, getState) => {
-    fetch('http://localhost:8080/projects')
+    fetch("http://localhost:8080/projects")
       .then((res) => res.json())
       .then((json) => {
         dispatch(allProjects.actions.setProjectList(json));
@@ -22,18 +22,26 @@ export const fetchProjects = () => {
   };
 };
 
-export const fetchUpload = (username, projectsList) => {
+export const fetchUpload = (userName, projectsList) => {
   return (dispatch, getState) => {
-    fetch('http://localhost:8080/upload', {
-      method: 'POST',
-      headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify({ userName: username }),
+    fetch("http://localhost:8080/upload", {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify({ userName: getState().allProjects.projectsList.userName }),
     })
-      .then((res) => res.json())
-      .then((uploadedProject) => {
-        dispatch(
-          allProjects.actions.setProjectList([uploadedProject, ...projectsList])
-        );
-      });
+      .then((res) => console.log(res))
+      // .then((uploadedProject) => {
+      //   dispatch(
+      //     // console.log(uploadedProject),
+      //     allProjects.actions.setProjectList([...projectsList, uploadedProject])
+      //   );
+      // });
   };
 };
+
+// setCurrentStep: (store, action) => {
+//   if (store.currentStep) {
+//     store.history = [...store.history, action.payload];
+//   }
+//   store.currentStep = action.payload;
+// }

@@ -1,11 +1,11 @@
-import express from 'express';
-import cors from 'cors';
-import mongoose from 'mongoose';
-import crypto from 'crypto';
-import bcrypt from 'bcrypt-nodejs';
+import express from "express";
+import cors from "cors";
+import mongoose from "mongoose";
+import crypto from "crypto";
+import bcrypt from "bcrypt-nodejs";
 
 const mongoUrl =
-  process.env.MONGO_URL || 'mongodb://localhost/bootcamp-projects';
+  process.env.MONGO_URL || "mongodb://localhost/bootcamp-projects";
 mongoose.connect(mongoUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -24,23 +24,23 @@ const userSchema = new mongoose.Schema({
     unique: true,
     match: [
       /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-      'Please enter a valid email address',
+      "Please enter a valid email address",
     ],
   },
   password: {
     type: String,
-    required: true,
+    // required: true,
   },
   accessToken: {
     type: String,
-    default: () => crypto.randomBytes(128).toString('hex'),
+    default: () => crypto.randomBytes(128).toString("hex"),
   },
 });
 
 const projectSchema = new mongoose.Schema({
   userName: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
+    ref: "User",
   },
   bootcamp: {
     type: String,
@@ -56,7 +56,7 @@ const projectSchema = new mongoose.Schema({
       validator: (value) => {
         return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value);
       },
-      message: 'Please, enter a valid email',
+      message: "Please, enter a valid email",
     },
   },
   url: {
@@ -81,8 +81,8 @@ const projectSchema = new mongoose.Schema({
 });
 
 //Models
-const Project = mongoose.model('Project', projectSchema);
-const User = mongoose.model('User', userSchema);
+const Project = mongoose.model("Project", projectSchema);
+const User = mongoose.model("User", userSchema);
 
 const port = process.env.PORT || 8080;
 const app = express();
@@ -91,32 +91,32 @@ app.use(cors());
 app.use(express.json());
 
 //Paths
-app.get('/', (req, res) => {
-  res.send('Hello World');
+app.get("/", (req, res) => {
+  res.send("Hello World");
 });
 
 //MVP
-app.get('/projects', async (req, res) => {
+app.get("/projects", async (req, res) => {
   const projects = await Project.find().sort({ createdAt: -1 }).limit(10);
   res.json(projects);
 });
 
 //MVP
-app.post('/upload', async (req, res) => {
+app.post("/upload", async (req, res) => {
   const { userName, url } = req.body;
 
   try {
     const newProject = await new Project({
       userName,
-      url,
+      // url,
     }).save();
     res.status(200).json(newProject);
   } catch (err) {
-    res.status(400).json({ message: 'Could not save', errors: err });
+    res.status(400).json({ message: "Could not save", errors: err });
   }
 });
 
-app.post('/signup', async (req, res) => {
+app.post("/signup", async (req, res) => {
   const salt = bcrypt.genSaltSync();
   const { userName, email, password } = req.body;
   try {
@@ -125,8 +125,8 @@ app.post('/signup', async (req, res) => {
     });
     if (user) {
       res.status(403).json({
-        errorCode: 'User Name exists',
-        message: 'A user with that User Name already exists',
+        errorCode: "User Name exists",
+        message: "A user with that User Name already exists",
       });
       return;
     }
@@ -142,36 +142,36 @@ app.post('/signup', async (req, res) => {
   } catch (error) {
     console.log(error);
     res.status(400).json({
-      errorCode: 'uknown-error',
-      message: 'Could not create user',
+      errorCode: "uknown-error",
+      message: "Could not create user",
       error,
     });
   }
 });
 
 //Just for development
-app.get('/users', async (req, res) => {
+app.get("/users", async (req, res) => {
   const users = await User.find();
   res.json(users);
 });
 
-app.post('/login', async (req, res) => {
+app.post("/login", async (req, res) => {
   const { userName, password } = req.body;
 
   try {
     const user = await User.findOne({ userName });
     if (!user) {
       res.status(401).json({
-        errorCode: 'invalid-credentials',
-        message: 'Invalid credentials',
+        errorCode: "invalid-credentials",
+        message: "Invalid credentials",
       });
       return;
     }
 
     if (!bcrypt.compareSync(password, user.password)) {
       res.status(401).json({
-        errorCode: 'invalid-credentials',
-        message: 'Invalid credentials',
+        errorCode: "invalid-credentials",
+        message: "Invalid credentials",
       });
       return;
     }
@@ -184,7 +184,7 @@ app.post('/login', async (req, res) => {
   } catch (error) {
     res
       .status(400)
-      .json({ errorCode: 'uknown-error', message: 'Invalid request', error });
+      .json({ errorCode: "uknown-error", message: "Invalid request", error });
   }
 });
 
