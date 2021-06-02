@@ -36,41 +36,49 @@ export const Upload = () => {
     return (
         <section>
           <form onSubmit={onFormSubmit}>
+            <label>Username</label>
             <input
               type="text"
               value={userName}
               onChange={(e) => setUserName(e.target.value)}
             ></input>
+            <label>Email</label>
             <input
               type="text"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
             ></input>
+            <label>Bootcamp</label>
             <input
               type="text"
               value={bootcamp}
               onChange={(e) => setBootcamp(e.target.value)}
             ></input>
+            <label>Name of project</label>
             <input
               type="text"
               value={projectName}
               onChange={(e) => setProjectName(e.target.value)}
             ></input>
+            <label>URL to live page</label>
             <input
               type="text"
               value={url}
               onChange={(e) => setUrl(e.target.value)}
             ></input>
+            <label>Add the stacks</label>
             <input
               type="text"
               value={stack}
               onChange={(e) => setStack(e.target.value)}
             ></input>
+            <label>Add a project description</label>
             <input
               type="text"
               value={description}
               onChange={(e) => setDescription(e.target.value)}
             ></input>
+            <label>Which week of the bootcamp</label>
             <input
               type="text"
               value={week}
