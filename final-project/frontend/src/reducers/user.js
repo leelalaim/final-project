@@ -5,7 +5,6 @@ import { batch } from 'react-redux';
 export const user = createSlice({
   name: 'user',
   initialState: {
-    userName: null,
     email: null,
     password: null,
     accessToken: null,
@@ -53,13 +52,13 @@ export const fetchSignUp = (username, email, password) => {
   };
 };
 
-export const fetchLogIn = (username, password) => {
+export const fetchLogIn = (email, password) => {
   return (dispatch, getState) => {
     fetch('http://localhost:8080/login', {
       method: 'POST',
       headers: { 'Content-type': 'application/json' },
       body: JSON.stringify({
-        userName: username,
+        email: email,
         password: password,
       }),
     })

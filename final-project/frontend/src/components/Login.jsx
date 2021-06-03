@@ -7,25 +7,26 @@ import { useDispatch } from 'react-redux'
 import {fetchLogIn} from '../reducers/user'
 
 
+// I would like this to be a pop-up on the first page. 
 export const Login = () => {
   const dispatch = useDispatch();
-  const [username, setUsername] = useState('');
+  const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    dispatch(fetchLogIn(username, password))
+    dispatch(fetchLogIn(email, password))
   }
 
     return (
         <section>
           <form onSubmit={onFormSubmit}>
-          <label>Username</label>
+          <label>E-mail</label>
             <input
               type="text"
-              value={username}
-              onChange={(e) => setUsername(e.target.value)}
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             ></input>
             <label>Password</label>
             <input

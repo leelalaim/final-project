@@ -1,14 +1,13 @@
 import React from 'react';
 import { useState } from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 
-import { allProjects } from '../reducers/allProjects'
+// import { allProjects } from '../reducers/allProjects'
 import { uploadProject } from '../reducers/allProjects'
 
 export const Upload = () => {
   const dispatch = useDispatch();
-  const [userName, setUserName] = useState("");
-  const [email, setEmail] = useState("");
+  // const [email, setEmail] = useState("");
   const [bootcamp, setBootcamp] = useState("");
   const [projectName, setProjectName] = useState("");
   const [url, setUrl] = useState("");
@@ -21,8 +20,7 @@ export const Upload = () => {
   const onFormSubmit = (e) => {
     e.preventDefault();
     dispatch(uploadProject({
-      userName,
-      email,
+      // email,
       bootcamp,
       projectName,
       url,
@@ -30,24 +28,24 @@ export const Upload = () => {
       description,
       week
     }));
-    setUserName("");
+    // setUserName("");
   }
 
     return (
         <section>
           <form onSubmit={onFormSubmit}>
-            <label>Username</label>
+            {/* <label>Username</label>
             <input
               type="text"
               value={userName}
               onChange={(e) => setUserName(e.target.value)}
-            ></input>
-            <label>Email</label>
+            ></input> */}
+            {/* <label>Email</label>
             <input
               type="text"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-            ></input>
+            ></input> */}
             <label>Bootcamp</label>
             <input
               type="text"
