@@ -5,6 +5,8 @@ import {
 } from "react-redux";
 
 import { fetchProjects } from '../reducers/allProjects';
+import { ProjectsBanner } from './ProjectsBanner'
+import { Footer } from './Footer'
 
 export const Projects = () => {
   const dispatch = useDispatch();
@@ -14,12 +16,15 @@ export const Projects = () => {
     dispatch(fetchProjects());
   }, []);
 
+
   return (
     <>
-      <div>Hello there</div>
-      {projects.map((project) => (
+       <ProjectsBanner/>
+      <div>All project cards here</div>
+      {/* {projects.map((project) => (
         <div>{project.userName}</div>
-      ))}
+      ))} */}
+         <Footer/>
      </>
   );
 };
