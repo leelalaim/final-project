@@ -190,6 +190,7 @@ app.post('/login', async (req, res) => {
     res.json({
       id: user._id,
       email: user.email,
+      password: user.password,
       accessToken: user.accessToken,
     });
   } catch (error) {

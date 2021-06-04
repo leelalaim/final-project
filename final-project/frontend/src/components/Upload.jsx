@@ -2,7 +2,7 @@ import React from 'react';
 import { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
-// import { allProjects } from '../reducers/allProjects'
+import { users } from '../reducers/user'
 import { uploadProject } from '../reducers/allProjects'
 
 export const Upload = () => {
@@ -14,6 +14,9 @@ export const Upload = () => {
   const [stack, setStack] = useState("");
   const [description, setDescription] = useState("");
   const [week, setWeek] = useState("");
+
+  // const email = useSelector((store)=> store.users.email)
+  // console.log(email)
 
 
 

@@ -79,6 +79,7 @@ export const fetchLogIn = (email, password) => {
         if (data) {
           batch(() => {
             dispatch(user.actions.setEmail(data.email));
+            dispatch(user.actions.setPassword(data.password));
             dispatch(user.actions.setAccessToken(data.accessToken));
             dispatch(user.actions.setErrors(null));
           });
