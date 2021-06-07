@@ -1,24 +1,27 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { batch } from 'react-redux';
+import { createSlice } from "@reduxjs/toolkit";
+import { batch } from "react-redux";
 
-//Why don't we store the password?
+const initialState = localStorage.getItem("user")
+  ? {
+      email: JSON.parse(localStorage.getItem("user")).email,
+      accessToken: JSON.parse(localStorage.getItem("user")).accessToken,
+      errors: null,
+    }
+  : {
+      email: null,
+      accessToken: null,
+      errors: null,
+    };
+
+console.log(localStorage.getItem("user"));
+console.log(initialState);
+
 export const user = createSlice({
-  name: 'user',
-  initialState: {
-    email: null,
-    password: null,
-    accessToken: null,
-    errors: null,
-  },
+  name: "user",
+  initialState,
   reducers: {
-    setUserName: (store, action) => {
-      store.userName = action.payload;
-    },
     setEmail: (store, action) => {
       store.email = action.payload;
-    },
-    setPassword: (store, action) => {
-      store.password = action.payload;
     },
     setAccessToken: (store, action) => {
       store.accessToken = action.payload;
@@ -29,13 +32,12 @@ export const user = createSlice({
   },
 });
 
-export const fetchSignUp = (username, email, password) => {
+export const fetchSignUp = (email, password) => {
   return (dispatch, getState) => {
-    fetch('http://localhost:8080/signup', {
-      method: 'POST',
-      headers: { 'Content-type': 'application/json' },
+    fetch("http://localhost:8080/signup", {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
       body: JSON.stringify({
-        userName: username,
         email: email,
         password: password,
       }),
@@ -43,10 +45,16 @@ export const fetchSignUp = (username, email, password) => {
       .then((res) => res.json())
       .then((json) => {
         batch(() => {
-          dispatch(user.actions.setUserName(json.userName));
           dispatch(user.actions.setEmail(json.email));
-          dispatch(user.actions.setPassword(json.password));
           dispatch(user.actions.setAccessToken(json.accessToken));
+
+          localStorage.setItem(
+            "user",
+            JSON.stringify({
+              email: json.email,
+              accessToken: json.accessToken,
+            })
+          );
         });
       });
   };
@@ -54,23 +62,23 @@ export const fetchSignUp = (username, email, password) => {
 
 export const fetchLogIn = (email, password) => {
   return (dispatch, getState) => {
-    fetch('http://localhost:8080/login', {
-      method: 'POST',
-      headers: { 'Content-type': 'application/json' },
+    fetch("http://localhost:8080/login", {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
       body: JSON.stringify({
         email: email,
         password: password,
       }),
     })
+    // Do we need async and await?
       .then(async (res) => {
         const body = await res.json();
         if (!res.ok) {
-          if (body.errorCode === 'email-exists') {
-            dispatch(user.actions.setErrors('The email already exists'));
+          if (body.errorCode === "email-exists") {
+            dispatch(user.actions.setErrors("The email already exists"));
           } else {
-            dispatch(user.actions.setErrors('Something went wrong'));
+            dispatch(user.actions.setErrors("Something went wrong"));
           }
-
           return;
         }
         return body;
@@ -79,7 +87,6 @@ export const fetchLogIn = (email, password) => {
         if (data) {
           batch(() => {
             dispatch(user.actions.setEmail(data.email));
-            dispatch(user.actions.setPassword(data.password));
             dispatch(user.actions.setAccessToken(data.accessToken));
             dispatch(user.actions.setErrors(null));
           });
