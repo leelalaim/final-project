@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 export const allProjects = createSlice({
   name: "allProjects",
   initialState: {
-    projectList: []
+    projectList: [],
   },
   reducers: {
     addProject: (store, action) => {
@@ -11,9 +11,10 @@ export const allProjects = createSlice({
     },
     setProjectList: (store, action) => {
       store.projectList = action.payload;
-    }
+    },
   },
 });
+
 
 export const fetchProjects = () => {
   return (dispatch, getState) => {
