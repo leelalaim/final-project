@@ -7,11 +7,7 @@ import { Footer } from "./Footer";
 
 export const Projects = () => {
   const dispatch = useDispatch();
-<<<<<<< HEAD
-  const projects = useSelector((store) => store.allProjects.projectList)
-=======
   const projects = useSelector((store) => store.allProjects.projectList);
->>>>>>> 66c2c44efaea80d5c721ff28fecb5088cf15e6b3
 
   useEffect(() => {
     dispatch(fetchProjects());
