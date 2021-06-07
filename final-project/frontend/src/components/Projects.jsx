@@ -8,7 +8,7 @@ import { fetchProjects } from '../reducers/allProjects';
 
 export const Projects = () => {
   const dispatch = useDispatch();
-  const projects = useSelector((store) => store.allProjects.projectsList)
+  const projects = useSelector((store) => store.allProjects.projectList)
 
   useEffect(() => {
     dispatch(fetchProjects());
@@ -18,7 +18,7 @@ export const Projects = () => {
     <>
       <div>Hello there</div>
       {projects.map((project) => (
-        <div>{project.userName}</div>
+        <div>{project.projectName}</div>
       ))}
      </>
   );
