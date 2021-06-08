@@ -11,6 +11,7 @@ import { SignUp } from './components/SignUp';
 import { Login } from './components/Login';
 import { allProjects } from './reducers/allProjects';
 import { user } from 'reducers/user';
+import { NavBar } from './components/NavBar';
 // import { ui } from './reducers/ui';
 // import { users } from './reducers/users';
 
@@ -24,6 +25,7 @@ const store = configureStore({ reducer });
 export const App = () => {
   return (
     <Provider store={store}>
+      <NavBar />
       <BrowserRouter>
         <Switch>
           <Route exact path='/' />
