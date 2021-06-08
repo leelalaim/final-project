@@ -25,7 +25,7 @@ const store = configureStore({ reducer });
 export const App = () => {
   return (
     <Provider store={store}>
-      <NavBar />
+      {/* <NavBar /> */}
       <BrowserRouter>
         <Switch>
           <Route exact path='/' />

@@ -97,16 +97,8 @@ app.get('/projects', async (req, res) => {
 });
 
 //MVP
-// Where do we want the upload to redirect to? A page with only the uploaded project?
-// A continue button? Or just a change of State to display the project-card?
 app.post('/upload', (req, res) => {
   const { url, projectName, bootcamp, description, week, stack } = req.body;
-
-  console.log(url);
-  console.log(projectName);
-  console.log(bootcamp);
-  console.log(description);
-  console.log(week);
 
   try {
     const newProject = new Project({
@@ -118,10 +110,8 @@ app.post('/upload', (req, res) => {
       week: week,
     });
     newProject.save();
-    console.log(newProject);
     res.status(200).json(newProject);
   } catch (err) {
-    console.log(err);
     res.status(400).json({ message: 'Could not save', errors: err });
   }
 });
@@ -157,7 +147,7 @@ app.post('/signup', async (req, res) => {
       message: 'Could not create user',
       error,
     });
-  };
+  }
 });
 
 //Just for development

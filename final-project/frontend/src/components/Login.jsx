@@ -11,21 +11,12 @@ export const Login = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  // const [user, setUser] = useState();
+
 
   const onFormSubmit = (e) => {
     e.preventDefault();
     dispatch(fetchLogIn(email, password));
-    // setUser(email, password);
   };
-  //console.log(user);
-
-  // if (user) {
-  //   return
-  //   <div>
-  //     {user.email} is logged in
-  //   </div>
-  // }
 
   return (
     <section>

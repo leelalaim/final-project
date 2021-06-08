@@ -1,7 +1,7 @@
 //Outer Dependencies
 import React from "react";
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 //Inner Dependencies
 import { fetchSignUp } from "../reducers/user";
@@ -10,6 +10,10 @@ export const SignUp = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  const errorMessage = useSelector((store) => store.user.errors)
+
+  console.log(errorMessage)
 
   const onFormSubmit = (e) => {
     e.preventDefault();
@@ -40,6 +44,7 @@ export const SignUp = () => {
           Sign Up!
         </button>
       </form>
+      <p>{errorMessage}</p>
     </section>
   );
 };

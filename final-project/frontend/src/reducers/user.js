@@ -1,6 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { batch } from 'react-redux';
 
+import { API_URL } from 'reusable/urls';
+
 const initialState = localStorage.getItem('user')
   ? {
       email: JSON.parse(localStorage.getItem('user')).email,
@@ -32,35 +34,49 @@ export const user = createSlice({
   },
 });
 
+const options = (email, password) => {
+  return {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify({ email: email, password: password }),
+  };
+};
+
+// Signup fetch
 export const fetchSignUp = (email, password) => {
   return (dispatch, getState) => {
-    fetch('http://localhost:8080/signup', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        email: email,
-        password: password,
-      }),
-    })
-      .then((res) => res.json())
-      .then((json) => {
-        console.log(json);
+    fetch(API_URL('signup'), options(email, password))
+      .then(async (res) => {
+        const body = await res.json();
+        if (!res.ok) {
+          if (body.errorCode === 'E-mail is already in use') {
+            dispatch(user.actions.setErrors('E-mail is already in use'));
+          } else {
+            dispatch(user.actions.setErrors('Something went wrong'));
+          }
+          return;
+        }
+        return body;
+      })
+      .then((res) => {
+        console.log(res);
         batch(() => {
-          dispatch(user.actions.setEmail(json.email));
-          dispatch(user.actions.setAccessToken(json.accessToken));
+          dispatch(user.actions.setEmail(res.email));
+          dispatch(user.actions.setAccessToken(res.accessToken));
         });
 
         localStorage.setItem(
           'user',
           JSON.stringify({
-            email: json.email,
-            accessToken: json.accessToken,
+            email: res.email,
+            accessToken: res.accessToken,
           })
         );
       });
   };
 };
 
+//Login fetch
 export const fetchLogIn = (email, password) => {
   return (dispatch, getState) => {
     fetch('http://localhost:8080/login', {
@@ -74,9 +90,10 @@ export const fetchLogIn = (email, password) => {
       // Do we need async and await?
       .then(async (res) => {
         const body = await res.json();
+        console.log(body);
         if (!res.ok) {
-          if (body.errorCode === 'email-exists') {
-            dispatch(user.actions.setErrors('The email already exists'));
+          if (body.errorCode === 'E-mail is already in use') {
+            dispatch(user.actions.setErrors('E-mail is already in use'));
           } else {
             dispatch(user.actions.setErrors('Something went wrong'));
           }
