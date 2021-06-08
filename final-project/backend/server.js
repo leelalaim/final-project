@@ -147,7 +147,9 @@ app.post('/signup', async (req, res) => {
     });
     console.log(user);
     user.save();
-    res.status(201).json({ id: user._id, accessToken: user.accessToken, email: email });
+    res
+      .status(201)
+      .json({ id: user._id, accessToken: user.accessToken, email: user.email });
   } catch (error) {
     console.log(error);
     res.status(400).json({
