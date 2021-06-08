@@ -147,7 +147,7 @@ app.post('/signup', async (req, res) => {
     });
     console.log(user);
     user.save();
-    res.status(201).json({ id: user._id, accessToken: user.accessToken });
+    res.status(201).json({ id: user._id, accessToken: user.accessToken, email: email });
   } catch (error) {
     console.log(error);
     res.status(400).json({
@@ -155,7 +155,7 @@ app.post('/signup', async (req, res) => {
       message: 'Could not create user',
       error,
     });
-  }
+  };
 });
 
 //Just for development
