@@ -8,10 +8,12 @@ import { Footer } from "./Footer";
 export const Projects = () => {
   // Value for input
   const [value, setValue] = useState('')
+  // const [filteredProjects, setFilteredProjects] = useState([])
 
   const dispatch = useDispatch();
-  const projects = useSelector((store) => store.allProjects.projectList.filter(item => item === value));
+  const projects = useSelector((store) => store.allProjects.projectList.filter((item) => item === value))
   
+    
 
 
   useEffect(() => {
@@ -19,6 +21,16 @@ export const Projects = () => {
   }, [dispatch]);
 
   const stacks = ['React', 'JavaScript', 'HTML5', 'CSS', 'Redux', 'Styled Components', 'Python', 'C#', 'TypeScript']
+
+  // const filterOnClick = (value) => {
+  //   if (value === "See all") {
+  //     setFilteredProducts(projects)
+  //   } else if (value === {}) {
+  //     setFilteredProducts(products.filter(product => product.fields.category === value))
+  //   } else if () {
+
+  //   }
+  // }
 
   // Create an array of choices
   // Put input fields for each stack by mapping over array to render it. (Now in local state then move it into Redux.)
@@ -37,9 +49,8 @@ export const Projects = () => {
           <input 
             type='checkbox'
             value={stack}
-            checked={}
-            onChange={() => {
-              console.log(value)
+            onChange={(e) => {
+                setValue(e.target.value)            
             }}
           />
         </div>
@@ -48,21 +59,17 @@ export const Projects = () => {
       <div>All project cards here</div>
       {projects.map((project) => (
         <>
-          <h3>{project.projectName}</h3>
-          <p>{project.bootcamp}</p>
-          <p>{project.stack}</p>
+          <h3>{project.bootcamp}</h3>
+          {/* <p>{project.bootcamp}</p>
+          <p>{project.stack}</p> */}
         </>
-      ))}
-
-    <>
-    <button onClick={() => console.log(value)}>click</button>
-    </>
-
-      
+      ))}     
       <Footer />
     </>
   )
+  
 };
+
 
 
 {/* <CheckBox
