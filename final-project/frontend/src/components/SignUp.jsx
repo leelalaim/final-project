@@ -13,8 +13,6 @@ export const SignUp = () => {
 
   const errorMessage = useSelector((store) => store.user.errors)
 
-  console.log(errorMessage)
-
   const onFormSubmit = (e) => {
     e.preventDefault();
     dispatch(fetchSignUp(email, password));
@@ -31,7 +29,7 @@ export const SignUp = () => {
         ></input>
         <label>Password</label>
         <input
-          type="text"
+          type="password"
           value={password}
           onChange={(e) => setPassword(e.target.value)}
         ></input>
@@ -44,7 +42,7 @@ export const SignUp = () => {
           Sign Up!
         </button>
       </form>
-      <p>{errorMessage}</p>
+      <p>{errorMessage && errorMessage.errorCode}</p>
     </section>
   );
 };

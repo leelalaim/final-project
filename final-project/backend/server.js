@@ -116,6 +116,7 @@ app.post('/upload', (req, res) => {
   }
 });
 
+//Sign Up
 app.post('/signup', async (req, res) => {
   const salt = bcrypt.genSaltSync();
   const { email, password } = req.body;
@@ -123,7 +124,7 @@ app.post('/signup', async (req, res) => {
     let user = await User.findOne({
       email,
     });
-    if (user) {
+    if (email) {
       res.status(403).json({
         errorCode: 'E-mail is already in use',
         message: 'A user with that e-mail already exists',
@@ -135,13 +136,11 @@ app.post('/signup', async (req, res) => {
       email,
       password: bcrypt.hashSync(password, salt),
     });
-    console.log(user);
     user.save();
     res
       .status(201)
       .json({ id: user._id, accessToken: user.accessToken, email: user.email });
   } catch (error) {
-    console.log(error);
     res.status(400).json({
       errorCode: 'uknown-error',
       message: 'Could not create user',
@@ -150,22 +149,14 @@ app.post('/signup', async (req, res) => {
   }
 });
 
-//Just for development
-app.get('/users', async (req, res) => {
-  const users = await User.find();
-  res.json(users);
-});
-
+// Log In
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
-  console.log(email);
-  console.log(password);
   try {
     const user = await User.findOne({ email: email });
     if (!user) {
-      console.log('invalid credentials');
       res.status(401).json({
-        errorCode: 'invalid-credentials',
+        errorCode: 'E-mail not registered',
         message: 'Invalid credentials',
       });
       return;
@@ -173,7 +164,7 @@ app.post('/login', async (req, res) => {
 
     if (!bcrypt.compareSync(password, user.password)) {
       res.status(401).json({
-        errorCode: 'invalid-credentials',
+        errorCode: 'Incorrect Password',
         message: 'Invalid credentials',
       });
       return;
@@ -190,6 +181,12 @@ app.post('/login', async (req, res) => {
       .status(400)
       .json({ errorCode: 'uknown-error', message: 'Invalid request', error });
   }
+});
+
+//Just for development
+app.get('/users', async (req, res) => {
+  const users = await User.find();
+  res.json(users);
 });
 
 // Start the server

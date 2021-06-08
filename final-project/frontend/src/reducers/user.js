@@ -15,9 +15,6 @@ const initialState = localStorage.getItem('user')
       errors: null,
     };
 
-console.log(localStorage.getItem('user'));
-console.log(initialState);
-
 export const user = createSlice({
   name: 'user',
   initialState,
@@ -46,32 +43,24 @@ const options = (email, password) => {
 export const fetchSignUp = (email, password) => {
   return (dispatch, getState) => {
     fetch(API_URL('signup'), options(email, password))
-      .then(async (res) => {
-        const body = await res.json();
-        if (!res.ok) {
-          if (body.errorCode === 'E-mail is already in use') {
-            dispatch(user.actions.setErrors('E-mail is already in use'));
-          } else {
-            dispatch(user.actions.setErrors('Something went wrong'));
-          }
-          return;
-        }
-        return body;
-      })
-      .then((res) => {
-        console.log(res);
-        batch(() => {
-          dispatch(user.actions.setEmail(res.email));
-          dispatch(user.actions.setAccessToken(res.accessToken));
-        });
+      .then((res) => res.json())
+      .then((data) => {
+        if (data.success) {
+          batch(() => {
+            dispatch(user.actions.setEmail(data.email));
+            dispatch(user.actions.setAccessToken(data.accessToken));
+          });
 
-        localStorage.setItem(
-          'user',
-          JSON.stringify({
-            email: res.email,
-            accessToken: res.accessToken,
-          })
-        );
+          localStorage.setItem(
+            'user',
+            JSON.stringify({
+              email: data.email,
+              accessToken: data.accessToken,
+            })
+          );
+        } else {
+          dispatch(user.actions.setErrors(data));
+        }
       });
   };
 };
@@ -79,30 +68,10 @@ export const fetchSignUp = (email, password) => {
 //Login fetch
 export const fetchLogIn = (email, password) => {
   return (dispatch, getState) => {
-    fetch('http://localhost:8080/login', {
-      method: 'POST',
-      headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify({
-        email: email,
-        password: password,
-      }),
-    })
-      // Do we need async and await?
-      .then(async (res) => {
-        const body = await res.json();
-        console.log(body);
-        if (!res.ok) {
-          if (body.errorCode === 'E-mail is already in use') {
-            dispatch(user.actions.setErrors('E-mail is already in use'));
-          } else {
-            dispatch(user.actions.setErrors('Something went wrong'));
-          }
-          return;
-        }
-        return body;
-      })
+    fetch(API_URL('login'), options(email, password))
+      .then((res) => res.json())
       .then((data) => {
-        if (data) {
+        if (data.success) {
           batch(() => {
             dispatch(user.actions.setEmail(data.email));
             dispatch(user.actions.setAccessToken(data.accessToken));
