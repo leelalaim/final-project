@@ -16,9 +16,21 @@ export const allProjects = createSlice({
 });
 
 
-export const fetchProjects = () => {
+export const fetchProjects = (stack, bootcamp, week) => {
+
+  let queryParams = ''
+  if (stack) {
+    queryParams = `?stack=${stack}`
+  } else if (bootcamp) {
+    queryParams = `?bootcamp=${bootcamp}`
+  } else if (week) {
+    queryParams = `?week=${week}`
+  } else {
+    queryParams = ``
+  }
+
   return (dispatch, getState) => {
-    fetch("http://localhost:8080/projects")
+    fetch("http://localhost:8080/projects" + queryParams)
       .then((res) => res.json())
       .then((projectList) => {
         dispatch(allProjects.actions.setProjectList(projectList));
