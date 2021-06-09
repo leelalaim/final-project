@@ -12,7 +12,16 @@ code {
     monospace;
 }
 
+
 @media (max-width: 780px) {
+
+  .menu-item {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+    margin: 10px;
+  }
+
   /* Position and sizing of burger button */
   .bm-burger-button {
     position: fixed;
@@ -57,6 +66,7 @@ code {
     background: #cccdd3;
     padding: 2.5em 1.5em 0;
     font-size: 1.15em;
+    background-color: rgba(9, 9, 9, 0.85);
   }
 
   /* Morph shape necessary with bubble or elastic */
@@ -80,3 +90,9 @@ code {
     background: rgba(0, 0, 0, 0.3);
   }
 }
+@media (min-width: 781px) {
+  .hamburger {
+    display: none;
+  }
+}
+

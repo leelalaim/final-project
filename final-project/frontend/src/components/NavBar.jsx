@@ -1,34 +1,108 @@
-import React from 'react'
-import { slide as Menu } from 'react-burger-menu';
-import { useRouteMatch, Link } from "react-router-dom";
+import React from 'react';
+import { makeStyles } from '@material-ui/core/styles';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import MenuIcon from '@material-ui/icons/Menu';
+import AccountCircle from '@material-ui/icons/AccountCircle';
+import Switch from '@material-ui/core/Switch';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormGroup from '@material-ui/core/FormGroup';
+import MenuItem from '@material-ui/core/MenuItem';
+import Menu from '@material-ui/core/Menu';
+import styled from "styled-components";
 
-// import '/hamburger-styling.css'
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  menuButton: {
+    marginRight: theme.spacing(2),
+  },
+  title: {
+    flexGrow: 1,
+  },
+}));
 
-import '../../src/index.css'
+const Container = styled.div`
+  @media (max-width: 781px) {
+    display: none;
+  }
+`;
 
 export const NavBar = () => {
-    // const showSettings = (event) => {
-        
-    //   }
-        return (
-          <Menu right>
-            <a href="/" id="home" className="menu-item">Home</a>
-            <a href="/about" id="about" className="menu-item">About</a>
-            <a href="/projects" id="contact" className="menu-item">Projects</a>
-            <a href="/upload" id="contact" className="menu-item">Upload</a>
-            <a href="/signup" id="contact" className="menu-item">Sign Up!</a>
-            {/* <a  to="/" onClick={ showSettings } className="menu-item--small">Settings</a> */}
-          </Menu>
-          
-        );
-  }
+  const classes = useStyles();
+  const [auth, setAuth] = React.useState(true);
+  const [anchorEl, setAnchorEl] = React.useState(null);
+  const open = Boolean(anchorEl);
 
+  const handleChange = (event) => {
+    setAuth(event.target.checked);
+  };
 
-{/* <Menu right>
-  <Link to="/" id="home" className="menu-item">Home</Link>
-  <Link to="/about" id="about" className="menu-item">About</Link>
-  <Link to="/projects" id="contact" className="menu-item">Projects</Link>
-  <Link to="/upload" id="contact" className="menu-item">Upload</Link>
-  <Link to="/signup" id="contact" className="menu-item">Sign Up!</Link>
-  <Link  to="/" onClick={ showSettings } className="menu-item--small">Settings</Link>
-</Menu> */}
+  const handleMenu = (event) => {
+    setAnchorEl(event.currentTarget);
+  };
+
+  const handleClose = () => {
+    setAnchorEl(null);
+  };
+
+  return (
+    <Container className={classes.root}>
+      {/* <FormGroup>
+        <FormControlLabel
+          control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
+          label={auth ? 'Logout' : 'Login'}
+        />
+      </FormGroup> */}
+      <AppBar position="static">
+        <Toolbar>
+          <TypographyWrapper>
+            <Typography variant="h6" className={classes.title}>
+              Home
+            </Typography>
+            <Typography variant="h6" className={classes.title}>
+              Projects
+            </Typography>
+            <Typography variant="h6" className={classes.title}>
+              About
+            </Typography>
+          </TypographyWrapper>
+          {auth && (
+            <div>
+              <IconButton
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButton>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: 'top',
+                  horizontal: 'right',
+                }}
+                open={open}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={handleClose}>Home</MenuItem>
+                <MenuItem onClick={handleClose}>My account</MenuItem>
+              </Menu>
+            </div>
+          )}
+        </Toolbar>
+      </AppBar>
+    </Container>
+  );
+}
