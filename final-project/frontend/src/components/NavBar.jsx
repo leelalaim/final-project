@@ -90,6 +90,11 @@ export const NavBar = () => {
     setAnchorEl(null);
   };
 
+  const logOut = () => {
+    dispatch(user.actions.setLogOut())
+    localStorage.clear()
+  }
+
   return (
     <Container className={classes.root}>
       {/* <FormGroup>
@@ -142,7 +147,7 @@ export const NavBar = () => {
               >
                 <MenuItem onClick={handleClose}>Home</MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem onClick={() => dispatch(user.actions.setLogOut())}>Sign out</MenuItem>
+                <MenuItem onClick={logOut}>Sign out</MenuItem>
               </Menu>
             </div>
           )}

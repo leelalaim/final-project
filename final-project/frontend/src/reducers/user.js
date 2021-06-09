@@ -30,13 +30,11 @@ export const user = createSlice({
     },
     setLogOut: () => {
       return {
-        // name: null,
-        // username: null,
-        // email: null,
-        accessToken: null
-        // errors: null,
+        email: null,
+        accessToken: null,
+        errors: null,
       };
-    }
+    },
   },
 });
 
@@ -52,24 +50,30 @@ const options = (email, password) => {
 export const fetchSignUp = (email, password) => {
   return (dispatch, getState) => {
     fetch(API_URL('signup'), options(email, password))
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          batch(() => {
-            dispatch(user.actions.setEmail(data.email));
-            dispatch(user.actions.setAccessToken(data.accessToken));
-          });
-
-          localStorage.setItem(
-            'user',
-            JSON.stringify({
-              email: data.email,
-              accessToken: data.accessToken,
-            })
-          );
-        } else {
-          dispatch(user.actions.setErrors(data));
+      .then((res) => {
+        if (!res.ok) {
+          throw res;
         }
+        return res.json();
+      })
+      .then((data) => {
+        batch(() => {
+          dispatch(user.actions.setEmail(data.email));
+          dispatch(user.actions.setAccessToken(data.accessToken));
+        });
+
+        localStorage.setItem(
+          'user',
+          JSON.stringify({
+            email: data.email,
+            accessToken: data.accessToken,
+          })
+        );
+      })
+      .catch((error) => {
+        error.json().then((errorData) => {
+          dispatch(user.actions.setErrors(errorData));
+        });
       });
   };
 };
@@ -78,25 +82,31 @@ export const fetchSignUp = (email, password) => {
 export const fetchLogIn = (email, password) => {
   return (dispatch, getState) => {
     fetch(API_URL('login'), options(email, password))
-      .then((res) => res.json())
-      .then((data) => {
-        if (data.success) {
-          batch(() => {
-            dispatch(user.actions.setEmail(data.email));
-            dispatch(user.actions.setAccessToken(data.accessToken));
-            dispatch(user.actions.setErrors(null));
-          });
-
-          localStorage.setItem(
-            'user',
-            JSON.stringify({
-              email: data.email,
-              accessToken: data.accessToken,
-            })
-          );
-        } else {
-          dispatch(user.actions.setErrors(data));
+      .then((res) => {
+        if (!res.ok) {
+          throw res;
         }
+        return res.json();
+      })
+      .then((data) => {
+        batch(() => {
+          dispatch(user.actions.setEmail(data.email));
+          dispatch(user.actions.setAccessToken(data.accessToken));
+          dispatch(user.actions.setErrors(null));
+        });
+
+        localStorage.setItem(
+          'user',
+          JSON.stringify({
+            email: data.email,
+            accessToken: data.accessToken,
+          })
+        );
+      })
+      .catch((error) => {
+        error.json().then((errorData) => {
+          dispatch(user.actions.setErrors(errorData));
+        });
       });
   };
 };

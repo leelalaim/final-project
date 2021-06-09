@@ -7,6 +7,16 @@ import styled from "styled-components/macro";
 //Inner Dependencies
 import { fetchLogIn } from "../reducers/user";
 
+const Container = styled.div`
+height: 400px;
+`;
+
+const Form = styled.form`
+padding: 100px;
+
+`;
+
+
 // I would like this to be a pop-up on the first page.
 export const Login = () => {
   const dispatch = useDispatch();
@@ -21,8 +31,8 @@ export const Login = () => {
   };
 
   return (
-    <section>
-      <form onSubmit={onFormSubmit}>
+    <Container>
+      <Form onSubmit={onFormSubmit}>
         <label>E-mail</label>
         <input
           type="text"
@@ -43,8 +53,8 @@ export const Login = () => {
         >
           Log In
         </button>
-      </form>
+      </Form>
       <p>{errorMessage && errorMessage.errorCode}</p>
-    </section>
+    </Container>
   );
 };

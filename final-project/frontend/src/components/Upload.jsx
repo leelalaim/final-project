@@ -1,19 +1,29 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components/macro";
 
 // import { user } from "../reducers/user";
 import { uploadProject } from "../reducers/allProjects";
 
 export const Upload = () => {
   const dispatch = useDispatch();
-  // const [email, setEmail] = useState("");
   const [bootcamp, setBootcamp] = useState("");
   const [projectName, setProjectName] = useState("");
   const [url, setUrl] = useState("");
   const [stack, setStack] = useState("");
   const [description, setDescription] = useState("");
   const [week, setWeek] = useState("");
+
+
+const Section = styled.section`
+height: 400px;
+`;
+
+const Form = styled.form`
+padding: 100px;
+
+`;
 
   const email = useSelector((store) => store.user.email);
   console.log(email);
@@ -31,24 +41,13 @@ export const Upload = () => {
         week,
       })
     );
-    // setUserName("");
   };
 
   return (
-    <section>
-      <form onSubmit={onFormSubmit}>
-        {/* <label>Username</label>
-            <input
-              type="text"
-              value={userName}
-              onChange={(e) => setUserName(e.target.value)}
-            ></input> */}
-        {/* <label>Email</label>
-            <input
-              type="text"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-            ></input> */}
+    <Section>
+      <Form onSubmit={onFormSubmit}>
+        <label>Email:</label>
+          <p>{email}</p>
         <label>Bootcamp</label>
         <input
           type="text"
@@ -93,7 +92,7 @@ export const Upload = () => {
         >
           Upload
         </button>
-      </form>
-    </section>
+      </Form>
+    </Section>
   );
 };
