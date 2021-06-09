@@ -13,6 +13,8 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import styled from "styled-components/macro";
 import { Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { user } from "../reducers/user"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -74,6 +76,8 @@ export const NavBar = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
+  const dispatch = useDispatch()
+
   const handleChange = (event) => {
     setAuth(event.target.checked);
   };
@@ -109,7 +113,7 @@ export const NavBar = () => {
             <StyledTypography variant="h6" className={classes.title}>
               About
             </StyledTypography>
-          </TypographyWrapper>
+          </TypographyWrapper> 
           {auth && (
             <div>
               <IconButtonStyle
@@ -138,6 +142,7 @@ export const NavBar = () => {
               >
                 <MenuItem onClick={handleClose}>Home</MenuItem>
                 <MenuItem onClick={handleClose}>My account</MenuItem>
+                <MenuItem onClick={() => dispatch(user.actions.setLogOut())}>Sign out</MenuItem>
               </Menu>
             </div>
           )}

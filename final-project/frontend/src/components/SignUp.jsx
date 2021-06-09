@@ -2,6 +2,7 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import styled from "styled-components"
 
 //Inner Dependencies
 import { fetchSignUp } from "../reducers/user";
@@ -18,8 +19,12 @@ export const SignUp = () => {
     dispatch(fetchSignUp(email, password));
   };
 
+  const SignUp = styled.section`
+  margin-top: 100px;
+  `
+
   return (
-    <section>
+    <SignUp>
       <form onSubmit={onFormSubmit}>
         <label>Email</label>
         <input
@@ -43,6 +48,6 @@ export const SignUp = () => {
         </button>
       </form>
       <p>{errorMessage && errorMessage.errorCode}</p>
-    </section>
+    </SignUp>
   );
 };

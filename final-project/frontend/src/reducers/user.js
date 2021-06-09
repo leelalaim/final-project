@@ -28,6 +28,15 @@ export const user = createSlice({
     setErrors: (store, action) => {
       store.errors = action.payload;
     },
+    setLogOut: () => {
+      return {
+        // name: null,
+        // username: null,
+        // email: null,
+        accessToken: null
+        // errors: null,
+      };
+    }
   },
 });
 
