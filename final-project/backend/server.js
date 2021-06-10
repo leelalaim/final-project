@@ -92,26 +92,29 @@ app.get('/', (req, res) => {
 
 //MVP
 app.get('/projects', async (req, res) => {
-  let data
+  const { bootcamp, stack, week } = req.query;
 
-  const { bootcamp } = req.query
-  const { stack } = req.query
-  const { week } = req.query
+  const query = {};
+  if (bootcamp) {
+    query.bootcamp = bootcamp;
+  }
 
-  const projects = await Project.find().sort({ createdAt: -1 }).limit(10);
-  res.json(projects);
+  if (stack) {
+    query.stack = stack;
+  }
+
+  if (week) {
+    query.week = week;
+  }
 
   try {
-    if (bootcamp, stack, week) {
-      data = await Project.find({
-        bootcamp,
-        stack,
-        week,
-      })
-      res.json(data)
-    }
+    const data = await Project.find(query)
+    .sort({ createdAt: -1 })
+    .limit(10);
+
+    res.json(data);
   } catch (error) {
-    res.status(400).json({ error: 'Oops, no luck with that filter', details: error })
+    res.status(400).json({ error: 'Oops, no luck with that filter', details: error });
   }
 
 });
