@@ -22,6 +22,10 @@ const Text = styled.h1`
   color: white;
   font-size: 50px;
   margin-bottom: -50px;
+  @media (min-width: 768px) and (max-width: 1023px) {
+    font-size: 80px;
+    margin-bottom: -70px;
+  }
 `;
 
 const LowerText = styled(Text)`
