@@ -1,23 +1,53 @@
-import React from "react";
+import React, { useState } from "react";
 import { slide as Menu } from "react-burger-menu";
 import { Link } from "react-router-dom";
 
 import "../../src/index.css";
 
 export const Hamburger = () => {
+  const [closed, setClosed] = useState(false);
   // const showSettings = (event) => {
   //   event.preventDefault();
   // };
 
+  // const close = () => {
+  //     isOpen = { false };
+  // }
+
+  // const openClose = () => {
+  //   if (closed === true) {
+  //     isOpen = false;
+  //     console.log("HELLO");
+  //   }
+  // };
+
+  // var isMenuOpen = function(state) {
+  //   return state.isOpen;
+  // };
+
+  // const isMenuOpen = (state) => {
+  //   return state.isOpen;
+  // };
+
+  // const isOpen = false;
+
   return (
     <div className="hamburger">
       <Menu right>
-        <Link 
-          onClick={ isOpen={ false }}
-          to="/" id="home" className="menu-item">
+        <Link
+          // onClick={close()}
+          to="/"
+          id="home"
+          className="menu-item"
+        >
           Home
         </Link>
-        <Link to="/projects" id="projects" className="menu-item">
+        <Link
+          // onClick={}
+          to="/projects"
+          id="projects"
+          className="menu-item"
+        >
           Projects
         </Link>
         <Link to="/upload" id="upload" className="menu-item">
