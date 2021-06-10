@@ -12,9 +12,9 @@ import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 
 import { fetchProjects } from "../reducers/allProjects";
-import { ProjectsBanner } from "./ProjectsBanner";
+import { ProjectsBanner } from "../components/ProjectsBanner";
 // import { Footer } from "./Footer";
-import { Card } from "./Card";
+import { ProjectCard } from "../components/ProjectCard";
 
 
 const ProjectCards = styled.div`
@@ -134,7 +134,7 @@ export const Projects = () => {
       <div>All project cards here</div>
          <ProjectCards>
         {projects.map((project) => ( 
-          <Card project={project}/>
+          <ProjectCard project={project}/>
         ))}
       </ProjectCards>
     </>

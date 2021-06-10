@@ -27,7 +27,7 @@ const ButtonCard = styled.div`
   margin-top: 100px;
 `;
 
-const ProjectCard = styled.div`
+const CardContainer = styled.div`
   margin: 30px;
 `;
 
@@ -62,7 +62,7 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
-export const Card = ({ project }) => {
+export const ProjectCard = ({ project }) => {
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -73,7 +73,7 @@ export const Card = ({ project }) => {
   };
 
   return (
-    <ProjectCard>
+    <CardContainer>
       <Button variant="outlined" color="primary" onClick={handleClickOpen}>
         <h3>{project.projectName}</h3>
       </Button>
@@ -95,6 +95,6 @@ export const Card = ({ project }) => {
             </Button> */}
         </DialogActions>
       </Dialog>
-    </ProjectCard>
+    </CardContainer>
   );
 };

@@ -5,9 +5,9 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 //Inner Dependencies
-import { Projects } from './components/Projects';
-import { Upload } from './components/Upload';
-import { SignUp } from './components/SignUp';
+import { Projects } from './pages/Projects';
+import { Upload } from './pages/Upload';
+import { SignUp } from './pages/SignUp';
 import { Login } from './components/Login';
 import { allProjects } from './reducers/allProjects';
 import { user } from 'reducers/user';
@@ -32,7 +32,7 @@ export const App = () => {
       <BrowserRouter>
         <Switch>
           <Route exact path='/' />
-          <Route path='/projects' component={Projects} />
+          <Route path='/projects' pages={Projects} />
           <Route path='/upload' component={Upload} />
           <Route path='/signup' component={SignUp} />
           <Route path='/login' component={Login} />
