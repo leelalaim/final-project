@@ -18,19 +18,21 @@ export const allProjects = createSlice({
 
 export const fetchProjects = (stack, bootcamp, week) => {
 
-  let queryParams = ''
+  const queryParams = {}
   if (stack) {
-    queryParams = `?stack=${stack}`
-  } else if (bootcamp) {
-    queryParams = `?bootcamp=${bootcamp}`
-  } else if (week) {
-    queryParams = `?week=${week}`
-  } else {
-    queryParams = ``
+    queryParams.stack = stack;
+  }
+  
+  if (bootcamp) {
+    queryParams.bootcamp = bootcamp;
+  }
+  
+  if (week) {
+    queryParams.week = week;
   }
 
-  return (dispatch, getState) => {
-    fetch("http://localhost:8080/projects" + queryParams)
+  return (dispatch) => {
+    fetch("http://localhost:8080/projects?" + new URLSearchParams(queryParams))
       .then((res) => res.json())
       .then((projectList) => {
         dispatch(allProjects.actions.setProjectList(projectList));
