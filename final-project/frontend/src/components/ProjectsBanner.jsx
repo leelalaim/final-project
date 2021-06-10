@@ -41,7 +41,7 @@ export const ProjectsBanner = () => {
       <BannerImage src={projectsimage}></BannerImage>
       <BannerHeader>Creativity starts here...</BannerHeader>
       <BannerParagraph>
-        Bootcamp projects worth seeing. sdlfhs;aijf
+        Bootcamp projects worth seeing.
         <br />
         And some more text
       </BannerParagraph>

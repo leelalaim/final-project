@@ -10,6 +10,17 @@ import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 
+const CardContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  width: 100vw;
+`;
+
+const PopUpButton = styled(Button)`
+  width: 80%;
+  margin: 20px 0;
+`;
+
 const styles = (theme) => ({
   root: {
     margin: 0,
@@ -22,14 +33,6 @@ const styles = (theme) => ({
     color: theme.palette.grey[500],
   },
 });
-
-// const ButtonCard = styled.div`
-//   margin-top: 100px;
-// `;
-
-const CardContainer = styled.div`
-  margin: 30px;
-`;
 
 const DialogTitle = withStyles(styles)((props) => {
   const { children, classes, onClose, ...other } = props;
@@ -74,9 +77,9 @@ export const ProjectCard = ({ project }) => {
 
   return (
     <CardContainer>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}>
+      <PopUpButton variant="outlined" color="primary" onClick={handleClickOpen}>
         <h3>{project.projectName}</h3>
-      </Button>
+      </PopUpButton>
       <Dialog
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
