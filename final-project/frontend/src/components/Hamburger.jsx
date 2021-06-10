@@ -1,34 +1,36 @@
 import React from "react";
 import { slide as Menu } from "react-burger-menu";
-import { BrowserRouter as Router } from "react-router-dom";
 import { Link } from "react-router-dom";
 
 import "../../src/index.css";
 
 export const Hamburger = () => {
-  // const showSettings = (event) => {};
+  // const showSettings = (event) => {
+  //   event.preventDefault();
+  // };
+
   return (
-    <Router>
-      <div className="hamburger">
-        <Menu right>
-          <Link to="/" id="home" className="menu-item">
-            Home
-          </Link>
-          <Link to="/projects" id="projects" className="menu-item">
-            Projects
-          </Link>
-          <Link to="/upload" id="upload" className="menu-item">
-            Upload
-          </Link>
-          <Link to="/about" id="about" className="menu-item">
-            About
-          </Link>
-          <Link to="/signup" id="signup" className="menu-item">
-            Sign Up!
-          </Link>
-        </Menu>
-      </div>
-    </Router>
+    <div className="hamburger">
+      <Menu right>
+        <Link 
+          onClick={ isOpen={ false }}
+          to="/" id="home" className="menu-item">
+          Home
+        </Link>
+        <Link to="/projects" id="projects" className="menu-item">
+          Projects
+        </Link>
+        <Link to="/upload" id="upload" className="menu-item">
+          Upload
+        </Link>
+        <Link to="/about" id="about" className="menu-item">
+          About
+        </Link>
+        <Link to="/signup" id="signup" className="menu-item">
+          Sign Up!
+        </Link>
+      </Menu>
+    </div>
   );
 };
 
