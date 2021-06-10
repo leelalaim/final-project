@@ -2,7 +2,7 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components/macro";
-
+import { getLinkPreview } from 'link-preview-js';
 // import { user } from "../reducers/user";
 import { uploadProject } from "../reducers/allProjects";
 
@@ -15,6 +15,8 @@ export const Upload = () => {
   const [description, setDescription] = useState("");
   const [week, setWeek] = useState("");
 
+getLinkPreview('https://www.youtube.com/watch?v=MejbOFk7H6c')
+.then((data) => console.log(data));
 
 const Section = styled.section`
 height: 400px;

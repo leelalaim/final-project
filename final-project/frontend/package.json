@@ -13,6 +13,7 @@
     "eslint-plugin-jsx-a11y": "^6.4.1",
     "eslint-plugin-react": "^7.24.0",
     "eslint-plugin-react-hooks": "^2.5.1",
+    "link-preview-js": "^2.1.6",
     "react": "^16.14.0",
     "react-burger-menu": "^3.0.6",
     "react-dom": "^16.14.0",
