@@ -23,9 +23,9 @@ const styles = (theme) => ({
   },
 });
 
-const ButtonCard = styled.div`
-  margin-top: 100px;
-`;
+// const ButtonCard = styled.div`
+//   margin-top: 100px;
+// `;
 
 const CardContainer = styled.div`
   margin: 30px;

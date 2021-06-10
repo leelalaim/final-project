@@ -11,7 +11,7 @@ const BannerContainer = styled.div`
 
 const BannerImage = styled.img`
   object-fit: cover;
-  height: 40vh;
+  height: 50vh;
 `;
 
 const BannerHeader = styled.h1`
