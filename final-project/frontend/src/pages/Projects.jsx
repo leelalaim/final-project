@@ -101,7 +101,7 @@ export const Projects = () => {
     dispatch(fetchProjects(value));
   };
 
-  const addOrDeleteItem = (stack) => {
+  const addOrDeleteItemFromArray = (stack) => {
     if (value.includes(stack)) {
       setValue(value.filter((value) => value !== stack))
     } else {
@@ -122,7 +122,7 @@ export const Projects = () => {
               type="checkbox"
               checked={value.includes(stack)}
               onChange={(e) => {
-                addOrDeleteItem(stack);
+                addOrDeleteItemFromArray(stack);
               }}
             />
           </div>
@@ -131,7 +131,6 @@ export const Projects = () => {
           Filter!
         </button>
       </form>
-      <div>All project cards here</div>
          <ProjectCards>
         {projects.map((project) => ( 
           <ProjectCard project={project}/>

@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 //Inner Dependencies
+import { LandingPage } from './pages/LandingPage';
 import { Projects } from './pages/Projects';
 import { Upload } from './pages/Upload';
 import { SignUp } from './pages/SignUp';
@@ -31,8 +32,8 @@ export const App = () => {
       <Hamburger />
       <BrowserRouter>
         <Switch>
-          <Route exact path='/' />
-          <Route path='/projects' pages={Projects} />
+          <Route exact path='/' component={LandingPage}/>
+          <Route path='/projects' component={Projects} />
           <Route path='/upload' component={Upload} />
           <Route path='/signup' component={SignUp} />
           <Route path='/login' component={Login} />

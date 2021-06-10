@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components/macro";
 
-import heroImage from 'final-project/frontend/src/assets/georgie-cobbs-bKjHgo_Lbpo-unsplash.jpg'
+import heroImage from '../assets/georgie-cobbs-bKjHgo_Lbpo-unsplash.jpg'
 
 const BannerContainer = styled.div`
   display: flex;
@@ -11,7 +11,7 @@ const BannerContainer = styled.div`
 
 const BannerImage = styled.img`
   object-fit: cover;
-  height: 400px;
+  height: 60vh;
 `
 
 const BannerHeader = styled.h1`
@@ -35,7 +35,7 @@ const BannerParagraph = styled.p`
   line-height: 35px;
 `
 
-export const ProjectsBanner = () => {
+export const Hero = () => {
 return (
     <BannerContainer>
     <BannerImage src={heroImage}></BannerImage>
