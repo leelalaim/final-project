@@ -21,6 +21,14 @@ const PopUpButton = styled(Button)`
   margin: 20px 0;
 `;
 
+const DialogContainer = styled(Dialog)`
+  // width: 80%;
+  // padding: 10%;
+  // margin: 20px 0;
+`;
+
+
+
 const styles = (theme) => ({
   root: {
     margin: 0,
@@ -80,7 +88,7 @@ export const ProjectCard = ({ project }) => {
       <PopUpButton variant="outlined" color="primary" onClick={handleClickOpen}>
         <h3>{project.projectName}</h3>
       </PopUpButton>
-      <Dialog
+      <DialogContainer
         onClose={handleClose}
         aria-labelledby="customized-dialog-title"
         open={open}
@@ -97,7 +105,7 @@ export const ProjectCard = ({ project }) => {
               Save changes
             </Button> */}
         </DialogActions>
-      </Dialog>
+      </DialogContainer>
     </CardContainer>
   );
 };

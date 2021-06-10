@@ -13,6 +13,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Menu from '@material-ui/core/Menu';
 import styled from "styled-components/macro";
 import { Link } from "react-router-dom";
+import { BrowserRouter as Router } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { user } from "../reducers/user"
 
@@ -70,6 +71,8 @@ const NavLink = styled.a`
   text-decoration: none;
 `
 
+const MenuLink = styled(MenuItem, Link)
+
 export const NavBar = () => {
   const classes = useStyles();
   const [auth, setAuth] = React.useState(true);
@@ -96,63 +99,68 @@ export const NavBar = () => {
   }
 
   return (
-    <Container className={classes.root}>
-      {/* <FormGroup>
-        <FormControlLabel
-          control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
-          label={auth ? 'Logout' : 'Login'}
-        />
-      </FormGroup> */}
-      <AppBarStyling position="static">
-        <StyledToolbar>
-     
-          <TypographyWrapper>
-            <NavLink href="/projects">
-              <StyledTypography variant="h6" href="/projects" className={classes.title}>
-              Home
-            </StyledTypography>
-            </NavLink>
-            <StyledTypography variant="h6" className={classes.title}>
-              Projects
-            </StyledTypography>
-            <StyledTypography variant="h6" className={classes.title}>
-              About
-            </StyledTypography>
-          </TypographyWrapper> 
-          {auth && (
-            <div>
-              <IconButtonStyle
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButtonStyle>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={open}
-                onClose={handleClose}
-              >
-                <MenuItem onClick={handleClose}>Home</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
-                <MenuItem onClick={logOut}>Sign out</MenuItem>
-              </Menu>
-            </div>
-          )}
-        </StyledToolbar>
-      </AppBarStyling>
-    </Container>
+    <Router>
+      <Container className={classes.root}>
+        {/* <FormGroup>
+          <FormControlLabel
+            control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
+            label={auth ? 'Logout' : 'Login'}
+          />
+        </FormGroup> */}
+        <AppBarStyling position="static">
+          <StyledToolbar>
+      
+            <TypographyWrapper>
+              <NavLink href="/projects">
+                <StyledTypography variant="h6" href="/projects" className={classes.title}>
+                Home
+              </StyledTypography>
+              </NavLink>
+              <StyledTypography variant="h6" className={classes.title}>
+                Projects
+              </StyledTypography>
+              <StyledTypography variant="h6" className={classes.title}>
+                About
+              </StyledTypography>
+            </TypographyWrapper> 
+            {auth && (
+              <div>
+                <IconButtonStyle
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={handleMenu}
+                  color="inherit"
+                >
+                  <AccountCircle />
+                </IconButtonStyle>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorEl}
+                  anchorOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: 'top',
+                    horizontal: 'right',
+                  }}
+                  open={open}
+                  onClose={handleClose}
+                >
+                  <MenuLink to="/" onClick={handleClose}>Home</MenuLink>
+                  <MenuLink to="/projects" onClick={handleClose}>Projects</MenuLink>
+                  <MenuLink to="/upload" onClick={handleClose}>Upload</MenuLink>
+                  <MenuLink to="/signup" onClick={handleClose}>Sign Up</MenuLink>
+                  <MenuLink to="/about" onClick={handleClose}>About</MenuLink>
+                  <MenuItem onClick={logOut}>Sign out</MenuItem>
+                </Menu>
+              </div>
+            )}
+          </StyledToolbar>
+        </AppBarStyling>
+      </Container>
+    </Router>
   );
 }
