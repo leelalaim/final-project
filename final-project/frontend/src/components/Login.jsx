@@ -7,7 +7,7 @@ import styled from "styled-components/macro";
 //Inner Dependencies
 import { fetchLogIn } from "../reducers/user";
 
-const Container = styled.div`
+const Section = styled.section`
 height: 400px;
 `;
 
@@ -31,7 +31,7 @@ export const Login = () => {
   };
 
   return (
-    <Container>
+    <Section>
       <Form onSubmit={onFormSubmit}>
         <label>E-mail</label>
         <input
@@ -55,6 +55,6 @@ export const Login = () => {
         </button>
       </Form>
       <p>{errorMessage && errorMessage.errorCode}</p>
-    </Container>
+    </Section>
   );
 };
