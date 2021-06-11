@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import styled from "styled-components/macro";
 
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
@@ -16,7 +17,30 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const bootcamps = ["", "Technigo", "LeWagon", "Salt", "Other"];
+const Form = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const FormContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  margin-bottom: 20px;
+`;
+
+const Button = styled.button`
+  background-color: #f5c81e;
+  color: white;
+  border-radius: 50px;
+  border: none;
+  width: 50%;
+  padding: 10px;
+  font-weight: bold;
+`;
+
+const bootcamps = ["", "Technigo", "LeWagon", "Salt", "Academy", "Other"];
 const stacks = [
   "",
   "React",
@@ -77,58 +101,60 @@ export const FilterForm = ({ onSubmit }) => {
   };
 
   return (
-    <form onSumbit={onFilterForm}>
-      <FormControl className={classes.formControl}>
-        <InputLabel htmlFor="bootcamp">Bootcamp</InputLabel>
-        <Select
-          native
-          value={filters.bootcamp}
-          onChange={handleChange}
-          inputProps={{
-            name: "bootcamp",
-            id: "bootcamp",
-          }}
-        >
-          {bootcamps.map((bootcamp) => (
-            <option value={bootcamp}>{bootcamp}</option>
-          ))}
-        </Select>
-      </FormControl>
-      <FormControl className={classes.formControl}>
-        <InputLabel htmlFor="stack">Stack</InputLabel>
-        <Select
-          native
-          value={filters.stack}
-          onChange={handleChange}
-          inputProps={{
-            name: "stack",
-            id: "stack",
-          }}
-        >
-          {stacks.map((stack) => (
-            <option value={stack}> {stack}</option>
-          ))}
-        </Select>
-      </FormControl>
-      <FormControl className={classes.formControl}>
-        <InputLabel htmlFor="week">Week</InputLabel>
-        <Select
-          native
-          value={filters.week}
-          onChange={handleChange}
-          inputProps={{
-            name: "week",
-            id: "week",
-          }}
-        >
-          {weeks.map((week) => (
-            <option value={week}>{week}</option>
-          ))}
-        </Select>
-      </FormControl>
-      <button onClick={onFilterForm} type="submit">
+    <Form onSumbit={onFilterForm}>
+      <FormContainer>
+        <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="bootcamp">Bootcamp</InputLabel>
+          <Select
+            native
+            value={filters.bootcamp}
+            onChange={handleChange}
+            inputProps={{
+              name: "bootcamp",
+              id: "bootcamp",
+            }}
+          >
+            {bootcamps.map((bootcamp) => (
+              <option value={bootcamp}>{bootcamp}</option>
+            ))}
+          </Select>
+        </FormControl>
+        <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="stack">Stack</InputLabel>
+          <Select
+            native
+            value={filters.stack}
+            onChange={handleChange}
+            inputProps={{
+              name: "stack",
+              id: "stack",
+            }}
+          >
+            {stacks.map((stack) => (
+              <option value={stack}> {stack}</option>
+            ))}
+          </Select>
+        </FormControl>
+        <FormControl className={classes.formControl}>
+          <InputLabel htmlFor="week">Week</InputLabel>
+          <Select
+            native
+            value={filters.week}
+            onChange={handleChange}
+            inputProps={{
+              name: "week",
+              id: "week",
+            }}
+          >
+            {weeks.map((week) => (
+              <option value={week}>{week}</option>
+            ))}
+          </Select>
+        </FormControl>
+      </FormContainer>
+      <Button onClick={onFilterForm} type="submit">
         Filter!
-      </button>
-    </form>
+      </Button>
+    </Form>
   );
 };
