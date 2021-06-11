@@ -7,7 +7,6 @@ import { ProjectsBanner } from "../components/ProjectsBanner";
 // import { Footer } from "./Footer";
 import { ProjectCard } from "../components/ProjectCard";
 
-
 const ProjectCards = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -43,13 +42,38 @@ export const Projects = () => {
     dispatch(fetchProjects(value));
   };
 
+  // const addOrDeleteItemFromArray = (stack) => {
+  //   if (value.includes(stack)) {
+  //     setValue(value.filter((value) => value !== stack));
+  //   } else {
+  //     setValue(...value, stack);
+  //   }
+  // };
+
   const addOrDeleteItemFromArray = (stack) => {
     if (value.includes(stack)) {
-      setValue(value.filter((value) => value !== stack))
-    } else {
+      setValue(value.filter((value) => value === stack));
       setValue(...value, stack);
+    } else if (!value.includes(stack)) {
+      setValue(value.pop(stack));
     }
-  }
+  };
+  // if (value.includes(stack)) {
+  //   setValue(value.filter((value) => value !== stack));
+  // } else if (value.includes(stack)) {
+  //   setValue(...value, stack);
+  // } else if (!value.includes(stack)) {
+  //   setValue(value.pop(stack));
+  // }
+
+  // const deleteItem = (stack) => {
+  //   if (!value.includes(stack)) {
+  //     setValue(value.pop(stack))
+  //   }
+  // }
+  // if (!value.includes(stack)) {
+  //   setValue(value.pop(stack))
+  // }
 
   return (
     <>
@@ -63,19 +87,26 @@ export const Projects = () => {
             <input
               type="checkbox"
               checked={value.includes(stack)}
-              onChange={(e) => {
+              onChange={() => {
                 addOrDeleteItemFromArray(stack);
               }}
             />
           </div>
         ))}
+        <input 
+          type="text"
+          // value={bootcamp}
+          placeholder="Bootcamp"
+          // onChange={(e) => setBootcamp(e.target.value)}
+          >
+        </input>
         <button onClick={filter} type="submit">
           Filter!
         </button>
       </form>
-         <ProjectCards>
-        {projects.map((project) => ( 
-          <ProjectCard project={project}/>
+      <ProjectCards>
+        {projects.map((project) => (
+          <ProjectCard project={project} />
         ))}
       </ProjectCards>
     </>

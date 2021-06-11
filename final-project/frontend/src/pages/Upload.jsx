@@ -4,13 +4,38 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components/macro";
 // import { user } from "../reducers/user";
 import { uploadProject } from "../reducers/allProjects";
+import { UploadBanner } from "../components/UploadBanner";
 
 const Section = styled.section`
   height: 400px;
 `;
 
 const Form = styled.form`
+  display: flex;
+  flex-direction: column;
   padding: 100px;
+`;
+
+const Input = styled.input`
+  border: none;
+  border-bottom: 1px solid black;
+  margin-bottom: 20px;
+  padding: 10px;
+`;
+
+const TextArea = styled.textarea`
+  margin-bottom: 20px;
+  padding: 10px;
+`;
+
+const Button = styled.button`
+  background-color: #f5c81e;
+  color: white;
+  border-radius: 50px;
+  border: none;
+  width: 50%;
+  padding: 10px;
+  font-weight: bold;
 `;
 
 export const Upload = () => {
@@ -41,55 +66,72 @@ export const Upload = () => {
   };
 
   return (
-    <Section>
-      <Form onSubmit={onFormSubmit}>
-        <label>Email:</label>
-          <p>{email}</p>
-        <label>Bootcamp</label>
-        <input
-          type="text"
-          value={bootcamp}
-          onChange={(e) => setBootcamp(e.target.value)}
-        ></input>
-        <label>Name of project</label>
-        <input
-          type="text"
-          value={projectName}
-          onChange={(e) => setProjectName(e.target.value)}
-        ></input>
-        <label>URL to live page</label>
-        <input
-          type="text"
-          value={url}
-          onChange={(e) => setUrl(e.target.value)}
-        ></input>
-        <label>Add the stacks</label>
-        <input
-          type="text"
-          value={stack}
-          onChange={(e) => setStack(e.target.value)}
-        ></input>
-        <label>Add a project description</label>
-        <input
-          type="text"
-          value={description}
-          onChange={(e) => setDescription(e.target.value)}
-        ></input>
-        <label>Which week of the bootcamp</label>
-        <input
-          type="text"
-          value={week}
-          onChange={(e) => setWeek(e.target.value)}
-        ></input>
-        <button
-          type="submit"
-          onClick={() => {
-            console.log("CLICK");
-          }}
-        >
-          Upload
-        </button>
-      </Form>
-    </Section>
+    <>
+      <UploadBanner />
+      <Section>
+        <Form onSubmit={onFormSubmit}>
+          {/* <Input
+            type="text"
+            value={email}
+            placeholder="Email"
+            onChange={(e) => setBootcamp(e.target.value)}
+          ></Input> */}
+          {/* <label>Email:</label>
+          <p>{email}</p> */}
+          {/* <label>Bootcamp</label> */}
+          <Input
+            type="text"
+            value={bootcamp}
+            placeholder="Bootcamp"
+            onChange={(e) => setBootcamp(e.target.value)}
+          ></Input>
+          {/* <label>Name of project</label> */}
+          <Input
+            type="text"
+            value={projectName}
+            placeholder="Project name"
+            onChange={(e) => setProjectName(e.target.value)}
+          ></Input>
+          {/* <label>URL to live page</label> */}
+          <Input
+            type="text"
+            value={url}
+            placeholder="URL to live page"
+            onChange={(e) => setUrl(e.target.value)}
+          ></Input>
+          {/* <label>Add the stacks</label> */}
+          <Input
+            type="text"
+            value={stack}
+            placeholder="Stack"
+            onChange={(e) => setStack(e.target.value)}
+          ></Input>
+          {/* <label>Which week of the bootcamp</label> */}
+          <Input
+            type="text"
+            value={week}
+            placeholder="Week"
+            onChange={(e) => setWeek(e.target.value)}
+          ></Input>
+          {/* <label>Add a project description</label> */}
+          <TextArea
+            type="text"
+            value={description}
+            placeholder="Decription"
+            rows="4" 
+            cols="1"
+            onChange={(e) => setDescription(e.target.value)}
+          ></TextArea>
+          <Button
+            type="submit"
+            onClick={() => {
+              console.log("CLICK");
+            }}
+          >
+            Upload
+          </Button>
+        </Form>
+      </Section>
+    </>
   );
 };
