@@ -1,20 +1,20 @@
-import React from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import IconButton from '@material-ui/core/IconButton';
+import React from "react";
+import { makeStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import Typography from "@material-ui/core/Typography";
+import IconButton from "@material-ui/core/IconButton";
 // import MenuIcon from '@material-ui/icons/Menu';
-import AccountCircle from '@material-ui/icons/AccountCircle';
+import AccountCircle from "@material-ui/icons/AccountCircle";
 // import Switch from '@material-ui/core/Switch';
 // import FormControlLabel from '@material-ui/core/FormControlLabel';
 // import FormGroup from '@material-ui/core/FormGroup';
-import MenuItem from '@material-ui/core/MenuItem';
-import Menu from '@material-ui/core/Menu';
+import MenuItem from "@material-ui/core/MenuItem";
+import Menu from "@material-ui/core/Menu";
 import styled from "styled-components/macro";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
-import { user } from "../reducers/user"
+import { user } from "../reducers/user";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -35,7 +35,6 @@ const Container = styled.div`
   left: 0;
   z-index: 1;
   border: none;
-
   @media (max-width: 781px) {
     display: none;
   }
@@ -46,10 +45,11 @@ const TypographyWrapper = styled.div`
   justify-content: flex-start;
 `;
 
-const StyledTypography = styled(Typography, Link)`
+const StyledTypography = styled(Link)`
   margin-right: 30px;
   color: #494949;
   font-weight: 600;
+  text-decoration: none;
 `;
 
 const StyledToolbar = styled(Toolbar)`
@@ -58,17 +58,17 @@ const StyledToolbar = styled(Toolbar)`
 `;
 
 const AppBarStyling = styled(AppBar)`
-  background: rgba(0,0,0,0);
+  background: rgba(0, 0, 0, 0);
   box-shadow: none;
-`
+`;
 
 const IconButtonStyle = styled(IconButton)`
   color: #494949;
-`
+`;
 
-const NavLink = styled.a`
-  text-decoration: none;
-`
+// const NavLink = styled.a`
+//   text-decoration: none;
+// `;
 
 export const NavBar = () => {
   const classes = useStyles();
@@ -76,11 +76,11 @@ export const NavBar = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
-  const handleChange = (event) => {
-    setAuth(event.target.checked);
-  };
+  // const handleChange = (event) => {
+  //   setAuth(event.target.checked);
+  // };
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -91,34 +91,39 @@ export const NavBar = () => {
   };
 
   const logOut = () => {
-    dispatch(user.actions.setLogOut())
-    localStorage.clear()
-  }
+    dispatch(user.actions.setLogOut());
+    localStorage.clear();
+  };
 
   return (
     <Container className={classes.root}>
       {/* <FormGroup>
-        <FormControlLabel
-          control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
-          label={auth ? 'Logout' : 'Login'}
-        />
-      </FormGroup> */}
+          <FormControlLabel
+            control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
+            label={auth ? 'Logout' : 'Login'}
+          />
+        </FormGroup> */}
       <AppBarStyling position="static">
         <StyledToolbar>
-     
           <TypographyWrapper>
-            <NavLink href="/projects">
-              <StyledTypography variant="h6" href="/projects" className={classes.title}>
+            <StyledTypography to="/" variant="h6" className={classes.title}>
               Home
             </StyledTypography>
-            </NavLink>
-            <StyledTypography variant="h6" className={classes.title}>
+            <StyledTypography
+              to="/projects"
+              variant="h6"
+              className={classes.title}
+            >
               Projects
             </StyledTypography>
-            <StyledTypography variant="h6" className={classes.title}>
+            <StyledTypography
+              to="/about"
+              variant="h6"
+              className={classes.title}
+            >
               About
             </StyledTypography>
-          </TypographyWrapper> 
+          </TypographyWrapper>
           {auth && (
             <div>
               <IconButtonStyle
@@ -134,19 +139,17 @@ export const NavBar = () => {
                 id="menu-appbar"
                 anchorEl={anchorEl}
                 anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
+                  vertical: "top",
+                  horizontal: "right",
                 }}
                 keepMounted
                 transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
+                  vertical: "top",
+                  horizontal: "right",
                 }}
                 open={open}
                 onClose={handleClose}
               >
-                <MenuItem onClick={handleClose}>Home</MenuItem>
-                <MenuItem onClick={handleClose}>My account</MenuItem>
                 <MenuItem onClick={logOut}>Sign out</MenuItem>
               </Menu>
             </div>
@@ -155,4 +158,4 @@ export const NavBar = () => {
       </AppBarStyling>
     </Container>
   );
-}
+};

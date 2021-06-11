@@ -1,18 +1,18 @@
 import React from "react";
 import styled from "styled-components/macro";
 
-import projectsimage from '../assets/projects.jpg'
+import projectsimage from "../assets/projects.jpg";
 
 const BannerContainer = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-`
+`;
 
 const BannerImage = styled.img`
   object-fit: cover;
-  height: 400px;
-`
+  height: 50vh;
+`;
 
 const BannerHeader = styled.h1`
   margin: 0;
@@ -21,9 +21,9 @@ const BannerHeader = styled.h1`
   font-weight: 400;
   top: 100px;
   color: #ffffff;
-  background-color:rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.3);
   font-size: 40px;
-`
+`;
 
 const BannerParagraph = styled.p`
   font-size: 30px;
@@ -33,14 +33,18 @@ const BannerParagraph = styled.p`
   left: 30px;
   top: 220px;
   line-height: 35px;
-`
+`;
 
 export const ProjectsBanner = () => {
-return (
+  return (
     <BannerContainer>
-    <BannerImage src={projectsimage}></BannerImage>
-    <BannerHeader>Creativity starts here...</BannerHeader>
-    <BannerParagraph>Bootcamp projects worth seeing. <br/>And some more text</BannerParagraph>
-  </BannerContainer>
-)
-}
+      <BannerImage src={projectsimage}></BannerImage>
+      <BannerHeader>Creativity starts here...</BannerHeader>
+      <BannerParagraph>
+        Bootcamp projects worth seeing.
+        <br />
+        And some more text
+      </BannerParagraph>
+    </BannerContainer>
+  );
+};

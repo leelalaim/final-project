@@ -2,9 +2,16 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components/macro";
-
 // import { user } from "../reducers/user";
 import { uploadProject } from "../reducers/allProjects";
+
+const Section = styled.section`
+  height: 400px;
+`;
+
+const Form = styled.form`
+  padding: 100px;
+`;
 
 export const Upload = () => {
   const dispatch = useDispatch();
@@ -14,16 +21,6 @@ export const Upload = () => {
   const [stack, setStack] = useState("");
   const [description, setDescription] = useState("");
   const [week, setWeek] = useState("");
-
-
-const Section = styled.section`
-height: 400px;
-`;
-
-const Form = styled.form`
-padding: 100px;
-
-`;
 
   const email = useSelector((store) => store.user.email);
   console.log(email);

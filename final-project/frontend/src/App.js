@@ -5,15 +5,16 @@ import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { Provider } from 'react-redux';
 
 //Inner Dependencies
-import { Projects } from './components/Projects';
-import { Upload } from './components/Upload';
-import { SignUp } from './components/SignUp';
+import { LandingPage } from './pages/LandingPage';
+import { Projects } from './pages/Projects';
+import { Upload } from './pages/Upload';
+import { SignUp } from './pages/SignUp';
 import { Login } from './components/Login';
 import { allProjects } from './reducers/allProjects';
 import { user } from 'reducers/user';
 import { Hamburger } from './components/Hamburger';
 import { NavBar } from './components/NavBar';
-import { Footer } from './components/Footer';
+// import { Footer } from './components/Footer';
 // import { ui } from './reducers/ui';
 // import { users } from './reducers/users';
 
@@ -27,18 +28,18 @@ const store = configureStore({ reducer });
 export const App = () => {
   return (
     <Provider store={store}>
-      <NavBar />
-      <Hamburger />
       <BrowserRouter>
+        <NavBar />
+        <Hamburger />
         <Switch>
-          <Route exact path='/' />
+          <Route exact path='/' component={LandingPage}/>
           <Route path='/projects' component={Projects} />
           <Route path='/upload' component={Upload} />
           <Route path='/signup' component={SignUp} />
           <Route path='/login' component={Login} />
+          {/* <Footer /> */}
         </Switch>
       </BrowserRouter>
-      {/* <Footer /> */}
     </Provider>
   );
 };
