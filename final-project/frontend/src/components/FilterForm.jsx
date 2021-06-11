@@ -41,6 +41,7 @@ const Button = styled.button`
 `;
 
 const bootcamps = ["", "Technigo", "LeWagon", "Salt", "Academy", "Other"];
+
 const stacks = [
   "",
   "React",
