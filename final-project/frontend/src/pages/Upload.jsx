@@ -64,6 +64,7 @@ export const Upload = () => {
           onChange={(e) => setUrl(e.target.value)}
         ></input>
         <label>Add the stacks</label>
+        {/* Make multiple choice with an Other option */}
         <input
           type="text"
           value={stack}

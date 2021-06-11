@@ -142,11 +142,13 @@ app.post('/upload', (req, res) => {
 app.post('/signup', async (req, res) => {
   const salt = bcrypt.genSaltSync();
   const { email, password } = req.body;
+  console.log(email);
+  console.log(password);
   try {
     let user = await User.findOne({
       email,
     });
-    if (email) {
+    if (user) {
       res.status(403).json({
         errorCode: 'E-mail is already in use',
         message: 'A user with that e-mail already exists',
