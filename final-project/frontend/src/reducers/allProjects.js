@@ -16,8 +16,8 @@ export const allProjects = createSlice({
 });
 
 
-export const fetchProjects = (stack, bootcamp, week) => {
-
+export const fetchProjects = (filters = {}) => {
+  const { stack, bootcamp, week } = filters
   const queryParams = {}
   if (stack) {
     queryParams.stack = stack;
