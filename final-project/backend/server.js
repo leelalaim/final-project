@@ -79,7 +79,7 @@ const projectSchema = new mongoose.Schema({
 const Project = mongoose.model('Project', projectSchema);
 const User = mongoose.model('User', userSchema);
 
-const port = process.env.PORT || 8080;
+const port = process.env.PORT || 8081;
 const app = express();
 
 app.use(cors());
@@ -108,15 +108,14 @@ app.get('/projects', async (req, res) => {
   }
 
   try {
-    const data = await Project.find(query)
-    .sort({ createdAt: -1 })
-    .limit(10);
+    const data = await Project.find(query).sort({ createdAt: -1 }).limit(10);
 
     res.json(data);
   } catch (error) {
-    res.status(400).json({ error: 'Oops, no luck with that filter', details: error });
+    res
+      .status(400)
+      .json({ error: 'Oops, no luck with that filter', details: error });
   }
-
 });
 
 //MVP

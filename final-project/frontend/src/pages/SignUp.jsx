@@ -7,6 +7,10 @@ import styled from "styled-components"
 //Inner Dependencies
 import { fetchSignUp } from "../reducers/user";
 
+const SignUpForm = styled.section`
+margin-top: 100px;
+`
+
 export const SignUp = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
@@ -19,12 +23,9 @@ export const SignUp = () => {
     dispatch(fetchSignUp(email, password));
   };
 
-  const SignUp = styled.section`
-  margin-top: 100px;
-  `
 
   return (
-    <SignUp>
+    <SignUpForm>
       <form onSubmit={onFormSubmit}>
         <label>Email</label>
         <input
@@ -48,6 +49,6 @@ export const SignUp = () => {
         </button>
       </form>
       <p>{errorMessage && errorMessage.errorCode}</p>
-    </SignUp>
+    </SignUpForm>
   );
 };
