@@ -1,7 +1,7 @@
 //Outer Dependencies
-import React from "react";
-import { useState } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import {Link } from 'react-router-dom'
 import styled from "styled-components"
 
 //Inner Dependencies
@@ -53,7 +53,15 @@ export const SignUp = () => {
         <p>{errorMessage && errorMessage.errorCode}</p>
       </SignUpForm>
   } else {
-    content = <>You have succesfully logged in</> 
+    content = <>
+    <h1>You have succesfully Signed Up!</h1>
+    <Link to={'/projects'}>
+    <p>Projects Page</p>
+    </Link>
+    <Link to={'/upload'}>
+    <p>Upload a projects</p>
+    </Link>
+    </> 
   }
 
   return (

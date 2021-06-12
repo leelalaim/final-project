@@ -207,6 +207,10 @@ app.post('/login', async (req, res) => {
   }
 });
 
+app.delete('/delete', async (req, res) => {
+  const { _id } = req.body;
+});
+
 //Just for development
 app.get('/users', async (req, res) => {
   const users = await User.find();
