@@ -1,17 +1,44 @@
 //Outer Dependencies
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+<<<<<<< HEAD
 import {Link } from 'react-router-dom'
 import styled from "styled-components"
+=======
+import styled from "styled-components";
+
+// Material UI
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
+>>>>>>> origin/master
 
 //Inner Dependencies
 import { fetchSignUp } from "../reducers/user";
 
+const useStyles = makeStyles((theme) => ({
+  root: {
+    "& > *": {
+      margin: theme.spacing(1),
+      width: "25ch",
+    },
+  },
+}));
+
 const SignUpForm = styled.section`
-margin-top: 100px;
-`
+  margin-top: 100px;
+`;
+const Button = styled.button`
+  background-color: #f5c81e;
+  color: white;
+  border-radius: 50px;
+  border: none;
+  width: 50%;
+  padding: 10px;
+  font-weight: bold;
+`;
 
 export const SignUp = () => {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");

@@ -5,37 +5,25 @@ import { Link } from "react-router-dom";
 import "../../src/index.css";
 
 export const Hamburger = () => {
-  const [closed, setClosed] = useState(false);
-  // const showSettings = (event) => {
-  //   event.preventDefault();
-  // };
+  const [isOpen, setIsOpen] = useState(false);
 
-  // const close = () => {
-  //     isOpen = { false };
-  // }
+  const onMenuStateChange = (state) => {
+    setIsOpen(state.isOpen);
+  }
 
-  // const openClose = () => {
-  //   if (closed === true) {
-  //     isOpen = false;
-  //     console.log("HELLO");
-  //   }
-  // };
-
-  // var isMenuOpen = function(state) {
-  //   return state.isOpen;
-  // };
-
-  // const isMenuOpen = (state) => {
-  //   return state.isOpen;
-  // };
-
-  // const isOpen = false;
+  const closeMenu = (e) => {
+    setIsOpen(false);
+  }
 
   return (
     <div className="hamburger">
-      <Menu right>
+      <Menu 
+        isOpen={isOpen}
+        onStateChange={onMenuStateChange}
+        right
+      >
         <Link
-          // onClick={close()}
+          onClick={closeMenu}
           to="/"
           id="home"
           className="menu-item"
@@ -43,20 +31,35 @@ export const Hamburger = () => {
           Home
         </Link>
         <Link
-          // onClick={}
+          onClick={closeMenu}
           to="/projects"
           id="projects"
           className="menu-item"
         >
           Projects
         </Link>
-        <Link to="/upload" id="upload" className="menu-item">
+        <Link 
+          onClick={closeMenu}
+          to="/upload" 
+          id="upload"
+          className="menu-item"
+        >
           Upload
         </Link>
-        <Link to="/about" id="about" className="menu-item">
+        <Link 
+          onClick={closeMenu}
+          to="/about" 
+          id="about" 
+          className="menu-item"
+        >
           About
         </Link>
-        <Link to="/signup" id="signup" className="menu-item">
+        <Link 
+          onClick={closeMenu}
+          to="/signup" 
+          id="signup" 
+          className="menu-item"
+        >
           Sign Up!
         </Link>
       </Menu>
