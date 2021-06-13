@@ -15,26 +15,27 @@ const BannerImage = styled.img`
 `
 const TextContainer = styled.div`
   position: absolute;
-  top: 30%;
+  top: 27%;
 `;
 
 const BannerHeader = styled.h1`
-  margin: 0;
-  padding: 10px 0px 10px 30px;
-  font-weight: 400;
-  color: #ffffff;
-  background-color:rgba(0, 0, 0, 0.3);
-  font-size: 40px;
+  font-weight: 500;
+  color: #575757;
+  font-size: 45px;
+  margin: 0 0 10px 35px;
+  letter-spacing: 2px;
+  line-height: 40px;
   @media (min-width: 768px) and (max-width: 1023px) {
     font-size: 70px;
   }
 `
 
 const BannerParagraph = styled.p`
-  font-size: 30px;
+  font-size: 25px;
   font-weight: 300;
-  margin: 5% 0 0 5%;
   line-height: 35px;
+  margin: 0 0 0 35px;
+  letter-spacing: 3px;
   @media (min-width: 768px) and (max-width: 1023px) {
     font-size: 40px;
   }
@@ -45,8 +46,8 @@ return (
     <BannerContainer>
     <BannerImage src={heroImage}></BannerImage>
     <TextContainer>
-      <BannerHeader>Creativity starts here...</BannerHeader>
-      <BannerParagraph>Bootcamp projects worth seeing. <br/>And some more text</BannerParagraph>
+      <BannerHeader>Bootcamp <br/> projects</BannerHeader>
+      <BannerParagraph>by amazing people</BannerParagraph>
     </TextContainer>
   </BannerContainer>
 )
