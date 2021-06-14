@@ -79,7 +79,7 @@ const projectSchema = new mongoose.Schema({
 const Project = mongoose.model('Project', projectSchema);
 const User = mongoose.model('User', userSchema);
 
-const port = process.env.PORT || 8081;
+const port = process.env.PORT || 8080;
 const app = express();
 
 app.use(cors());
