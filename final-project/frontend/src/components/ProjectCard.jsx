@@ -97,6 +97,7 @@ export const ProjectCard = ({ project }) => {
           {project.projectName}
         </DialogTitle>
         <DialogContent dividers>
+          <img src={project.projectImage} />
           <Typography gutterBottom>{project.bootcamp}</Typography>
           <Typography gutterBottom>{project.stack}</Typography>
         </DialogContent>
