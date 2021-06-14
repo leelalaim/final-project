@@ -3,6 +3,29 @@ import cors from 'cors';
 import mongoose from 'mongoose';
 import crypto from 'crypto';
 import bcrypt from 'bcrypt-nodejs';
+import dotenv from 'dotenv'
+import cloudinaryFramework from 'cloudinary'
+import multer from 'multer'
+import cloudinaryStorage from 'multer-storage-cloudinary'
+
+dotenv.config()
+const cloudinary = cloudinaryFramework.v2;
+cloudinary.config({
+  cloud_name: 'mmolliss',
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET
+})
+
+const storage = cloudinaryStorage({
+  cloudinary,
+  params: {
+    folder: 'projectImage',
+    allowedFormats: ['jpg', 'png'],
+    transformation: [{ width: 500, height: 500, crop: 'limit' }]
+  }
+})
+
+const parser = multer({ storage })
 
 const mongoUrl =
   process.env.MONGO_URL || 'mongodb://localhost/bootcamp-projects';
@@ -11,6 +34,7 @@ mongoose.connect(mongoUrl, {
   useUnifiedTopology: true,
   useCreateIndex: true,
 });
+
 mongoose.Promise = Promise;
 
 //Schemas
@@ -68,6 +92,10 @@ const projectSchema = new mongoose.Schema({
   },
   week: {
     type: String,
+  },
+  projectImage: {
+    name: String,
+    imageURL: String,
   },
   createdAt: {
     type: Date,
@@ -137,6 +165,35 @@ app.post('/upload', (req, res) => {
     res.status(400).json({ message: 'Could not save', errors: err });
   }
 });
+
+app.post('/projectimage', parser.single('image'), async (req, res) => {
+  try {
+    const image = await new Project({ name: req.body.filename, imageUrl: req.file.path }).save()
+    res.json(image)
+  } catch (err) {
+    res.status(400).json({ errors: err.errors })
+  }
+})
+
+// app.post('/users/:id/avatar', parser.single('image'), async (req, res) => {
+//   const { id } = req.params
+//   try {
+//     const avatar = await User.findByIdAndUpdate(id,
+//       { profileImage: { name: req.file.filename, imageURL: req.file.path } }, { new: true })
+//     if (avatar) {
+//       res.json({ sucess: true, profileImage: avatar.profileImage })
+//     } else {
+//       res.status(404).json({ sucess: false, message: 'Could not update picture' })
+//     }
+//   } catch (error) {
+//     res.status(400).json({ success: false, message: 'Invalid request', error })
+//   }
+// })
+
+
+
+
+
 
 //Sign Up
 app.post('/signup', async (req, res) => {
