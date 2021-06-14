@@ -4,15 +4,25 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components/macro";
 import Button from "@material-ui/core/Button";
-// import TextField from "@material-ui/core/TextField";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
 
 //Inner Dependencies
 import { fetchLogIn } from "../reducers/user";
+
+const useStyles = makeStyles((theme) => ({
+  root: {
+    '& > *': {
+      margin: theme.spacing(1),
+      width: '25ch',
+    },
+  },
+}));
 
 const SignInButton = styled(Button)`
   margin-top: 50px;
@@ -28,6 +38,7 @@ const Form = styled.form`
 `;
 
 export const Login = () => {
+  const classes = useStyles();
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -50,13 +61,13 @@ export const Login = () => {
 
   return (
     <div>
-      <SignInButton
+      {/* <SignInButton
         variant="outlined"
         color="primary"
         onClick={handleClickOpen}
       >
         Sign in
-      </SignInButton>
+      </SignInButton> */}
       <Dialog
         open={open}
         onClose={handleClose}
@@ -64,24 +75,30 @@ export const Login = () => {
       >
         <DialogTitle id="form-dialog-title">Sign in!</DialogTitle>
         <DialogContent>
-          <DialogContentText>Sign in!</DialogContentText>
+          {/* <DialogContentText>Sign in!</DialogContentText> */}
           <FormContainer>
             <Form onSubmit={onFormSubmit}>
               <div>
-                <label>E-mail</label>
-                <input
-                  type="text"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                ></input>
+                <div>
+                  <TextField 
+                    type="text"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    id="standard-basic" 
+                    label="Email" />
+                </div>
+                <div>
+                  <TextField 
+                    type="password"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                    id="standard-basic" 
+                    label="Password" />
+                </div>
               </div>
               <div>
-                <label>Password</label>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => setPassword(e.target.value)}
-                ></input>
+                <p>Don't have an account?</p> 
+                <a href="/signup">Sign up</a>
               </div>
             </Form>
             <p>{errorMessage && errorMessage.errorCode}</p>

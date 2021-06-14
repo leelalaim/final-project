@@ -15,6 +15,7 @@ import styled from "styled-components/macro";
 import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { user } from "../reducers/user";
+import { Login } from "../components/Login";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -90,6 +91,11 @@ export const NavBar = () => {
     setAnchorEl(null);
   };
 
+  const logIn = () => {
+    dispatch(user.actions.setLogOut());
+    localStorage.clear();
+  };
+
   const logOut = () => {
     dispatch(user.actions.setLogOut());
     localStorage.clear();
@@ -123,6 +129,7 @@ export const NavBar = () => {
             >
               About
             </StyledTypography>
+            <Login />
           </TypographyWrapper>
           {auth && (
             <div>
@@ -150,6 +157,7 @@ export const NavBar = () => {
                 open={open}
                 onClose={handleClose}
               >
+                <MenuItem onClick={logIn}>Sign in</MenuItem>
                 <MenuItem onClick={logOut}>Sign out</MenuItem>
               </Menu>
             </div>
