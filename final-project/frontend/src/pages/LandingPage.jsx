@@ -25,8 +25,8 @@ export const LandingPage = () => {
     <div>
       <Hero />
       <ProjectCards>
-        {projects.map((project) => ( 
-          <ProjectCard project={project}/>
+        {projects.slice(0, 6).map((project) => ( 
+        <ProjectCard project={project}/>
         ))}
       </ProjectCards>
       <SecondBannerLandingPage />
