@@ -68,7 +68,7 @@ export const Upload = () => {
         description,
         week,
         projectImage,
-      }), formData
+      },formData )
     )};
 
   return (
