@@ -5,6 +5,7 @@
     "postinstall": "npm install --prefix backend"
   },
   "dependencies": {
+    "babel-plugin-macros": "^3.1.0",
     "react-burger-menu": "^3.0.6",
     "react-icons": "^4.2.0",
     "styled-components": "^5.3.0"
