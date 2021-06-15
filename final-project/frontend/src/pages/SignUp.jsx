@@ -2,9 +2,11 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+
 
 import styled from "styled-components";
-import { Link } from "react-router-dom";
+
 
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
@@ -45,6 +47,8 @@ export const SignUp = () => {
 
   const errorMessage = useSelector((store) => store.user.errors)
   let emailRedux = useSelector((store)=> store.user.email)
+
+
 
   const onFormSubmit = (e) => {
     e.preventDefault();

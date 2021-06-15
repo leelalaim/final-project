@@ -12,6 +12,7 @@ import DialogTitle from "@material-ui/core/DialogTitle";
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
+
 //Inner Dependencies
 import { fetchLogIn } from "../reducers/user";
 
@@ -66,7 +67,6 @@ export const Login = () => {
   const errorMessage = useSelector((store) => store.user.errors);
 
   const onFormSubmit = (e) => {
-    console.log('123')
     e.preventDefault();
     dispatch(fetchLogIn(email, password));
   };

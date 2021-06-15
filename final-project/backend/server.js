@@ -159,7 +159,6 @@ app.post('/upload', parser.single('image'), async (req, res) => {
     newProject.save();
     res.status(200).json(newProject);
   } catch (err) {
-    console.log(err);
     res.status(400).json({ message: 'Could not save', errors: err });
   }
 });
