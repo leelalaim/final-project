@@ -102,7 +102,7 @@ export const FilterForm = ({ onSubmit }) => {
   };
 
   return (
-    <Form onSumbit={onFilterForm}>
+    <Form onSubmit={onFilterForm}>
       <FormContainer>
         <FormControl className={classes.formControl}>
           <InputLabel htmlFor="bootcamp">Bootcamp</InputLabel>

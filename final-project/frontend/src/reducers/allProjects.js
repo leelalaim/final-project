@@ -1,5 +1,4 @@
 import { createSlice } from '@reduxjs/toolkit';
-import React, { useRef } from 'react';
 
 export const allProjects = createSlice({
   name: 'allProjects',
@@ -57,7 +56,7 @@ export const uploadProject = (project, formData) => {
   };
 };
 
-const deleteOptions = (id) => {
+export const fetchDelete = (id) => {
   return {
     method: 'DELETE',
     headers: { 'Content-type': 'application/json' },
@@ -66,7 +65,7 @@ const deleteOptions = (id) => {
 };
 
 export const deleteProject = (id) => {
-  fetch(`http://localhost:8080/delete/${id}`, deleteOptions(id)).then((res) =>
+  fetch(`http://localhost:8080/delete/${id}`, fetchDelete(id)).then((res) =>
     res.json()
   );
   // .then (res.json() =>

@@ -98,10 +98,10 @@ export const NavBar = () => {
     setAnchorEl(null);
   };
 
-  const logIn = () => {
-    dispatch(user.actions.setLogOut());
-    localStorage.clear();
-  };
+  // const logIn = () => {
+  //   dispatch(user.actions.setLogOut());
+  //   localStorage.clear();
+  // };
 
   const logOut = () => {
     dispatch(user.actions.setLogOut());
@@ -166,7 +166,6 @@ export const NavBar = () => {
                 open={open}
                 onClose={handleClose}
               >
-                <MenuItem onClick={logIn}>Sign in</MenuItem>
                 <MenuItem onClick={logOut}>Sign out</MenuItem>
               </Menu>
             </div>

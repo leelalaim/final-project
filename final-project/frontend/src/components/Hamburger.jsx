@@ -86,6 +86,7 @@ export const Hamburger = () => {
           </Link>
           <Link
             onClick={closeMenu}
+            to="/signin"
             id="signin" 
             className="menu-item">
             <HamburgerLogin/>

@@ -7,7 +7,7 @@ import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
-import DialogContentText from "@material-ui/core/DialogContentText";
+// import DialogContentText from "@material-ui/core/DialogContentText";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { makeStyles } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
@@ -57,7 +57,7 @@ const Input = styled(TextField)`
 `;
 
 export const Login = () => {
-  // const classes = useStyles();
+  const classes = useStyles();
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -66,6 +66,7 @@ export const Login = () => {
   const errorMessage = useSelector((store) => store.user.errors);
 
   const onFormSubmit = (e) => {
+    console.log('123')
     e.preventDefault();
     dispatch(fetchLogIn(email, password));
   };
@@ -98,27 +99,37 @@ export const Login = () => {
           <FormContainer>
             <Form onSubmit={onFormSubmit}>
               <div>
-                <div>
-                  <Input 
+            
+                  <Input
                     type="text"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     id="standard-basic" 
                     label="Email" />
-                </div>
-                <div>
+              
+                
                   <Input 
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                     id="standard-basic" 
                     label="Password" />
-                </div>
+              
               </div>
               <div>
                 <p>Don't have an account?</p> 
                 <a href="/signup">Sign up</a>
               </div>
+              <Button 
+                type="submit"
+                href="/projects"
+                onClick={() => {
+                handleClose()
+                console.log("CLICK")
+                }} 
+                color="primary">
+                Sign in
+              </Button>
             </Form>
             <p>{errorMessage && errorMessage.errorCode}</p>
           </FormContainer>
@@ -127,12 +138,7 @@ export const Login = () => {
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          <Button onClick={() => {
-            handleClose()
-            console.log("CLICK")
-            }} color="primary">
-            Sign in
-          </Button>
+          
         </DialogActions>
       </Dialog>
     </div>

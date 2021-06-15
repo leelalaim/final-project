@@ -82,6 +82,8 @@ export const fetchSignUp = (email, password) => {
 export const fetchLogIn = (email, password) => {
   return (dispatch, getState) => {
     fetch(API_URL('login'), options(email, password))
+    console.log(email)
+    console.log(password)
       .then((res) => {
         if (!res.ok) {
           throw res;

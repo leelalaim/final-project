@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+
+// Material UI
 import { withStyles } from "@material-ui/core/styles";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
@@ -9,8 +11,10 @@ import MuiDialogActions from "@material-ui/core/DialogActions";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
-import {useDispatch} from 'react-redux'
-import {fetchDelete} from "/red"
+
+// Internal dependancies
+import { useDispatch } from 'react-redux'
+import { fetchDelete } from "../reducers/allProjects";
 
 const CardContainer = styled.div`
   display: flex;
@@ -97,7 +101,7 @@ export const ProjectCard = ({ project }) => {
     setOpen(false);
   };
 
-  const handleDelete =() =>{
+  const handleDelete =(id) =>{
     dispatch(fetchDelete(id))
   }
 
