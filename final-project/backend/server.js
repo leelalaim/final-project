@@ -59,18 +59,18 @@ const userSchema = new mongoose.Schema({
 
 //Connect logged in user to uploaded project
 const projectSchema = new mongoose.Schema({
-  email: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
-    // required: true,
-    trim: true,
-    validate: {
-      validator: (value) => {
-        return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value);
-      },
-      message: "Please, enter a valid email",
-    },
-  },
+  // email: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: "User",
+  //   // required: true,
+  //   trim: true,
+  //   validate: {
+  //     validator: (value) => {
+  //       return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value);
+  //     },
+  //     message: "Please, enter a valid email",
+  //   },
+  // },
   bootcamp: {
     type: String,
     // required: true,
@@ -146,7 +146,6 @@ app.get("/projects", async (req, res) => {
 //MVP
 app.post("/upload", parser.single("image"), async (req, res) => {
   const { url, projectName, bootcamp, description, week, stack } = req.body;
-  console.log(req.file.path);
   try {
     const newProject = new Project({
       projectName: projectName,
@@ -163,21 +162,6 @@ app.post("/upload", parser.single("image"), async (req, res) => {
     res.status(400).json({ message: "Could not save", errors: err });
   }
 });
-
-// app.post('/users/:id/avatar', parser.single('image'), async (req, res) => {
-//   const { id } = req.params
-//   try {
-//     const avatar = await User.findByIdAndUpdate(id,
-//       { profileImage: { name: req.file.filename, imageURL: req.file.path } }, { new: true })
-//     if (avatar) {
-//       res.json({ sucess: true, profileImage: avatar.profileImage })
-//     } else {
-//       res.status(404).json({ sucess: false, message: 'Could not update picture' })
-//     }
-//   } catch (error) {
-//     res.status(400).json({ success: false, message: 'Invalid request', error })
-//   }
-// })
 
 //Sign Up
 app.post("/signup", async (req, res) => {
