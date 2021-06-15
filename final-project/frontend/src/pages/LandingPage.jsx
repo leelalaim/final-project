@@ -4,9 +4,10 @@ import styled from "styled-components/macro";
 
 // Reducers, Components and Pages
 import { fetchProjects } from "../reducers/allProjects";
-import { Hero } from '../components/Hero'
+import { MainBanner } from '../components/MainBanner'
 import { ProjectCard } from '../components/ProjectCard'
 import { SecondBannerLandingPage } from '../components/SecondBannerLandingPage'
+import { Login } from '../components/Login'
 
 const ProjectCards = styled.div`
   display: flex;
@@ -23,7 +24,7 @@ export const LandingPage = () => {
 
   return (
     <div>
-      <Hero />
+      <MainBanner />
       <ProjectCards>
         {projects.slice(0, 6).map((project) => ( 
         <ProjectCard project={project}/>

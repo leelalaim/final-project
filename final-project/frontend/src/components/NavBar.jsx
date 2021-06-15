@@ -2,7 +2,7 @@ import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
-import Typography from "@material-ui/core/Typography";
+// import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
 // import MenuIcon from '@material-ui/icons/Menu';
 import AccountCircle from "@material-ui/icons/AccountCircle";
@@ -16,6 +16,7 @@ import { Link } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import { user } from "../reducers/user";
 import { Login } from "../components/Login";
+import logo from "../assets/logo.png"
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -44,6 +45,7 @@ const Container = styled.div`
 const TypographyWrapper = styled.div`
   display: flex;
   justify-content: flex-start;
+  align-items: center;
 `;
 
 const StyledTypography = styled(Link)`
@@ -66,6 +68,11 @@ const AppBarStyling = styled(AppBar)`
 const IconButtonStyle = styled(IconButton)`
   color: #494949;
 `;
+
+const Logo = styled.img`
+  width: 100px;
+  margin-right: 20px;
+`
 
 // const NavLink = styled.a`
 //   text-decoration: none;
@@ -110,8 +117,10 @@ export const NavBar = () => {
           />
         </FormGroup> */}
       <AppBarStyling position="static">
+       
         <StyledToolbar>
           <TypographyWrapper>
+             <Logo src={logo} alt="Logo"></Logo>
             <StyledTypography to="/" variant="h6" className={classes.title}>
               Home
             </StyledTypography>
@@ -129,7 +138,7 @@ export const NavBar = () => {
             >
               About
             </StyledTypography>
-            <Login />
+            <Login/>
           </TypographyWrapper>
           {auth && (
             <div>

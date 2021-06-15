@@ -41,7 +41,7 @@ const BannerParagraph = styled.p`
   }
 `
 
-export const Hero = () => {
+export const MainBanner = () => {
 return (
     <BannerContainer>
     <BannerImage src={heroImage}></BannerImage>

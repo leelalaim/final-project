@@ -25,15 +25,15 @@ const BannerHeader = styled.h1`
   font-size: 40px;
 `;
 
-const BannerParagraph = styled.p`
-  font-size: 30px;
-  font-weight: 300;
-  margin: 0;
-  position: absolute;
-  left: 30px;
-  top: 220px;
-  line-height: 35px;
-`;
+// const BannerParagraph = styled.p`
+//   font-size: 30px;
+//   font-weight: 300;
+//   margin: 0;
+//   position: absolute;
+//   left: 30px;
+//   top: 220px;
+//   line-height: 35px;
+// `;
 
 export const UploadBanner = () => {
   return (

@@ -23,6 +23,17 @@ const PopUpButton = styled(Button)`
   margin: 20px 0;
 `;
 
+const ButtonContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+`;
+
+const ButtonImage = styled.img`
+  width: 100%;
+  height: auto;
+  max-width: 100%;
+`;
+
 const DialogContainer = styled(Dialog)`
   // width: 80%;
   // padding: 10%;
@@ -93,7 +104,10 @@ export const ProjectCard = ({ project }) => {
   return (
     <CardContainer>
       <PopUpButton variant="outlined" color="primary" onClick={handleClickOpen}>
-        <h3>{project.projectName}</h3>
+        <ButtonContainer>
+          <ButtonImage src={project.projectImage} alt="Project" />
+          <h3>{project.projectName}</h3>
+        </ButtonContainer>
       </PopUpButton>
       <DialogContainer
         onClose={handleClose}
@@ -104,7 +118,7 @@ export const ProjectCard = ({ project }) => {
           {project.projectName}
         </DialogTitle>
         <DialogContent dividers>
-          <img src={project.projectImage} />
+          <img src={project.projectImage} alt="Project" />
           <Typography gutterBottom>{project.bootcamp}</Typography>
           <Typography gutterBottom>{project.stack}</Typography>
         </DialogContent>
