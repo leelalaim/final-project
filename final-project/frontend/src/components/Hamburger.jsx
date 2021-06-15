@@ -56,6 +56,14 @@ export const Hamburger = () => {
         </Link>
         <Link 
           onClick={closeMenu}
+          to="/login" 
+          id="signup" 
+          className="menu-item"
+        >
+          Sign In!
+        </Link>
+        <Link 
+          onClick={closeMenu}
           to="/signup" 
           id="signup" 
           className="menu-item"

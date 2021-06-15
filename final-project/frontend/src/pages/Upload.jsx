@@ -1,10 +1,11 @@
-import React from "react";
-import { useState } from "react";
+import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components/macro";
 // import { user } from "../reducers/user";
 import { uploadProject } from "../reducers/allProjects";
 import { UploadBanner } from "../components/UploadBanner";
+
+const API_URL = 'http://localhost:8080/upload'
 
 const Section = styled.section`
   height: 400px;
@@ -46,12 +47,17 @@ export const Upload = () => {
   const [stack, setStack] = useState("");
   const [description, setDescription] = useState("");
   const [week, setWeek] = useState("");
+  const [projectImage, setProjectImage] = useState("");
+
+  const fileInput = useRef()
 
   const email = useSelector((store) => store.user.email);
   console.log(email);
 
   const onFormSubmit = (e) => {
     e.preventDefault();
+    const formData = new FormData()
+    formData.append('image', fileInput.current.files[0])
     dispatch(
       uploadProject({
         email,
@@ -61,9 +67,9 @@ export const Upload = () => {
         stack,
         description,
         week,
-      })
-    );
-  };
+        projectImage,
+      },formData )
+    )};
 
   console.log(bootcamp)
   console.log(projectName)
@@ -115,6 +121,13 @@ export const Upload = () => {
             value={week}
             placeholder="Week"
             onChange={(e) => setWeek(e.target.value)}
+          ></Input>
+          <Input
+            type="file"
+            value={projectImage}
+            ref={fileInput}
+            placeholder="Upload Image"
+            onChange={(e) => setProjectImage(e.target.value)}
           ></Input>
           {/* <label>Add a project description</label> */}
           <TextArea

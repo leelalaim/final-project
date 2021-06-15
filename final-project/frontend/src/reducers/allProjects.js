@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 import { createSlice } from '@reduxjs/toolkit';
+=======
+import { createSlice } from "@reduxjs/toolkit";
+import React, { useRef } from "react";
+>>>>>>> master
 
 export const allProjects = createSlice({
   name: 'allProjects',
@@ -39,13 +44,12 @@ export const fetchProjects = (filters = {}) => {
   };
 };
 
-export const uploadProject = (project) => {
-  console.log(project);
+export const uploadProject = (project, formData) => {
   return (dispatch, getState) => {
-    fetch('http://localhost:8080/upload', {
-      method: 'POST',
-      headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify(project),
+    fetch("http://localhost:8080/upload", {
+      method: "POST",
+      headers: { "Content-type": "application/json" },
+      body: JSON.stringify(project), formData
     })
       .then((res) => res.json())
       .then((project) => {
