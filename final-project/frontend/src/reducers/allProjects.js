@@ -1,5 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 
+import { API_URL } from 'reusable/urls';
+
 export const allProjects = createSlice({
   name: 'allProjects',
   initialState: {
@@ -42,7 +44,7 @@ export const fetchProjects = (filters = {}) => {
 
 export const uploadProject = (project, formData) => {
   return (dispatch, getState) => {
-    fetch('http://localhost:8080/upload', {
+    fetch(API_URL('upload'), {
       method: 'POST',
       headers: { 'Content-type': 'application/json' },
       body: JSON.stringify(project),

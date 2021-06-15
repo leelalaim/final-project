@@ -154,11 +154,12 @@ app.post('/upload', parser.single('image'), async (req, res) => {
       stack: stack,
       description: description,
       week: week,
-      projectImage: req.file.path,
+      projectImage: (req.file && req.file.path) || '',
     });
     newProject.save();
     res.status(200).json(newProject);
   } catch (err) {
+    console.log(err);
     res.status(400).json({ message: 'Could not save', errors: err });
   }
 });
