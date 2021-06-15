@@ -9,6 +9,8 @@ import MuiDialogActions from "@material-ui/core/DialogActions";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
+import {useDispatch} from 'react-redux'
+import {fetchDelete} from "/red"
 
 const CardContainer = styled.div`
   display: flex;
@@ -85,6 +87,7 @@ const DialogActions = withStyles((theme) => ({
 }))(MuiDialogActions);
 
 export const ProjectCard = ({ project }) => {
+  const dispatch = useDispatch()
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -93,6 +96,10 @@ export const ProjectCard = ({ project }) => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  const handleDelete =() =>{
+    dispatch(fetchDelete(id))
+  }
 
   return (
     <CardContainer>
@@ -119,6 +126,9 @@ export const ProjectCard = ({ project }) => {
           {/* <Button autoFocus onClick={handleClose} color="primary">
               Save changes
             </Button> */}
+           <button onClick = {handleDelete}>
+             Delete
+           </button>
         </DialogActions>
       </DialogContainer>
     </CardContainer>

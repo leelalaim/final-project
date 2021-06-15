@@ -167,11 +167,13 @@ app.post("/upload", parser.single("image"), async (req, res) => {
 app.post("/signup", async (req, res) => {
   const salt = bcrypt.genSaltSync();
   const { email, password } = req.body;
+  console.log(email);
+  console.log(password);
   try {
     let user = await User.findOne({
       email,
     });
-    if (email) {
+    if (user) {
       res.status(403).json({
         errorCode: "E-mail is already in use",
         message: "A user with that e-mail already exists",
@@ -227,6 +229,23 @@ app.post("/login", async (req, res) => {
     res
       .status(400)
       .json({ errorCode: "uknown-error", message: "Invalid request", error });
+  }
+});
+
+app.delete('/delete/:id', async (req, res) => {
+  const { id } = req.body;
+
+  try {
+    const deletedProject = await Project.findOneAndDelete({ _id: id });
+    console.log(id);
+    console.log(deletedProject);
+    if (deletedProject) {
+      res.json(deletedProject);
+    } else {
+      res.status(404).json({ message: 'Not found' });
+    }
+  } catch (error) {
+    res.status(400).json({ message: 'Invalid request', error });
   }
 });
 

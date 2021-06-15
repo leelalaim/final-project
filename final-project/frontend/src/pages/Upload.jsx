@@ -69,6 +69,9 @@ export const Upload = () => {
       },formData )
     )};
 
+  console.log(bootcamp)
+  console.log(projectName)
+
   return (
     <>
       <UploadBanner />
@@ -82,7 +85,7 @@ export const Upload = () => {
           ></Input> */}
           {/* <label>Email:</label>
           <p>{email}</p> */}
-          {/* <label>Bootcamp</label> */}
+          <label>Bootcamp</label>
           <Input
             type="text"
             value={bootcamp}
