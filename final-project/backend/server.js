@@ -79,7 +79,7 @@ const projectSchema = new mongoose.Schema({
 const Project = mongoose.model('Project', projectSchema);
 const User = mongoose.model('User', userSchema);
 
-const port = process.env.PORT || 8081;
+const port = process.env.PORT || 8080;
 const app = express();
 
 app.use(cors());
@@ -207,8 +207,21 @@ app.post('/login', async (req, res) => {
   }
 });
 
-app.delete('/delete', async (req, res) => {
-  const { _id } = req.body;
+app.delete('/delete/:id', async (req, res) => {
+  const { id } = req.body;
+
+  try {
+    const deletedProject = await Project.findOneAndDelete({ _id: id });
+    console.log(id);
+    console.log(deletedProject);
+    if (deletedProject) {
+      res.json(deletedProject);
+    } else {
+      res.status(404).json({ message: 'Not found' });
+    }
+  } catch (error) {
+    res.status(400).json({ message: 'Invalid request', error });
+  }
 });
 
 //Just for development

@@ -1,16 +1,12 @@
 //Outer Dependencies
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-<<<<<<< HEAD
 import {Link } from 'react-router-dom'
 import styled from "styled-components"
-=======
-import styled from "styled-components";
 
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
->>>>>>> origin/master
 
 //Inner Dependencies
 import { fetchSignUp } from "../reducers/user";
