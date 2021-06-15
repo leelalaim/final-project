@@ -1,17 +1,17 @@
-import express from "express";
-import cors from "cors";
-import mongoose from "mongoose";
-import crypto from "crypto";
-import bcrypt from "bcrypt-nodejs";
-import dotenv from "dotenv";
-import cloudinaryFramework from "cloudinary";
-import multer from "multer";
-import cloudinaryStorage from "multer-storage-cloudinary";
+import express from 'express';
+import cors from 'cors';
+import mongoose from 'mongoose';
+import crypto from 'crypto';
+import bcrypt from 'bcrypt-nodejs';
+import dotenv from 'dotenv';
+import cloudinaryFramework from 'cloudinary';
+import multer from 'multer';
+import cloudinaryStorage from 'multer-storage-cloudinary';
 
 dotenv.config();
 const cloudinary = cloudinaryFramework.v2;
 cloudinary.config({
-  cloud_name: "mmolliss",
+  cloud_name: 'mmolliss',
   api_key: process.env.CLOUDINARY_API_KEY,
   api_secret: process.env.CLOUDINARY_API_SECRET,
 });
@@ -19,16 +19,16 @@ cloudinary.config({
 const storage = cloudinaryStorage({
   cloudinary,
   params: {
-    folder: "projectImage",
-    allowedFormats: ["jpg", "png"],
-    transformation: [{ width: 500, height: 500, crop: "limit" }],
+    folder: 'projectImage',
+    allowedFormats: ['jpg', 'png'],
+    transformation: [{ width: 500, height: 500, crop: 'limit' }],
   },
 });
 
 const parser = multer({ storage });
 
 const mongoUrl =
-  process.env.MONGO_URL || "mongodb://localhost/bootcamp-projects";
+  process.env.MONGO_URL || 'mongodb://localhost/bootcamp-projects';
 mongoose.connect(mongoUrl, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
@@ -44,7 +44,7 @@ const userSchema = new mongoose.Schema({
     unique: true,
     match: [
       /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-      "Please enter a valid email address",
+      'Please enter a valid email address',
     ],
   },
   password: {
@@ -53,7 +53,7 @@ const userSchema = new mongoose.Schema({
   },
   accessToken: {
     type: String,
-    default: () => crypto.randomBytes(128).toString("hex"),
+    default: () => crypto.randomBytes(128).toString('hex'),
   },
 });
 
@@ -61,14 +61,14 @@ const userSchema = new mongoose.Schema({
 const projectSchema = new mongoose.Schema({
   email: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: "User",
+    ref: 'User',
     // required: true,
     trim: true,
     validate: {
       validator: (value) => {
         return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value);
       },
-      message: "Please, enter a valid email",
+      message: 'Please, enter a valid email',
     },
   },
   bootcamp: {
@@ -101,8 +101,8 @@ const projectSchema = new mongoose.Schema({
 });
 
 //Models
-const Project = mongoose.model("Project", projectSchema);
-const User = mongoose.model("User", userSchema);
+const Project = mongoose.model('Project', projectSchema);
+const User = mongoose.model('User', userSchema);
 
 const port = process.env.PORT || 8080;
 const app = express();
@@ -111,12 +111,12 @@ app.use(cors());
 app.use(express.json());
 
 //Paths
-app.get("/", (req, res) => {
-  res.send("Hello World");
+app.get('/', (req, res) => {
+  res.send('Hello World');
 });
 
 //MVP
-app.get("/projects", async (req, res) => {
+app.get('/projects', async (req, res) => {
   const { bootcamp, stack, week } = req.query;
 
   const query = {};
@@ -139,12 +139,12 @@ app.get("/projects", async (req, res) => {
   } catch (error) {
     res
       .status(400)
-      .json({ error: "Oops, no luck with that filter", details: error });
+      .json({ error: 'Oops, no luck with that filter', details: error });
   }
 });
 
 //MVP
-app.post("/upload", parser.single("image"), async (req, res) => {
+app.post('/upload', parser.single('image'), async (req, res) => {
   const { url, projectName, bootcamp, description, week, stack } = req.body;
   try {
     const newProject = new Project({
@@ -159,22 +159,23 @@ app.post("/upload", parser.single("image"), async (req, res) => {
     newProject.save();
     res.status(200).json(newProject);
   } catch (err) {
-    res.status(400).json({ message: "Could not save", errors: err });
+    res.status(400).json({ message: 'Could not save', errors: err });
   }
 });
 
 //Sign Up
-app.post("/signup", async (req, res) => {
+app.post('/signup', async (req, res) => {
   const salt = bcrypt.genSaltSync();
   const { email, password } = req.body;
+
   try {
     let user = await User.findOne({
       email,
     });
-    if (email) {
+    if (user) {
       res.status(403).json({
-        errorCode: "E-mail is already in use",
-        message: "A user with that e-mail already exists",
+        errorCode: 'E-mail is already in use',
+        message: 'A user with that e-mail already exists',
       });
       return;
     }
@@ -189,30 +190,30 @@ app.post("/signup", async (req, res) => {
       .json({ id: user._id, accessToken: user.accessToken, email: user.email });
   } catch (error) {
     res.status(400).json({
-      errorCode: "uknown-error",
-      message: "Could not create user",
+      errorCode: 'uknown-error',
+      message: 'Could not create user',
       error,
     });
   }
 });
 
 // Log In
-app.post("/login", async (req, res) => {
+app.post('/login', async (req, res) => {
   const { email, password } = req.body;
   try {
     const user = await User.findOne({ email: email });
     if (!user) {
       res.status(401).json({
-        errorCode: "E-mail not registered",
-        message: "Invalid credentials",
+        errorCode: 'E-mail not registered',
+        message: 'Invalid credentials',
       });
       return;
     }
 
     if (!bcrypt.compareSync(password, user.password)) {
       res.status(401).json({
-        errorCode: "Incorrect Password",
-        message: "Invalid credentials",
+        errorCode: 'Incorrect Password',
+        message: 'Invalid credentials',
       });
       return;
     }
@@ -226,12 +227,12 @@ app.post("/login", async (req, res) => {
   } catch (error) {
     res
       .status(400)
-      .json({ errorCode: "uknown-error", message: "Invalid request", error });
+      .json({ errorCode: 'uknown-error', message: 'Invalid request', error });
   }
 });
 
 //Just for development
-app.get("/users", async (req, res) => {
+app.get('/users', async (req, res) => {
   const users = await User.find();
   res.json(users);
 });

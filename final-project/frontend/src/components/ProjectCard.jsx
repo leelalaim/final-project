@@ -11,10 +11,8 @@ import MuiDialogActions from "@material-ui/core/DialogActions";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
-
-// Internal dependancies
-import { useDispatch } from 'react-redux'
-import { fetchDelete } from "../reducers/allProjects";
+import {useDispatch} from 'react-redux'
+import {fetchDelete} from "reducers/allProjects"
 
 const CardContainer = styled.div`
   display: flex;
@@ -101,9 +99,9 @@ export const ProjectCard = ({ project }) => {
     setOpen(false);
   };
 
-  const handleDelete =(id) =>{
-    dispatch(fetchDelete(id))
-  }
+  // const handleDelete =() =>{
+  //   dispatch(fetchDelete(id))
+  // }
 
   return (
     <CardContainer>
@@ -130,9 +128,9 @@ export const ProjectCard = ({ project }) => {
           {/* <Button autoFocus onClick={handleClose} color="primary">
               Save changes
             </Button> */}
-           <button onClick = {handleDelete}>
+           {/* <button onClick = {handleDelete}>
              Delete
-           </button>
+           </button> */}
         </DialogActions>
       </DialogContainer>
     </CardContainer>

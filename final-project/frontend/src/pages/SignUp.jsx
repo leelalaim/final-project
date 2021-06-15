@@ -43,8 +43,8 @@ export const SignUp = () => {
   const [password, setPassword] = useState("");
   let content;
 
-  const errorMessage = useSelector((store) => store.user.errors);
-  let emailRedux = useSelector((store) => store.user.email);
+  const errorMessage = useSelector((store) => store.user.errors)
+  let emailRedux = useSelector((store)=> store.user.email)
 
   const onFormSubmit = (e) => {
     e.preventDefault();
