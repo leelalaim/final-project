@@ -15,6 +15,7 @@ import TextField from '@material-ui/core/TextField';
 //Inner Dependencies
 import { fetchLogIn } from "../reducers/user";
 
+
 const useStyles = makeStyles((theme) => ({
   root: {
     '& > *': {
@@ -25,7 +26,17 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SignInButton = styled(Button)`
-  margin-top: 50px;
+color: #494949;
+border-color: #494949;
+:hover {
+  border-color: #494949;
+  background-color: rgba(224, 224, 224,0.3)
+}
+@media (max-width: 780px) {
+  border-color: white;
+  color: white;
+  margin-top: 5px;
+}
 `;
 
 const FormContainer = styled.div`
@@ -34,11 +45,19 @@ const FormContainer = styled.div`
 `;
 
 const Form = styled.form`
-  padding: 100px;
+  padding: 50px;
+  @media (min-width: 780px) {
+    padding: 100px;
+  }
+`;
+
+const Input = styled(TextField)`
+  // padding: 10px;
+  // width: 100%;
 `;
 
 export const Login = () => {
-  const classes = useStyles();
+  // const classes = useStyles();
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -61,13 +80,13 @@ export const Login = () => {
 
   return (
     <div>
-      {/* <SignInButton
+      <SignInButton
         variant="outlined"
         color="primary"
         onClick={handleClickOpen}
       >
         Sign in
-      </SignInButton> */}
+      </SignInButton>
       <Dialog
         open={open}
         onClose={handleClose}
@@ -80,7 +99,7 @@ export const Login = () => {
             <Form onSubmit={onFormSubmit}>
               <div>
                 <div>
-                  <TextField 
+                  <Input 
                     type="text"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
@@ -88,7 +107,7 @@ export const Login = () => {
                     label="Email" />
                 </div>
                 <div>
-                  <TextField 
+                  <Input 
                     type="password"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}

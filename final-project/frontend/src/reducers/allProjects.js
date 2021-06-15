@@ -1,5 +1,4 @@
 import { createSlice } from "@reduxjs/toolkit";
-import React, { useRef } from "react";
 
 export const allProjects = createSlice({
   name: "allProjects",
@@ -9,6 +8,7 @@ export const allProjects = createSlice({
   reducers: {
     addProject: (store, action) => {
       store.projectList = [...store.projectList, action.payload];
+      // console.log("Second success")
     },
     setProjectList: (store, action) => {
       store.projectList = action.payload;
@@ -50,7 +50,9 @@ export const uploadProject = (project, formData) => {
     })
       .then((res) => res.json())
       .then((project) => {
+        console.log(project);
         dispatch(allProjects.actions.addProject(project));
+        
       });
   };
 };

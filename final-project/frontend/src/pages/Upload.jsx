@@ -5,8 +5,6 @@ import styled from "styled-components/macro";
 import { uploadProject } from "../reducers/allProjects";
 import { UploadBanner } from "../components/UploadBanner";
 
-const API_URL = 'http://localhost:8080/upload'
-
 const Section = styled.section`
   height: 400px;
 `;
@@ -51,8 +49,8 @@ export const Upload = () => {
 
   const fileInput = useRef()
 
-  const email = useSelector((store) => store.user.email);
-  console.log(email);
+  // const email = useSelector((store) => store.user.email);
+  // console.log(email);
 
   const onFormSubmit = (e) => {
     e.preventDefault();
@@ -60,7 +58,7 @@ export const Upload = () => {
     formData.append('image', fileInput.current.files[0])
     dispatch(
       uploadProject({
-        email,
+        // email,
         bootcamp,
         projectName,
         url,
