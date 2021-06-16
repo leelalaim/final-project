@@ -1,10 +1,14 @@
 import React, { useState, useRef } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components/macro";
 // import { user } from "../reducers/user";
 import { uploadProject } from "../reducers/allProjects";
 import { UploadBanner } from "../components/UploadBanner";
 import { Link } from "react-router-dom";
+
+import { useHistory } from "react-router-dom";
+
+
 
 const Section = styled.section`
   height: 400px;
@@ -50,8 +54,16 @@ export const Upload = () => {
 
   const fileInput = useRef()
 
+  let project = useSelector((store) => store.allProjects);
+
+  let history = useHistory();
+
   // const email = useSelector((store) => store.user.email);
   // console.log(email);
+
+  const redirect = () => {
+    history.push("/upload")
+  }
 
   const onFormSubmit = (e) => {
     e.preventDefault();
@@ -66,10 +78,10 @@ export const Upload = () => {
     formData.append('projectImage', projectImage)
     dispatch(
       uploadProject(formData)
-    )};
-
-  console.log(bootcamp)
-  console.log(projectName)
+      
+    )
+    redirect()
+  };
 
   return (
     <>
@@ -135,15 +147,17 @@ export const Upload = () => {
             cols="1"
             onChange={(e) => setDescription(e.target.value)}
           ></TextArea>
-          <Button
-            to="/projects"
-            type="submit"
-            onClick={() => {
+          <Link to={project !== null ? '/projects' : null }>
+            <Button
+              type="submit"
+              onClick={() => {
               console.log("CLICK");
-            }}
-          >
+              }}
+            >
             Upload
-          </Button>
+            </Button>
+          </Link>
+          
         </Form>
       </Section>
     </>

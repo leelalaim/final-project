@@ -42,7 +42,6 @@ export const fetchProjects = (filters = {}) => {
 };
 
 export const uploadProject = (formData) => {
-  console.log(formData.get('image'));
   return (dispatch, getState) => {
     fetch('http://localhost:8080/upload', {
       method: 'POST',
