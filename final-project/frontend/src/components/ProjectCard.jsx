@@ -11,8 +11,10 @@ import MuiDialogActions from "@material-ui/core/DialogActions";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
-import {useDispatch} from 'react-redux'
-import {fetchDelete} from "reducers/allProjects"
+import { useDispatch } from "react-redux";
+import { fetchDelete } from "reducers/allProjects";
+
+import "../../src/index.css";
 
 const CardContainer = styled.div`
   display: flex;
@@ -23,26 +25,45 @@ const CardContainer = styled.div`
 const PopUpButton = styled(Button)`
   width: 80%;
   margin: 20px 0;
+  border: 1px solid red;
 `;
 
 const ButtonContainer = styled.div`
   display: flex;
   flex-direction: column;
+  border: 1px solid black;
+  width: 100%;
+  padding: 0;
+  position: relative;
 `;
 
 const ButtonImage = styled.img`
-  width: 100%;
-  height: auto;
-  max-width: 100%;
+  // width: 100%;
+  // max-width: 100%;
+height: 200px;
+  padding: 0;
+  border: 1px solid black;
+  object-fit: cover;
 `;
 
 const DialogContainer = styled(Dialog)`
-  // width: 80%;
-  // padding: 10%;
-  // margin: 20px 0;
+  width: 80%;
+  padding: 10%;
+  margin: 20px 0;
 `;
 
-
+const ProjectName = styled.h3`
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  overflow: 0;
+  background-color: rgba(0, 0, 0, 0.3);
+  color: white;
+  margin: 0;
+  padding: 10px;
+`;
 
 const styles = (theme) => ({
   root: {
@@ -89,7 +110,7 @@ const DialogActions = withStyles((theme) => ({
 }))(MuiDialogActions);
 
 export const ProjectCard = ({ project }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -108,7 +129,7 @@ export const ProjectCard = ({ project }) => {
       <PopUpButton variant="outlined" color="primary" onClick={handleClickOpen}>
         <ButtonContainer>
           <ButtonImage src={project.projectImage} alt="Project" />
-          <h3>{project.projectName}</h3>
+          <ProjectName>{project.projectName}</ProjectName>
         </ButtonContainer>
       </PopUpButton>
       <DialogContainer
@@ -128,7 +149,7 @@ export const ProjectCard = ({ project }) => {
           {/* <Button autoFocus onClick={handleClose} color="primary">
               Save changes
             </Button> */}
-           {/* <button onClick = {handleDelete}>
+          {/* <button onClick = {handleDelete}>
              Delete
            </button> */}
         </DialogActions>
