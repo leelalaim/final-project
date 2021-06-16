@@ -4,9 +4,9 @@ import styled from "styled-components/macro";
 // import { user } from "../reducers/user";
 import { uploadProject } from "../reducers/allProjects";
 import { UploadBanner } from "../components/UploadBanner";
-import { Link } from "react-router-dom";
+import { Redirect } from "react-router-dom";
 
-import { useHistory } from "react-router-dom";
+// import { useHistory } from "react-router-dom";
 
 
 
@@ -54,16 +54,16 @@ export const Upload = () => {
 
   const fileInput = useRef()
 
-  let project = useSelector((store) => store.allProjects);
+  const projectUploadSuccess = useSelector((store) => store.allProjects.projectUploadSuccess);
 
-  let history = useHistory();
+  // let history = useHistory();
 
   // const email = useSelector((store) => store.user.email);
   // console.log(email);
 
-  const redirect = () => {
-    history.push("/upload")
-  }
+  // const redirect = () => {
+  //   history.push("/upload")
+  // }
 
   const onFormSubmit = (e) => {
     e.preventDefault();
@@ -84,6 +84,13 @@ export const Upload = () => {
 
   return (
     <>
+      {projectUploadSuccess && 
+          <Redirect
+            to={{
+              pathname: "/projects",
+              // state: { from: location }
+            }}
+          />}
       <UploadBanner />
       <Section>
         <Form onSubmit={onFormSubmit}>

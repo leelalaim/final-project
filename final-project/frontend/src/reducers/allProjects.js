@@ -6,6 +6,7 @@ export const allProjects = createSlice({
   name: 'allProjects',
   initialState: {
     projectList: [],
+    projectUploadSuccess: false,
   },
   reducers: {
     addProject: (store, action) => {
@@ -14,6 +15,9 @@ export const allProjects = createSlice({
     setProjectList: (store, action) => {
       store.projectList = action.payload;
     },
+    setProjectUploadSuccess: (store, action) => {
+      store.projectUploadSuccess = action.payload;
+    }
   },
 });
 
@@ -50,6 +54,7 @@ export const uploadProject = (formData) => {
       .then((res) => res.json())
       .then((project) => {
         dispatch(allProjects.actions.addProject(project));
+        dispatch(allProjects.actions.setProjectUploadSuccess(true));
       });
   };
 };

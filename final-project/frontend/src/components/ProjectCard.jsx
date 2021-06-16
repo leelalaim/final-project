@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components/macro";
+import { useDispatch } from "react-redux";
+import { fetchDelete } from "reducers/allProjects";
 
 // Material UI
 import { withStyles } from "@material-ui/core/styles";
@@ -11,8 +13,9 @@ import MuiDialogActions from "@material-ui/core/DialogActions";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
-import { useDispatch } from "react-redux";
-import { fetchDelete } from "reducers/allProjects";
+
+// Font Awesome
+import { FaTrashAlt } from 'react-icons/fa';
 
 import "../../src/index.css";
 
@@ -65,7 +68,6 @@ const FlexContainer = styled.section`
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: flex-start;
     margin: 0 auto;
   }
 `;
@@ -207,6 +209,10 @@ export const ProjectCard = ({ project }) => {
             </Typography>
             <Typography gutterBottom>
               <Span>Live at:</Span> <a href={project.url}>{project.url}</a>
+            </Typography>
+            <Typography gutterBottom>
+              //Set the icon to dispatch delete function onClick
+            <FaTrashAlt />
             </Typography>
           </DialogContent>
           <DialogActions>
