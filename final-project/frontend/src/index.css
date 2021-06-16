@@ -14,11 +14,10 @@ code {
 
 /* PROJECT CARD  */
 
-.MuiButton-outlined {
-  padding: 0;
-  width: 100%;
-}
 
+.MuiDialog-container{
+  height: 50%;
+}
 
 @media (max-width: 780px) {
 

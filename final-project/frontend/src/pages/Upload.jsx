@@ -79,7 +79,7 @@ export const Upload = () => {
     dispatch(
       uploadProject(formData)
     )
-    redirect()
+    // redirect()
   };
 
   return (
@@ -146,7 +146,7 @@ export const Upload = () => {
             cols="1"
             onChange={(e) => setDescription(e.target.value)}
           ></TextArea>
-          <Link to={project !== null ? '/projects' : null }>
+          {/* <Link to={project !== null ? '/projects' : null }> */}
             <Button
               type="submit"
               onClick={() => {
@@ -155,7 +155,7 @@ export const Upload = () => {
             >
             Upload
             </Button>
-          </Link>
+          {/* </Link> */}
           
         </Form>
       </Section>

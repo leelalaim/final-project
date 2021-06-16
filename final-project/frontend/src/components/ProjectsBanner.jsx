@@ -19,10 +19,25 @@ const BannerHeader = styled.h1`
   padding: 10px 0px 10px 30px;
   position: absolute;
   font-weight: 400;
-  top: 100px;
+  top: 35%;
   color: #ffffff;
   background-color: rgba(0, 0, 0, 0.3);
-  font-size: 40px;
+  font-size: 35px;
+  @media (min-width: 375px) and (max-width: 767px) {
+    top: 40%;
+    font-size: 40px;
+    padding: 10px 10px 10px 30px;
+  }
+  @media (min-width: 768px) and (max-width: 1279px) {
+    top: 40%;
+    font-size: 60px;
+    padding: 10px 10px 10px 30px;
+  }
+  @media (min-width: 1280px) {
+    top: 45%;
+    font-size: 60px;
+    padding: 10px 10px 10px 30px;
+  }
 `;
 
 const BannerParagraph = styled.p`
@@ -31,10 +46,19 @@ const BannerParagraph = styled.p`
   margin: 0;
   position: absolute;
   left: 30px;
-  top: 220px;
+  top: 70%;
   line-height: 35px;
-  @media (min-width: 781px) {
-    font-size: 30px;
+  @media (min-width: 375px) and (max-width: 767px) {
+    font-size: 25px;
+    top: 70%;
+  }
+  @media (min-width: 768px) and (max-width: 1279px) {
+    font-size: 35px;
+    top: 65%;
+  }
+  @media (min-width: 1280px) {
+    font-size: 35px;
+    top: 70%;
   }
 `;
 
