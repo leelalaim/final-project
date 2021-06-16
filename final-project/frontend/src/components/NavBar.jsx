@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { user } from "../reducers/user";
 import { Login } from "../components/Login";
-import logo from "../assets/logo.png"
+import logo from "../assets/logo.png";
 // import toast from 'react-hot-toast'
 
 const useStyles = makeStyles((theme) => ({
@@ -73,8 +73,7 @@ const IconButtonStyle = styled(IconButton)`
 const Logo = styled.img`
   width: 100px;
   margin-right: 20px;
-`
-
+`;
 
 export const NavBar = () => {
   const classes = useStyles();
@@ -84,7 +83,6 @@ export const NavBar = () => {
   let content;
 
   let emailRedux = useSelector((store) => store.user.email);
- 
 
   const dispatch = useDispatch();
 
@@ -108,80 +106,80 @@ export const NavBar = () => {
   const logOut = () => {
     dispatch(user.actions.setLogOut());
     localStorage.clear();
-      // successToast()
+    // successToast()
   };
 
   if (emailRedux === null) {
     content = (
       <Container className={classes.root}>
-      {/* <FormGroup>
+        {/* <FormGroup>
           <FormControlLabel
             control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
             label={auth ? 'Logout' : 'Login'}
           />
         </FormGroup> */}
-      <AppBarStyling position="static">
-       
-        <StyledToolbar>
-          <TypographyWrapper>
-             <a href="/"><Logo src={logo} alt="Logo"></Logo></a>
-            <StyledTypography to="/" variant="h6" className={classes.title}>
-              Home
-            </StyledTypography>
-            <StyledTypography
-              to="/projects"
-              variant="h6"
-              className={classes.title}
-            >
-              Projects
-            </StyledTypography>
-            <StyledTypography
-              to="/about"
-              variant="h6"
-              className={classes.title}
-            >
-              About
-            </StyledTypography>
-            <Login/>
-          </TypographyWrapper>
-          {auth && (
-            <div>
-              <IconButtonStyle
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
+        <AppBarStyling position="static">
+          <StyledToolbar>
+            <TypographyWrapper>
+              <a href="/">
+                <Logo src={logo} alt="Logo"></Logo>
+              </a>
+              <StyledTypography to="/" variant="h6" className={classes.title}>
+                Home
+              </StyledTypography>
+              <StyledTypography
+                to="/projects"
+                variant="h6"
+                className={classes.title}
               >
-                <AccountCircle />
-              </IconButtonStyle>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={open}
-                onClose={handleClose}
+                Projects
+              </StyledTypography>
+              <StyledTypography
+                to="/about"
+                variant="h6"
+                className={classes.title}
               >
-                <MenuItem onClick={
-                  logOut
-                  }>Sign up</MenuItem>
-              </Menu>
-            </div>
-          )}
-        </StyledToolbar>
-      </AppBarStyling>
-    </Container>
-    )} else {
-      content = (
-        <Container className={classes.root}>
+                About
+              </StyledTypography>
+              <Login />
+            </TypographyWrapper>
+            {auth && (
+              <div>
+                <IconButtonStyle
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={handleMenu}
+                  color="inherit"
+                >
+                  <AccountCircle />
+                </IconButtonStyle>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorEl}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={open}
+                  onClose={handleClose}
+                >
+                  <MenuItem onClick={logOut}>Sign up</MenuItem>
+                </Menu>
+              </div>
+            )}
+          </StyledToolbar>
+        </AppBarStyling>
+      </Container>
+    );
+  } else {
+    content = (
+      <Container className={classes.root}>
         {/* <FormGroup>
             <FormControlLabel
               control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
@@ -189,10 +187,11 @@ export const NavBar = () => {
             />
           </FormGroup> */}
         <AppBarStyling position="static">
-         
           <StyledToolbar>
             <TypographyWrapper>
-               <a href="/"><Logo src={logo} alt="Logo"></Logo></a>
+              <a href="/">
+                <Logo src={logo} alt="Logo"></Logo>
+              </a>
               <StyledTypography to="/" variant="h6" className={classes.title}>
                 Home
               </StyledTypography>
@@ -244,16 +243,15 @@ export const NavBar = () => {
                   open={open}
                   onClose={handleClose}
                 >
-                  <MenuItem onClick={
-                    logOut
-                    }>Sign out</MenuItem>
+                  <MenuItem onClick={logOut}>Sign out</MenuItem>
                 </Menu>
               </div>
             )}
           </StyledToolbar>
         </AppBarStyling>
       </Container>
-      )}
+    );
+  }
 
-      return <>{content}</>;
+  return <>{content}</>;
 };

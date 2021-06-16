@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { slide as Menu } from "react-burger-menu";
 import { Link } from "react-router-dom";
 import styled from "styled-components/macro"
@@ -29,6 +29,9 @@ const HamburgerLogin = styled(Login)`
 export const Hamburger = () => {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
+  let content;
+
+  let emailRedux = useSelector((store) => store.user.email);
 
   const onMenuStateChange = (state) => {
     setIsOpen(state.isOpen);
@@ -44,8 +47,58 @@ export const Hamburger = () => {
       // successToast()
   };
 
-  return (
-    <>
+  if (emailRedux === null) {
+    content = (
+      <>
+      <a href="/"><LogoHamburger src={logo} /></a>
+      <div className="hamburger">
+        <Menu 
+          isOpen={isOpen}
+          onStateChange={onMenuStateChange}
+          right
+        >
+          <Link
+            onClick={closeMenu}
+            to="/"
+            id="home"
+            className="menu-item"
+          >
+            Home
+          </Link>
+          <Link
+            onClick={closeMenu}
+            to="/projects"
+            id="projects"
+            className="menu-item"
+          >
+            Projects
+          </Link>
+          <Link 
+            onClick={closeMenu}
+            to="/about" 
+            id="about" 
+            className="menu-item"
+          >
+            About
+          </Link>
+          <Link 
+            onClick={closeMenu}
+            to="/signup" 
+            id="signup" 
+            className="menu-item"
+          >
+            Sign Up!
+          </Link>
+          <a onClick={closeMenu}>
+            <HamburgerLogin/>
+          </a>
+        </Menu>
+    </div>
+    </>
+    ) 
+  } else {
+    content = (
+      <>
       <a href="/"><LogoHamburger src={logo} /></a>
       <div className="hamburger">
         <Menu 
@@ -85,17 +138,6 @@ export const Hamburger = () => {
           >
             About
           </Link>
-          <Link 
-            onClick={closeMenu}
-            to="/signup" 
-            id="signup" 
-            className="menu-item"
-          >
-            Sign Up!
-          </Link>
-          <a onClick={closeMenu}><HamburgerLogin 
-            
-          /></a>
           <Link
             onClick={() => {
               logOut()
@@ -109,5 +151,9 @@ export const Hamburger = () => {
         </Menu>
     </div>
     </>
-  );
+      ) 
+  }
+
+  return <>{content}</>;
 };
+

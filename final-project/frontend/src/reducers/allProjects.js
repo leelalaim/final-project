@@ -43,7 +43,7 @@ export const fetchProjects = (filters = {}) => {
 
 export const uploadProject = (project, formData) => {
   return (dispatch, getState) => {
-    fetch(API_URL('upload'), {
+    fetch('http://localhost:8080/upload', {
       method: 'POST',
       headers: { 'Content-type': 'application/json' },
       body: JSON.stringify(project),

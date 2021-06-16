@@ -4,6 +4,7 @@ import styled from "styled-components/macro";
 // import { user } from "../reducers/user";
 import { uploadProject } from "../reducers/allProjects";
 import { UploadBanner } from "../components/UploadBanner";
+import { Link } from "react-router-dom";
 
 const Section = styled.section`
   height: 400px;
@@ -137,6 +138,7 @@ export const Upload = () => {
             onChange={(e) => setDescription(e.target.value)}
           ></TextArea>
           <Button
+            to="/projects"
             type="submit"
             onClick={() => {
               console.log("CLICK");
