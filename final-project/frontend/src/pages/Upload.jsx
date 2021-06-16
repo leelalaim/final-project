@@ -78,7 +78,6 @@ export const Upload = () => {
     formData.append('projectImage', projectImage)
     dispatch(
       uploadProject(formData)
-      
     )
     redirect()
   };
