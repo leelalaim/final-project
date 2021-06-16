@@ -1,10 +1,10 @@
 import React from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import styled from "styled-components/macro";
 import SecondBanner from "assets/joanna-kosinska-1_CMoFsPfso-unsplash.jpg";
 import { Link } from "react-router-dom";
 
-import { Login } from "../components/Login";
+// import { Login } from "../components/Login";
 
 const Container = styled.section`
   position: relative;
@@ -69,7 +69,6 @@ const BannerButton = styled(Link)`
 // `;
 
 export const SecondBannerLandingPage = () => {
-  const dispatch = useDispatch();
   let content;
 
   let emailRedux = useSelector((store) => store.user.email);

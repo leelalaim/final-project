@@ -1,7 +1,6 @@
 import React from "react";
 import styled from "styled-components/macro";
-import { useDispatch } from "react-redux";
-import { fetchDelete } from "reducers/allProjects";
+// import { fetchDelete } from "reducers/allProjects";
 
 // Material UI
 import { withStyles } from "@material-ui/core/styles";
@@ -157,7 +156,6 @@ const DescriptionSpan = styled.span`
 // `;
 
 export const ProjectCard = ({ project }) => {
-  const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -211,7 +209,6 @@ export const ProjectCard = ({ project }) => {
               <Span>Live at:</Span> <a href={project.url}>{project.url}</a>
             </Typography>
             <Typography gutterBottom>
-              //Set the icon to dispatch delete function onClick
             <FaTrashAlt />
             </Typography>
           </DialogContent>

@@ -3,19 +3,21 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components/macro";
-import Button from "@material-ui/core/Button";
-import Dialog from "@material-ui/core/Dialog";
-import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";
-// import DialogContentText from "@material-ui/core/DialogContentText";
-import DialogTitle from "@material-ui/core/DialogTitle";
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
-
 
 //Inner Dependencies
 import { fetchLogIn } from "../reducers/user";
 
+//Material UI
+import Button from "@material-ui/core/Button";
+import Dialog from "@material-ui/core/Dialog";
+import DialogActions from "@material-ui/core/DialogActions";
+import DialogContent from "@material-ui/core/DialogContent";import DialogTitle from "@material-ui/core/DialogTitle";
+import { makeStyles } from '@material-ui/core/styles';
+import TextField from '@material-ui/core/TextField';
+
+// React-toastify
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -65,6 +67,7 @@ export const Login = () => {
   const [open, setOpen] = React.useState(false);
 
   const errorMessage = useSelector((store) => store.user.errors);
+  const successToast = () => toast.success("You have successfully signed in!");
 
   const onFormSubmit = (e) => {
     e.preventDefault();
@@ -125,11 +128,12 @@ export const Login = () => {
                 // href="/projects"
                 onClick={() => {
                 handleClose()
-                console.log("CLICK")
+                successToast()
                 }} 
                 color="primary">
                 Sign in
               </Button>
+              <ToastContainer />
             </Form>
             <p>{errorMessage && errorMessage.errorCode}</p>
           </FormContainer>

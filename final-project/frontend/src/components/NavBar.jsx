@@ -17,7 +17,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { user } from "../reducers/user";
 import { Login } from "../components/Login";
 import logo from "../assets/logo.png";
-// import toast from 'react-hot-toast'
+
+// React-toastify
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -83,6 +87,7 @@ export const NavBar = () => {
   let content;
 
   let emailRedux = useSelector((store) => store.user.email);
+  const successToast = () => toast.success("You have successfully signed out!");
 
   const dispatch = useDispatch();
 
@@ -243,7 +248,13 @@ export const NavBar = () => {
                   open={open}
                   onClose={handleClose}
                 >
-                  <MenuItem onClick={logOut}>Sign out</MenuItem>
+                  <MenuItem 
+                  onClick={() => {
+                    logOut()
+                    successToast()
+                  }}
+                  >Sign out</MenuItem>
+                  <ToastContainer />
                 </Menu>
               </div>
             )}
