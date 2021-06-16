@@ -61,10 +61,12 @@ const DialogActions = withStyles((theme) => ({
 }))(MuiDialogActions);
 
 const FlexContainer = styled.section`
-  @media (min-width: 768px) and (max-width: 1279px) {
+  @media (min-width: 768px) {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: flex-start;
+    margin: 0 auto;
   }
 `;
 
@@ -75,8 +77,11 @@ const CardContainer = styled.div`
   @media (min-width: 768px) and (max-width: 1279px) {
     width: 50vw;
   }
-  @media (min-width: 1280px) {
+  @media (min-width: 1280px) and (max-width: 1600px) {
     width: 25vw;
+  }
+  @media (min-width: 1601px){
+    width: 17vw;
   }
 `;
 
