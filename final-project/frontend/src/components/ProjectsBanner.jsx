@@ -26,13 +26,16 @@ const BannerHeader = styled.h1`
 `;
 
 const BannerParagraph = styled.p`
-  font-size: 30px;
+  font-size: 25px;
   font-weight: 300;
   margin: 0;
   position: absolute;
   left: 30px;
   top: 220px;
   line-height: 35px;
+  @media (min-width: 781px) {
+    font-size: 30px;
+  }
 `;
 
 export const ProjectsBanner = () => {
@@ -42,8 +45,6 @@ export const ProjectsBanner = () => {
       <BannerHeader>Creativity starts here...</BannerHeader>
       <BannerParagraph>
         Bootcamp projects worth seeing.
-        <br />
-        And some more text
       </BannerParagraph>
     </BannerContainer>
   );

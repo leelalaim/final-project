@@ -41,13 +41,12 @@ export const fetchProjects = (filters = {}) => {
   };
 };
 
-export const uploadProject = (project, formData) => {
+export const uploadProject = (formData) => {
+  console.log(formData.get('image'));
   return (dispatch, getState) => {
     fetch('http://localhost:8080/upload', {
       method: 'POST',
-      headers: { 'Content-type': 'application/json' },
-      body: JSON.stringify(project),
-      formData,
+      body: formData,
     })
       .then((res) => res.json())
       .then((project) => {

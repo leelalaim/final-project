@@ -14,10 +14,9 @@ code {
 
 /* PROJECT CARD  */
 
-.MuiButton-outlined  {
+.MuiButton-outlined {
   padding: 0;
   width: 100%;
-  object-fit: cover;
 }
 
 

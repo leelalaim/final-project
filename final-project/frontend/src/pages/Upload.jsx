@@ -57,17 +57,15 @@ export const Upload = () => {
     e.preventDefault();
     const formData = new FormData()
     formData.append('image', fileInput.current.files[0])
+    formData.append('bootcamp', bootcamp)
+    formData.append('projectName', projectName)
+    formData.append('url', url)
+    formData.append('stack', stack)
+    formData.append('description', description)
+    formData.append('week', week)
+    formData.append('projectImage', projectImage)
     dispatch(
-      uploadProject({
-        // email,
-        bootcamp,
-        projectName,
-        url,
-        stack,
-        description,
-        week,
-        projectImage,
-      },formData )
+      uploadProject(formData)
     )};
 
   console.log(bootcamp)

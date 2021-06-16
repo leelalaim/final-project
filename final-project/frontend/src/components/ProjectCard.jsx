@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled from "styled-components/macro";
 
 // Material UI
 import { withStyles } from "@material-ui/core/styles";
@@ -40,7 +40,7 @@ const ButtonContainer = styled.div`
 const ButtonImage = styled.img`
   // width: 100%;
   // max-width: 100%;
-height: 200px;
+  height: 200px;
   padding: 0;
   border: 1px solid black;
   object-fit: cover;
@@ -54,15 +54,15 @@ const DialogContainer = styled(Dialog)`
 
 const ProjectName = styled.h3`
   position: absolute;
-  width: 100%;
   bottom: 0;
   left: 0;
   right: 0;
   overflow: 0;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(30, 30, 30, 0.5);
   color: white;
   margin: 0;
   padding: 10px;
+  text-align: left;
 `;
 
 const styles = (theme) => ({
