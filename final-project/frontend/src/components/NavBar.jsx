@@ -13,11 +13,11 @@ import MenuItem from "@material-ui/core/MenuItem";
 import Menu from "@material-ui/core/Menu";
 import styled from "styled-components/macro";
 import { Link } from "react-router-dom";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { user } from "../reducers/user";
 import { Login } from "../components/Login";
 import logo from "../assets/logo.png"
-import toast from 'react-hot-toast'
+// import toast from 'react-hot-toast'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -75,19 +75,18 @@ const Logo = styled.img`
   margin-right: 20px;
 `
 
-// const NavLink = styled.a`
-//   text-decoration: none;
-// `;
 
 export const NavBar = () => {
   const classes = useStyles();
   const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
+  let content;
+
+  let emailRedux = useSelector((store) => store.user.email);
+ 
 
   const dispatch = useDispatch();
-
-  const successToast = () => toast.success('You have successfully signed out')
 
   // const handleChange = (event) => {
   //   setAuth(event.target.checked);
@@ -112,8 +111,9 @@ export const NavBar = () => {
       // successToast()
   };
 
-  return (
-    <Container className={classes.root}>
+  if (emailRedux === null) {
+    content = (
+      <Container className={classes.root}>
       {/* <FormGroup>
           <FormControlLabel
             control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
@@ -172,12 +172,88 @@ export const NavBar = () => {
               >
                 <MenuItem onClick={
                   logOut
-                  }>Sign out</MenuItem>
+                  }>Sign up</MenuItem>
               </Menu>
             </div>
           )}
         </StyledToolbar>
       </AppBarStyling>
     </Container>
-  );
+    )} else {
+      content = (
+        <Container className={classes.root}>
+        {/* <FormGroup>
+            <FormControlLabel
+              control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
+              label={auth ? 'Logout' : 'Login'}
+            />
+          </FormGroup> */}
+        <AppBarStyling position="static">
+         
+          <StyledToolbar>
+            <TypographyWrapper>
+               <a href="/"><Logo src={logo} alt="Logo"></Logo></a>
+              <StyledTypography to="/" variant="h6" className={classes.title}>
+                Home
+              </StyledTypography>
+              <StyledTypography
+                to="/projects"
+                variant="h6"
+                className={classes.title}
+              >
+                Projects
+              </StyledTypography>
+              <StyledTypography
+                to="/upload"
+                variant="h6"
+                className={classes.title}
+              >
+                Upload
+              </StyledTypography>
+              <StyledTypography
+                to="/about"
+                variant="h6"
+                className={classes.title}
+              >
+                About
+              </StyledTypography>
+            </TypographyWrapper>
+            {auth && (
+              <div>
+                <IconButtonStyle
+                  aria-label="account of current user"
+                  aria-controls="menu-appbar"
+                  aria-haspopup="true"
+                  onClick={handleMenu}
+                  color="inherit"
+                >
+                  <AccountCircle />
+                </IconButtonStyle>
+                <Menu
+                  id="menu-appbar"
+                  anchorEl={anchorEl}
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  keepMounted
+                  transformOrigin={{
+                    vertical: "top",
+                    horizontal: "right",
+                  }}
+                  open={open}
+                  onClose={handleClose}
+                >
+                  <MenuItem onClick={
+                    logOut
+                    }>Sign out</MenuItem>
+                </Menu>
+              </div>
+            )}
+          </StyledToolbar>
+        </AppBarStyling>
+      </Container>
+      )}
+
+      return <>{content}</>;
 };

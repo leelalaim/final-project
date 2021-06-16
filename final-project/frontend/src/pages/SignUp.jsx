@@ -31,7 +31,7 @@ const SignUpForm = styled.section`
   margin-top: 100px;
 `;
 
-const Button = styled.button`
+const Button = styled(Link)`
   background-color: #f5c81e;
   color: white;
   border-radius: 50px;
@@ -41,18 +41,18 @@ const Button = styled.button`
   font-weight: bold;
 `;
 
-const Container = styled.section`
-  height: 100vh;
-  display: flex;
-  // flex-direction: column;
-  align-items: center;
-`;
+// const Container = styled.section`
+//   height: 100vh;
+//   display: flex;
+//   // flex-direction: column;
+//   align-items: center;
+// `;
 
-const InnerContainer = styled.div`
-  display: flex;
-  flex-direction: column;
-  margin: 0 20px;
-`;
+// const InnerContainer = styled.div`
+//   display: flex;
+//   flex-direction: column;
+//   margin: 0 20px;
+// `;
 
 export const SignUp = () => {
   const classes = useStyles();
@@ -93,32 +93,30 @@ export const SignUp = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button
-            type="submit"
-            onClick={successToast}
-          >
+          <Button to="/upload" type="submit" onClick={successToast}>
             Sign Up!
           </Button>
-      <ToastContainer />
+          <ToastContainer />
         </form>
         <p>{errorMessage && errorMessage.errorCode}</p>
       </SignUpForm>
     );
-  } else {
-    content = (
-      <Container>
-        <InnerContainer>
-          <h1>You have succesfully Signed Up!</h1>
-          <Link to={"/projects"}>
-            <p>Projects Page</p>
-          </Link>
-          <Link to={"/upload"}>
-            <p>Upload a projects</p>
-          </Link>
-        </InnerContainer>
-      </Container>
-    );
   }
+  // else {
+  //   content = (
+  //     <Container>
+  //       <InnerContainer>
+  //         <h1>You have succesfully Signed Up!</h1>
+  //         <Link to={"/projects"}>
+  //           <p>Projects Page</p>
+  //         </Link>
+  //         <Link to={"/upload"}>
+  //           <p>Upload a projects</p>
+  //         </Link>
+  //       </InnerContainer>
+  //     </Container>
+  //   );
+  // }
 
   return <>{content}</>;
 };
