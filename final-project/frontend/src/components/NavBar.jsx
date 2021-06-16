@@ -169,7 +169,6 @@ export const NavBar = () => {
                   open={open}
                   onClose={handleClose}
                 >
-                  // Add path to sign up
                   <MenuItem onClick={logOut}>Sign up</MenuItem>
                 </Menu>
               </div>

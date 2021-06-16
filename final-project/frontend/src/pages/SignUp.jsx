@@ -31,7 +31,7 @@ const SignUpForm = styled.section`
   margin-top: 100px;
 `;
 
-const Button = styled(Link)`
+const Button = styled.button`
   background-color: #f5c81e;
   color: white;
   border-radius: 50px;
@@ -93,7 +93,10 @@ export const SignUp = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button to="/upload" type="submit" onClick={successToast}>
+          <Button 
+            // to="/upload" 
+            type="submit" 
+            onClick={successToast}>
             Sign Up!
           </Button>
           <ToastContainer />
