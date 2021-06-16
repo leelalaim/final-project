@@ -16,6 +16,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 //Inner Dependencies
 import { fetchSignUp } from "../reducers/user";
+import {user} from 'reducers/user'
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -31,7 +32,9 @@ const SignUpForm = styled.section`
   margin-top: 100px;
 `;
 
-const Button = styled(Link)`
+//Renamed so as to not confuse it with a button
+//The Link couldn't "handle" the type="submit", the onFormSubmit wasn't executed. 
+const ButtonLink = styled(Link)` 
   background-color: #f5c81e;
   color: white;
   border-radius: 50px;
@@ -39,7 +42,8 @@ const Button = styled(Link)`
   width: 50%;
   padding: 10px;
   font-weight: bold;
-`;
+`; 
+
 
 // const Container = styled.section`
 //   height: 100vh;
@@ -59,17 +63,26 @@ export const SignUp = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [repeatPassword, setRepeatPassword] = useState ('')
   let content;
 
-  const errorMessage = useSelector((store) => store.user.errors);
+
+  let errorMessage = useSelector((store) => store.user.errors);
   let emailRedux = useSelector((store) => store.user.email);
 
   const successToast = () => toast.success("You have successfully signed up!");
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    dispatch(fetchSignUp(email, password));
+    if (password !== repeatPassword) {
+      dispatch(user.actions.setErrors({errorCode: 'The passwords do not match', message:'The passwords do not match' }))
+    } else {
+     
+      dispatch(fetchSignUp(email, password));
+    }
+   
   };
+  console.log(errorMessage)
 
   if (emailRedux === null) {
     content = (
@@ -93,9 +106,18 @@ export const SignUp = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-          <Button to="/upload" type="submit" onClick={successToast}>
+           <TextField
+            id="standard-basic"
+            label="Repeat Password"
+            type="password"
+            value={repeatPassword}
+            onChange={(e) => setRepeatPassword(e.target.value)}
+          />
+          {/* <ButtonLink to="/upload" onClick={successToast}> */}
+            <button type='submit'>
             Sign Up!
-          </Button>
+            </button>
+          {/* </ButtonLink> */}
           <ToastContainer />
         </form>
         <p>{errorMessage && errorMessage.errorCode}</p>
