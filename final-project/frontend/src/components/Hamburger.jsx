@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
 import { slide as Menu } from "react-burger-menu";
 import { Link } from "react-router-dom";
 import styled from "styled-components/macro"
 import logo from "../assets/logo.png"
 import { Login } from "../components/Login"
 
+import { user } from "../reducers/user";
 import "../../src/index.css";
 
 const LogoHamburger = styled.img`
@@ -26,6 +28,7 @@ const HamburgerLogin = styled(Login)`
 
 export const Hamburger = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const dispatch = useDispatch();
 
   const onMenuStateChange = (state) => {
     setIsOpen(state.isOpen);
@@ -35,9 +38,15 @@ export const Hamburger = () => {
     setIsOpen(false);
   }
 
+  const logOut = () => {
+    dispatch(user.actions.setLogOut());
+    localStorage.clear();
+      // successToast()
+  };
+
   return (
     <>
-      <LogoHamburger src={logo} />
+      <a href="/"><LogoHamburger src={logo} /></a>
       <div className="hamburger">
         <Menu 
           isOpen={isOpen}
@@ -84,12 +93,18 @@ export const Hamburger = () => {
           >
             Sign Up!
           </Link>
+          <a onClick={closeMenu}><HamburgerLogin 
+            
+          /></a>
           <Link
-            onClick={closeMenu}
-            to="/signin"
-            id="signin" 
+            onClick={() => {
+              logOut()
+              closeMenu()
+            }}
+            to="/"
+            id="signout" 
             className="menu-item">
-            <HamburgerLogin/>
+            Sign Out
           </Link>
         </Menu>
     </div>

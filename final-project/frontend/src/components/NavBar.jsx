@@ -109,7 +109,7 @@ export const NavBar = () => {
   const logOut = () => {
     dispatch(user.actions.setLogOut());
     localStorage.clear();
-      successToast()
+      // successToast()
   };
 
   return (
@@ -124,7 +124,7 @@ export const NavBar = () => {
        
         <StyledToolbar>
           <TypographyWrapper>
-             <Logo src={logo} alt="Logo"></Logo>
+             <a href="/"><Logo src={logo} alt="Logo"></Logo></a>
             <StyledTypography to="/" variant="h6" className={classes.title}>
               Home
             </StyledTypography>
