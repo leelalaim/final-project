@@ -143,7 +143,7 @@ app.get('/projects', async (req, res) => {
   }
 });
 
-//MVP
+//Upload
 app.post('/upload', parser.single('image'), async (req, res) => {
   const { url, projectName, bootcamp, description, week, stack } = req.body;
   try {
@@ -156,11 +156,28 @@ app.post('/upload', parser.single('image'), async (req, res) => {
       week: week,
       projectImage: (req.file && req.file.path) || '',
       // projectImage: req.file.path,
-    })
+    });
     newProject.save();
     res.status(200).json(newProject);
   } catch (err) {
     res.status(400).json({ message: 'Could not save', errors: err });
+  }
+});
+
+//Delete
+app.delete('/delete/:id', async (req, res) => {
+  const { id } = req.params;
+
+  try {
+    const deletedProject = await Project.findByIdAndDelete(id);
+
+    if (deletedProject) {
+      res.json(deletedProject);
+    } else {
+      res.status(404).json({ message: 'Not found' });
+    }
+  } catch (error) {
+    res.status(400).json({ message: 'Invalid request', error });
   }
 });
 

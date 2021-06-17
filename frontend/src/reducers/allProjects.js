@@ -17,7 +17,7 @@ export const allProjects = createSlice({
     },
     setProjectUploadSuccess: (store, action) => {
       store.projectUploadSuccess = action.payload;
-    }
+    },
   },
 });
 
@@ -69,13 +69,15 @@ export const fetchDelete = (id) => {
 };
 
 export const deleteProject = (id) => {
-  fetch(`http://localhost:8080/delete/${id}`, fetchDelete(id)).then((res) =>
-    res.json()
-  );
-  // .then (res.json() =>
-  // add loader (false )
-  //reload projects page
-  // );
+  fetch(`http://localhost:8080/delete/${id}`, fetchDelete(id))
+    .then((res) => res.json())
+    .then(
+      (data) => {
+        console.log(data);
+      }
+      // add loader (false )
+      // reload projects page
+    );
 };
 
 // setCurrentStep: (store, action) => {

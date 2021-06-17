@@ -1,6 +1,7 @@
 import React from "react";
+import { useDispatch } from 'react-redux';
 import styled from "styled-components/macro";
-// import { fetchDelete } from "reducers/allProjects";
+import { fetchDelete } from "reducers/allProjects";
 
 // Material UI
 import { withStyles } from "@material-ui/core/styles";
@@ -156,6 +157,7 @@ const DescriptionSpan = styled.span`
 // `;
 
 export const ProjectCard = ({ project }) => {
+  const dispatch = useDispatch()
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -165,11 +167,12 @@ export const ProjectCard = ({ project }) => {
     setOpen(false);
   };
 
-  // const handleDelete =() =>{
+  // const handleDelete = (id) =>{
   //   dispatch(fetchDelete(id))
   // }
 
   return (
+   
     <FlexContainer>
       <CardContainer>
         <PopUpButton
@@ -208,17 +211,17 @@ export const ProjectCard = ({ project }) => {
             <Typography gutterBottom>
               <Span>Live at:</Span> <a href={project.url}>{project.url}</a>
             </Typography>
-            <Typography gutterBottom>
-            <FaTrashAlt />
-            </Typography>
+            {/* <Typography gutterBottom>
+          <FaTrashAlt onClick={console.log('CLICKDELETE')}/>
+            </Typography> */}
           </DialogContent>
           <DialogActions>
             {/* <Button autoFocus onClick={handleClose} color="primary">
               Save changes
             </Button> */}
-            {/* <button onClick = {handleDelete}>
-             Delete
-           </button> */}
+              <button onClick={console.log('CLICKDELETE')}>
+                <FaTrashAlt />
+              </button>
           </DialogActions>
         </DialogContainer>
       </CardContainer>
