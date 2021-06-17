@@ -155,7 +155,8 @@ app.post('/upload', parser.single('image'), async (req, res) => {
       description: description,
       week: week,
       projectImage: (req.file && req.file.path) || '',
-    });
+      // projectImage: req.file.path,
+    })
     newProject.save();
     res.status(200).json(newProject);
   } catch (err) {
