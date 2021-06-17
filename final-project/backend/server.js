@@ -133,7 +133,7 @@ app.get('/projects', async (req, res) => {
   }
 
   try {
-    const data = await Project.find(query).sort({ createdAt: -1 }).limit(10);
+    const data = await Project.find(query).sort({ createdAt: -1 });
 
     res.json(data);
   } catch (error) {
