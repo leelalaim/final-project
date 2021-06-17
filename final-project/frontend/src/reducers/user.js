@@ -8,11 +8,13 @@ const initialState = localStorage.getItem('user')
       email: JSON.parse(localStorage.getItem('user')).email,
       accessToken: JSON.parse(localStorage.getItem('user')).accessToken,
       errors: null,
+      signUpSuccess: false,
     }
   : {
       email: null,
       accessToken: null,
       errors: null,
+      signUpSuccess: false,
     };
 
 export const user = createSlice({
@@ -35,6 +37,9 @@ export const user = createSlice({
         accessToken: null,
         errors: null,
       };
+    },
+    setSignUpSuccess: (store, action) => {
+      store.signUpSuccess = action.payload;
     },
   },
 });
@@ -61,6 +66,8 @@ export const fetchSignUp = (email, password) => {
         batch(() => {
           dispatch(user.actions.setEmail(data.email));
           dispatch(user.actions.setAccessToken(data.accessToken));
+          dispatch(user.actions.setSignUpSuccess(true));
+          // dispatch(user.actions.setSignUpSuccess(false));
         });
 
         localStorage.setItem(

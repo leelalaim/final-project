@@ -1,12 +1,9 @@
 import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components/macro";
-// import { user } from "../reducers/user";
 import { uploadProject } from "../reducers/allProjects";
 import { UploadBanner } from "../components/UploadBanner";
 import { Redirect } from "react-router-dom";
-
-// import { useHistory } from "react-router-dom";
 
 const Section = styled.section`
   height: 400px;
