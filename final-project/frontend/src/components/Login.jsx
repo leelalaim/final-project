@@ -11,9 +11,10 @@ import { fetchLogIn } from "../reducers/user";
 import Button from "@material-ui/core/Button";
 import Dialog from "@material-ui/core/Dialog";
 import DialogActions from "@material-ui/core/DialogActions";
-import DialogContent from "@material-ui/core/DialogContent";import DialogTitle from "@material-ui/core/DialogTitle";
-import { makeStyles } from '@material-ui/core/styles';
-import TextField from '@material-ui/core/TextField';
+import DialogContent from "@material-ui/core/DialogContent";
+import DialogTitle from "@material-ui/core/DialogTitle";
+import { makeStyles } from "@material-ui/core/styles";
+import TextField from "@material-ui/core/TextField";
 
 // React-toastify
 import { ToastContainer, toast } from "react-toastify";
@@ -21,25 +22,25 @@ import "react-toastify/dist/ReactToastify.css";
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    '& > *': {
+    "& > *": {
       margin: theme.spacing(1),
-      width: '25ch',
+      width: "25ch",
     },
   },
 }));
 
 const SignInButton = styled(Button)`
-color: #494949;
-border-color: #494949;
-:hover {
+  color: #494949;
   border-color: #494949;
-  background-color: rgba(224, 224, 224,0.3)
-}
-@media (max-width: 780px) {
-  border-color: white;
-  color: white;
-  margin-top: 5px;
-}
+  :hover {
+    border-color: #494949;
+    background-color: rgba(224, 224, 224, 0.3);
+  }
+  @media (max-width: 780px) {
+    border-color: white;
+    color: white;
+    margin-top: 5px;
+  }
 `;
 
 const FormContainer = styled.div`
@@ -100,37 +101,37 @@ export const Login = () => {
         <DialogContent>
           {/* <DialogContentText>Sign in!</DialogContentText> */}
           <FormContainer>
-            <Form onSubmit={onFormSubmit}>
+            <Form className={classes.root} onSubmit={onFormSubmit}>
               <div>
-            
-                  <Input
-                    type="text"
-                    value={email}
-                    onChange={(e) => setEmail(e.target.value)}
-                    id="standard-basic" 
-                    label="Email" />
-              
-                
-                  <Input 
-                    type="password"
-                    value={password}
-                    onChange={(e) => setPassword(e.target.value)}
-                    id="standard-basic" 
-                    label="Password" />
-              
+                <Input
+                  type="text"
+                  value={email}
+                  onChange={(e) => setEmail(e.target.value)}
+                  id="standard-basic"
+                  label="Email"
+                />
+
+                <Input
+                  type="password"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  id="standard-basic"
+                  label="Password"
+                />
               </div>
               <div>
-                <p>Don't have an account?</p> 
+                <p>Don't have an account?</p>
                 <a href="/signup">Sign up</a>
               </div>
-              <Button 
+              <Button
                 type="submit"
                 // href="/projects"
                 onClick={() => {
-                handleClose()
-                successToast()
-                }} 
-                color="primary">
+                  handleClose();
+                  successToast();
+                }}
+                color="primary"
+              >
                 Sign in
               </Button>
               <ToastContainer />
@@ -142,7 +143,6 @@ export const Login = () => {
           <Button onClick={handleClose} color="primary">
             Cancel
           </Button>
-          
         </DialogActions>
       </Dialog>
     </div>

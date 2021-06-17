@@ -22,7 +22,6 @@ import logo from "../assets/logo.png";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
@@ -81,7 +80,7 @@ const Logo = styled.img`
 
 export const NavBar = () => {
   const classes = useStyles();
-  const [auth, setAuth] = React.useState(true);
+  // const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   let content;
@@ -148,36 +147,34 @@ export const NavBar = () => {
               </StyledTypography>
               <Login />
             </TypographyWrapper>
-            {auth && (
-              <div>
-                <IconButtonStyle
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  onClick={handleMenu}
-                  color="inherit"
-                >
-                  <AccountCircle />
-                </IconButtonStyle>
-                <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorEl}
-                  anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  open={open}
-                  onClose={handleClose}
-                >
-                  <MenuItem onClick={logOut}>Sign up</MenuItem>
-                </Menu>
-              </div>
-            )}
+            <div>
+              <IconButtonStyle
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButtonStyle>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={open}
+                onClose={handleClose}
+              >
+                <MenuItem onClick={logOut}>Sign up</MenuItem>
+              </Menu>
+            </div>
           </StyledToolbar>
         </AppBarStyling>
       </Container>
@@ -222,42 +219,42 @@ export const NavBar = () => {
                 About
               </StyledTypography>
             </TypographyWrapper>
-            {auth && (
-              <div>
-                <IconButtonStyle
-                  aria-label="account of current user"
-                  aria-controls="menu-appbar"
-                  aria-haspopup="true"
-                  onClick={handleMenu}
-                  color="inherit"
-                >
-                  <AccountCircle />
-                </IconButtonStyle>
-                <Menu
-                  id="menu-appbar"
-                  anchorEl={anchorEl}
-                  anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  keepMounted
-                  transformOrigin={{
-                    vertical: "top",
-                    horizontal: "right",
-                  }}
-                  open={open}
-                  onClose={handleClose}
-                >
-                  <MenuItem 
+            <div>
+              <IconButtonStyle
+                aria-label="account of current user"
+                aria-controls="menu-appbar"
+                aria-haspopup="true"
+                onClick={handleMenu}
+                color="inherit"
+              >
+                <AccountCircle />
+              </IconButtonStyle>
+              <Menu
+                id="menu-appbar"
+                anchorEl={anchorEl}
+                anchorOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                keepMounted
+                transformOrigin={{
+                  vertical: "top",
+                  horizontal: "right",
+                }}
+                open={open}
+                onClose={handleClose}
+              >
+                <MenuItem
                   onClick={() => {
-                    logOut()
-                    successToast()
+                    logOut();
+                    successToast();
                   }}
-                  >Sign out</MenuItem>
-                  <ToastContainer />
-                </Menu>
-              </div>
-            )}
+                >
+                  Sign out
+                </MenuItem>
+                <ToastContainer />
+              </Menu>
+            </div>
           </StyledToolbar>
         </AppBarStyling>
       </Container>

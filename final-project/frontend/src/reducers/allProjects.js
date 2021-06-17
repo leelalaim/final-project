@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 
-import { API_URL } from 'reusable/urls';
+// import { API_URL } from 'reusable/urls';
 
 export const allProjects = createSlice({
   name: 'allProjects',

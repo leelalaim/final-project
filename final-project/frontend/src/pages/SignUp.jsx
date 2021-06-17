@@ -16,7 +16,7 @@ import "react-toastify/dist/ReactToastify.css";
 
 //Inner Dependencies
 import { fetchSignUp } from "../reducers/user";
-import {user} from 'reducers/user'
+import { user } from "reducers/user";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,16 +32,15 @@ const SignUpForm = styled.section`
   margin-top: 100px;
 `;
 
-const Button = styled.button`
-  background-color: #f5c81e;
-  color: white;
-  border-radius: 50px;
-  border: none;
-  width: 50%;
-  padding: 10px;
-  font-weight: bold;
-`; 
-
+// const Button = styled.button`
+//   background-color: #f5c81e;
+//   color: white;
+//   border-radius: 50px;
+//   border: none;
+//   width: 50%;
+//   padding: 10px;
+//   font-weight: bold;
+// `;
 
 // const Container = styled.section`
 //   height: 100vh;
@@ -61,9 +60,8 @@ export const SignUp = () => {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [repeatPassword, setRepeatPassword] = useState ('')
+  const [repeatPassword, setRepeatPassword] = useState("");
   let content;
-
 
   let errorMessage = useSelector((store) => store.user.errors);
   let emailRedux = useSelector((store) => store.user.email);
@@ -73,14 +71,17 @@ export const SignUp = () => {
   const onFormSubmit = (e) => {
     e.preventDefault();
     if (password !== repeatPassword) {
-      dispatch(user.actions.setErrors({errorCode: 'The passwords do not match', message:'The passwords do not match' }))
+      dispatch(
+        user.actions.setErrors({
+          errorCode: "The passwords do not match",
+          message: "The passwords do not match",
+        })
+      );
     } else {
-     
       dispatch(fetchSignUp(email, password));
     }
-   
   };
-  console.log(errorMessage)
+  console.log(errorMessage);
 
   if (emailRedux === null) {
     content = (
@@ -104,7 +105,7 @@ export const SignUp = () => {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
           />
-           <TextField
+          <TextField
             id="standard-basic"
             label="Repeat Password"
             type="password"
@@ -112,11 +113,9 @@ export const SignUp = () => {
             onChange={(e) => setRepeatPassword(e.target.value)}
           />
           {/* <ButtonLink to="/upload" onClick={successToast}> */}
-            <button 
-              type='submit' 
-              onClick={successToast}>
+          <button type="submit" onClick={successToast}>
             Sign Up!
-            </button>
+          </button>
           {/* </ButtonLink> */}
           <ToastContainer />
         </form>

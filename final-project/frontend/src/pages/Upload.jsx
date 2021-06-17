@@ -94,14 +94,6 @@ export const Upload = () => {
       <UploadBanner />
       <Section>
         <Form onSubmit={onFormSubmit}>
-          {/* <Input
-            type="text"
-            value={email}
-            placeholder="Email"
-            onChange={(e) => setBootcamp(e.target.value)}
-          ></Input> */}
-          {/* <label>Email:</label>
-          <p>{email}</p> */}
           <label>Bootcamp</label>
           <Input
             type="text"
@@ -153,12 +145,11 @@ export const Upload = () => {
             cols="1"
             onChange={(e) => setDescription(e.target.value)}
           ></TextArea>
-          {/* <Link to={project !== null ? '/projects' : null }> */}
-            <Button
-              type="submit"
-              onClick={() => {
-              console.log("CLICK");
-              }}
+          <Button
+            type="submit"
+            onClick={() => {
+            console.log("CLICK");
+            }}
             >
             Upload
             </Button>
