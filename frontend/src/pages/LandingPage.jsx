@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components/macro";
+import { Link } from "react-router-dom";
 
 // Reducers, Components and Pages
 import { fetchProjects } from "../reducers/allProjects";
@@ -12,6 +13,16 @@ import { SecondBannerLandingPage } from '../components/SecondBannerLandingPage'
 const ProjectCards = styled.div`
   display: flex;
   flex-wrap: wrap;
+`;
+
+const SeeMoreContainer = styled.div`
+  text-align: right;
+  margin-bottom: 30px;
+`;
+
+const SeeMore = styled(Link)`
+  color: black;
+  margin-right: 70px;
 `;
 
 export const LandingPage = () => {
@@ -30,6 +41,9 @@ export const LandingPage = () => {
         <ProjectCard project={project}/>
         ))}
       </ProjectCards>
+      <SeeMoreContainer>
+        <SeeMore to="/projects" >See more..</SeeMore>
+      </SeeMoreContainer>
       <SecondBannerLandingPage />
     </div>
   )

@@ -82,7 +82,6 @@ export const Upload = () => {
       <UploadBanner />
       <Section>
         <Form onSubmit={onFormSubmit}>
-          <label>Bootcamp</label>
           <Input
             type="text"
             value={bootcamp}
