@@ -14,6 +14,7 @@ import { allProjects } from './reducers/allProjects';
 import { user } from 'reducers/user';
 import { Hamburger } from './components/Hamburger';
 import { NavBar } from './components/NavBar';
+import { ToastContainer } from "react-toastify";
 
 const reducer = combineReducers({
   allProjects: allProjects.reducer,
@@ -36,6 +37,7 @@ export const App = () => {
           <Route path='/login' component={Login} />
           {/* <Footer /> */}
         </Switch>
+        <ToastContainer />
       </BrowserRouter>
     </Provider>
   );

@@ -36,6 +36,7 @@ export const user = createSlice({
         email: null,
         accessToken: null,
         errors: null,
+        signUpSuccess: false
       };
     },
     setSignUpSuccess: (store, action) => {

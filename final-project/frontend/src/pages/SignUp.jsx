@@ -24,7 +24,7 @@ import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
 
 // React Toastify
-import { ToastContainer, toast } from "react-toastify";
+import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 //Inner Dependencies
@@ -68,7 +68,9 @@ export const SignUp = () => {
     (store) => store.user.signUpSuccess
   );
 
-  const successToast = () => toast.success("You have successfully signed up!");
+  if (signUpSuccess) {
+    toast.success("You have successfully signed up!");
+  }
 
   const onFormSubmit = (e) => {
     e.preventDefault();
@@ -152,7 +154,6 @@ export const SignUp = () => {
             </Grid>
             <Button
               type="submit"
-              onClick={successToast}
               fullWidth
               variant="contained"
               color="primary"
@@ -160,7 +161,6 @@ export const SignUp = () => {
             >
               Sign Up!
             </Button>
-            {/* {emailRedux === null ? null : <ToastContainer />} */}
             <Grid container justify="flex-end"></Grid>
           </form>
           <p>{errorMessage && errorMessage.errorCode}</p>
