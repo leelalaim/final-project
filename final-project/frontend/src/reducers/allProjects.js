@@ -55,6 +55,7 @@ export const uploadProject = (formData) => {
       .then((project) => {
         dispatch(allProjects.actions.addProject(project));
         dispatch(allProjects.actions.setProjectUploadSuccess(true));
+        dispatch(allProjects.actions.setProjectUploadSuccess(false));
       });
   };
 };

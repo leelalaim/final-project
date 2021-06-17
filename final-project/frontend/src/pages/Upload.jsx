@@ -8,8 +8,6 @@ import { Redirect } from "react-router-dom";
 
 // import { useHistory } from "react-router-dom";
 
-
-
 const Section = styled.section`
   height: 400px;
 `;
@@ -40,6 +38,7 @@ const Button = styled.button`
   width: 50%;
   padding: 10px;
   font-weight: bold;
+  cursor: pointer;
 `;
 
 export const Upload = () => {
@@ -52,45 +51,37 @@ export const Upload = () => {
   const [week, setWeek] = useState("");
   const [projectImage, setProjectImage] = useState("");
 
-  const fileInput = useRef()
+  const fileInput = useRef();
 
-  const projectUploadSuccess = useSelector((store) => store.allProjects.projectUploadSuccess);
-
-  // let history = useHistory();
-
-  // const email = useSelector((store) => store.user.email);
-  // console.log(email);
-
-  // const redirect = () => {
-  //   history.push("/upload")
-  // }
+  const projectUploadSuccess = useSelector(
+    (store) => store.allProjects.projectUploadSuccess
+  );
 
   const onFormSubmit = (e) => {
     e.preventDefault();
-    const formData = new FormData()
-    formData.append('image', fileInput.current.files[0])
-    formData.append('bootcamp', bootcamp)
-    formData.append('projectName', projectName)
-    formData.append('url', url)
-    formData.append('stack', stack)
-    formData.append('description', description)
-    formData.append('week', week)
-    formData.append('projectImage', projectImage)
-    dispatch(
-      uploadProject(formData)
-    )
+    const formData = new FormData();
+    formData.append("image", fileInput.current.files[0]);
+    formData.append("bootcamp", bootcamp);
+    formData.append("projectName", projectName);
+    formData.append("url", url);
+    formData.append("stack", stack);
+    formData.append("description", description);
+    formData.append("week", week);
+    formData.append("projectImage", projectImage);
+    dispatch(uploadProject(formData));
     // redirect()
   };
 
   return (
     <>
-      {projectUploadSuccess && 
-          <Redirect
-            to={{
-              pathname: "/projects",
-              // state: { from: location }
-            }}
-          />}
+      {projectUploadSuccess && (
+        <Redirect
+          to={{
+            pathname: "/projects",
+            // state: { from: location }
+          }}
+        />
+      )}
       <UploadBanner />
       <Section>
         <Form onSubmit={onFormSubmit}>
@@ -141,20 +132,18 @@ export const Upload = () => {
             type="text"
             value={description}
             placeholder="Decription"
-            rows="4" 
+            rows="4"
             cols="1"
             onChange={(e) => setDescription(e.target.value)}
           ></TextArea>
           <Button
             type="submit"
             onClick={() => {
-            console.log("CLICK");
+              console.log("CLICK");
             }}
-            >
+          >
             Upload
-            </Button>
-          {/* </Link> */}
-          
+          </Button>
         </Form>
       </Section>
     </>
