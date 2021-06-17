@@ -78,6 +78,12 @@ const Logo = styled.img`
   margin-right: 20px;
 `;
 
+const StyledMenuItem = styled(Link)`
+  text-decoration: none;
+  color: black;
+  padding: 10px;
+`;
+
 export const NavBar = () => {
   const classes = useStyles();
   // const [auth, setAuth] = React.useState(true);
@@ -172,7 +178,9 @@ export const NavBar = () => {
                 open={open}
                 onClose={handleClose}
               >
-                <MenuItem onClick={logOut}>Sign up</MenuItem>
+                <StyledMenuItem onClick={logOut} to="/signup">
+                  Sign up
+                </StyledMenuItem>
               </Menu>
             </div>
           </StyledToolbar>
