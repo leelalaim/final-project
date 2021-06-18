@@ -13,7 +13,6 @@ import MuiDialogActions from "@material-ui/core/DialogActions";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
-import ButtonBase from "@material-ui/core/ButtonBase";
 
 // Font Awesome
 import { FaTrashAlt } from "react-icons/fa";
@@ -187,7 +186,6 @@ export const ProjectCard = ({ project }) => {
 
   return (
     <FlexContainer>
-      {console.log(project._id)}
       <CardContainer>
         <PopUpButton
           variant="outlined"

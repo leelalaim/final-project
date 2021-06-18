@@ -25,8 +25,7 @@ export const allProjects = createSlice({
         (deletedProject) => deletedProject._id !== action.payload
       );
     },
-
-  }
+  },
 });
 
 export const fetchProjects = (filters = {}) => {

@@ -5,9 +5,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 // import { Link } from "react-router-dom";
 
-import styled from "styled-components/macro";
-// import "./styles.css";
-
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -159,6 +156,7 @@ export const SignUp = () => {
             >
               Sign Up!
             </Button>
+            <p>Disclaimer for storing e-mails</p>
             <Grid container justify="flex-end"></Grid>
           </form>
           <p>{errorMessage && errorMessage.errorCode}</p>
