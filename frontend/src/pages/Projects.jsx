@@ -33,7 +33,7 @@ export const Projects = () => {
       ></FilterForm>
       <ProjectCards>
         {projects.map((project) => (
-          <ProjectCard project={project} />
+          <ProjectCard key= {project._id} project={project} />
         ))}
       </ProjectCards>
       <ProjectsSecondBanner />

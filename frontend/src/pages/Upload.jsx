@@ -6,7 +6,7 @@ import { UploadBanner } from "../components/UploadBanner";
 import { Redirect } from "react-router-dom";
 import { Loading } from "../components/Loading";
 
-import devGallery from "../";
+// import devGallery from "../";
 
 const Section = styled.section`
   height: 400px;

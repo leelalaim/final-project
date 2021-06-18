@@ -19,7 +19,12 @@ export const allProjects = createSlice({
     setProjectUploadSuccess: (store, action) => {
       store.projectUploadSuccess = action.payload;
     },
-  }
+    deleteProject: (store, action) => {
+      store.projectList = store.projectList.filter(
+        (deletedProject) => deletedProject._id !== action.payload
+      );
+    },
+  },
 });
 
 export const fetchProjects = (filters = {}) => {
@@ -71,16 +76,18 @@ export const deleteOptions = (id) => {
   };
 };
 
-export const deleteProject = async (id) => {
-  fetch(`http://localhost:8080/delete/${id}`, deleteOptions(id))
-    .then((res) => res.json())
-    .then(
-      (data) => {
-        console.log(data)
-      }
-      // add loader (false )
-      // reload projects page
-    );
+export const deleteProject = (id) => {
+  return (dispatch, getState) => {
+    fetch(`http://localhost:8080/delete/${id}`, deleteOptions(id))
+      .then((res) => res.json())
+      .then(
+        (data) => {
+          dispatch(allProjects.actions.deleteProject(data._id));
+        }
+        // add loader (false )
+        // reload projects page
+      );
+  };
 };
 
 // setCurrentStep: (store, action) => {
