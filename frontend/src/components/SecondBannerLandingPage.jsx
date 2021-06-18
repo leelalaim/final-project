@@ -8,6 +8,7 @@ import { Link } from "react-router-dom";
 
 const Container = styled.section`
   position: relative;
+  padding-top: 30px;
 `;
 
 const Banner = styled.img`
@@ -18,20 +19,23 @@ const Banner = styled.img`
 
 const TextContainer = styled.div`
   position: absolute;
-  top: 22%;
+  top: 30%;
   right: 10%;
-  border: 1px solid black;
 `;
 
 const Text = styled.h1`
   display: flex;
   color: white;
-  font-size: 30px;
+  font-size: 27px;
   font-weight: 400;
   margin: 0;
-  line-heigh: 35px;
+  // line-heigh: 30px;
   justify-content: flex-end;
-  line-height: 35px;
+  @media (min-width: 374px) {
+    line-heigh: 40px;
+    font-size: 37px;
+    margin-bottom: 5px;
+  }
   @media (min-width: 768px) and (max-width: 1023px) {
     font-size: 80px;
     margin-bottom: -70px;
@@ -42,20 +46,27 @@ const LowerText = styled(Text)`
   display: flex;
   justify-content: flex-end;
   color: #f4e03f;
-  font-size: 40px;
+  font-size: 37px;
   margin: 0 0 0 10px;
+  @media (min-width: 374px) {
+    font-size: 46px;
+  }
 `;
 
 const BannerButton = styled(Link)`
   position: absolute;
-  bottom: 15%;
-  left: 50%;
+  bottom: 10%;
+  left: 35%;
   color: #ffffff;
   border: 1px solid #ffffff;
   padding: 10px 30px;
   border-radius: 30px;
   background-color: rgba(72, 72, 72, 0.9);
   text-decoration: none;
+  @media (min-width: 374px) {
+    bottom: 17%;
+    left: 40%;
+  }
 `;
 
 // const SignInButton = styled(Login)`

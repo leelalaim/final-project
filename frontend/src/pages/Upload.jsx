@@ -6,6 +6,10 @@ import { UploadBanner } from "../components/UploadBanner";
 import { Redirect } from "react-router-dom";
 import { Loading } from "../components/Loading";
 
+// React Toastify
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import devGallery from "../";
 
 const Section = styled.section`
@@ -57,6 +61,11 @@ export const Upload = () => {
   const projectUploadSuccess = useSelector(
     (store) => store.allProjects.projectUploadSuccess
   );
+
+  if (projectUploadSuccess) {
+    toast.success("You have successfully uploaded a project!");
+  }
+
   const isLoading = useSelector((store) => store.ui.isLoading);
 
   const onFormSubmit = (e) => {

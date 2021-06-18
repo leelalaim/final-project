@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components/macro";
 import { deleteProject } from "reducers/allProjects";
 
@@ -17,6 +17,10 @@ import ButtonBase from "@material-ui/core/ButtonBase";
 
 // Font Awesome
 import { FaTrashAlt } from "react-icons/fa";
+
+// React Toastify
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import "../../src/index.css";
 
@@ -160,6 +164,14 @@ const DescriptionSpan = styled.span`
 export const ProjectCard = ({ project }) => {
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
+
+  const projectDeleteSuccess = useSelector(
+    (store) => store.user.projectDeleteSuccess
+  );
+
+  if (projectDeleteSuccess) {
+    toast.success("You have successfully deleted the project!");
+  }
 
   const handleClickOpen = () => {
     setOpen(true);
