@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components/macro";
 import { deleteProject } from "reducers/allProjects";
 
@@ -16,6 +16,10 @@ import Typography from "@material-ui/core/Typography";
 
 // Font Awesome
 import { FaTrashAlt } from "react-icons/fa";
+
+// React Toastify
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 import "../../src/index.css";
 
@@ -151,14 +155,17 @@ const DescriptionSpan = styled.span`
   font-style: italic;
 `;
 
-// const InfoContainer = styled(DialogContent)`
-//   border-top: #f5c81e;
-//   border-bottom: #f5c81e;
-// `;
-
 export const ProjectCard = ({ project }) => {
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
+
+  const projectDeleteSuccess = useSelector(
+    (store) => store.user.projectDeleteSuccess
+  );
+
+  if (projectDeleteSuccess) {
+    toast.success("You have successfully deleted the project!");
+  }
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -219,17 +226,11 @@ export const ProjectCard = ({ project }) => {
               <Span>Live at:</Span> <a href={project.url}>{project.url}</a>
             </Typography>
             <Typography gutterBottom>
-              <Span>See repository at:</Span> <a href={project.github}>{project.github}</a>
+              <Span>See repository at:</Span>{" "}
+              <a href={project.github}>{project.github}</a>
             </Typography>
-
-            {/* <Typography gutterBottom>
-              <FaTrashAlt onClick={console.log("CLICKDELETE")} />
-            </Typography> */}
           </DialogContent>
           <DialogActions>
-            {/* <ButtonBase onClick={console.log("CLICKDELETE")}>
-              <FaTrashAlt />
-            </ButtonBase> */}
             <Button
               variant="contained"
               autoFocus

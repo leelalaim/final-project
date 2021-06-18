@@ -1,13 +1,14 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { ui } from 'reducers/ui';
+import { createSlice } from "@reduxjs/toolkit";
+import { ui } from "reducers/ui";
 
 // import { API_URL } from 'reusable/urls';
 
 export const allProjects = createSlice({
-  name: 'allProjects',
+  name: "allProjects",
   initialState: {
     projectList: [],
     projectUploadSuccess: false,
+    projectDeleteSuccess: false,
   },
   reducers: {
     addProject: (store, action) => {
@@ -18,6 +19,9 @@ export const allProjects = createSlice({
     },
     setProjectUploadSuccess: (store, action) => {
       store.projectUploadSuccess = action.payload;
+    },
+    setProjectDeleteSuccess: (store, action) => {
+      store.projectDeleteSuccess = action.payload;
     },
     deleteProject: (store, action) => {
       store.projectList = store.projectList.filter(
@@ -43,7 +47,7 @@ export const fetchProjects = (filters = {}) => {
   }
 
   return (dispatch) => {
-    fetch('http://localhost:8080/projects?' + new URLSearchParams(queryParams))
+    fetch("http://localhost:8080/projects?" + new URLSearchParams(queryParams))
       .then((res) => res.json())
       .then((projectList) => {
         dispatch(allProjects.actions.setProjectList(projectList));
@@ -54,8 +58,8 @@ export const fetchProjects = (filters = {}) => {
 export const uploadProject = (formData) => {
   return (dispatch, getState) => {
     dispatch(ui.actions.setLoading(true));
-    fetch('http://localhost:8080/upload', {
-      method: 'POST',
+    fetch("http://localhost:8080/upload", {
+      method: "POST",
       body: formData,
     })
       .then((res) => res.json())
@@ -70,8 +74,8 @@ export const uploadProject = (formData) => {
 
 export const deleteOptions = (id) => {
   return {
-    method: 'DELETE',
-    headers: { 'Content-type': 'application/json' },
+    method: "DELETE",
+    headers: { "Content-type": "application/json" },
     body: JSON.stringify({ id: id }),
   };
 };
@@ -84,6 +88,9 @@ export const deleteProject = (id) => {
       .then(
         (data) => {
           dispatch(allProjects.actions.deleteProject(data._id));
+          dispatch(allProjects.actions.setProjectDeleteSuccess(true));
+          dispatch(allProjects.actions.setProjectDeleteSuccess(false));
+          dispatch(ui.actions.setLoading(false));
         }
         // add loader (false )
         // reload projects page
@@ -97,3 +104,5 @@ export const deleteProject = (id) => {
 //   }
 //   store.currentStep = action.payload;
 // }
+
+// just a comment hereee
