@@ -1,5 +1,5 @@
 import React from "react";
-import { useDispatch } from 'react-redux';
+import { useDispatch } from "react-redux";
 import styled from "styled-components/macro";
 import { fetchDelete } from "reducers/allProjects";
 
@@ -15,7 +15,7 @@ import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
 
 // Font Awesome
-import { FaTrashAlt } from 'react-icons/fa';
+import { FaTrashAlt } from "react-icons/fa";
 
 import "../../src/index.css";
 
@@ -82,7 +82,7 @@ const CardContainer = styled.div`
   @media (min-width: 1280px) and (max-width: 1600px) {
     width: 25vw;
   }
-  @media (min-width: 1601px){
+  @media (min-width: 1601px) {
     width: 17vw;
   }
 `;
@@ -157,7 +157,7 @@ const DescriptionSpan = styled.span`
 // `;
 
 export const ProjectCard = ({ project }) => {
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
@@ -172,7 +172,6 @@ export const ProjectCard = ({ project }) => {
   // }
 
   return (
-   
     <FlexContainer>
       <CardContainer>
         <PopUpButton
@@ -197,7 +196,13 @@ export const ProjectCard = ({ project }) => {
             <Image src={project.projectImage} alt="Project" />
             <Dots />
             <Typography gutterBottom>
-              <DescriptionSpan>"{project.description}"</DescriptionSpan>
+              <DescriptionSpan>
+                "
+                {project.description === null
+                  ? "Not assigned"
+                  : project.description}
+                "
+              </DescriptionSpan>
             </Typography>
             <Typography gutterBottom>
               <Span>Bootcamp:</Span> {project.bootcamp}
@@ -219,9 +224,9 @@ export const ProjectCard = ({ project }) => {
             {/* <Button autoFocus onClick={handleClose} color="primary">
               Save changes
             </Button> */}
-              <button onClick={console.log('CLICKDELETE')}>
-                <FaTrashAlt />
-              </button>
+            <button onClick={console.log("CLICKDELETE")}>
+              <FaTrashAlt />
+            </button>
           </DialogActions>
         </DialogContainer>
       </CardContainer>
