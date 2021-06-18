@@ -64,9 +64,7 @@ export const SignUp = () => {
   const [repeatPassword, setRepeatPassword] = useState("");
 
   let errorMessage = useSelector((store) => store.user.errors);
-  const signUpSuccess = useSelector(
-    (store) => store.user.signUpSuccess
-  );
+  const signUpSuccess = useSelector((store) => store.user.signUpSuccess);
 
   if (signUpSuccess) {
     toast.success("You have successfully signed up!");
@@ -92,7 +90,7 @@ export const SignUp = () => {
       {signUpSuccess && (
         <Redirect
           to={{
-            pathname: "/projects",  
+            pathname: "/projects",
             // state: { from: location }
           }}
         />
