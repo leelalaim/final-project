@@ -76,7 +76,7 @@ export const deleteProject = async (id) => {
     .then((res) => res.json())
     .then(
       (data) => {
-        return ('123')
+        console.log(data)
       }
       // add loader (false )
       // reload projects page
