@@ -151,37 +151,16 @@ export const NavBar = () => {
               >
                 About
               </StyledTypography>
+              <StyledTypography
+                to="/signup"
+                variant="h6"
+                className={classes.title}
+              >
+                Sign Up
+              </StyledTypography>
               <Login />
             </TypographyWrapper>
             <div>
-              <IconButtonStyle
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleMenu}
-                color="inherit"
-              >
-                <AccountCircle />
-              </IconButtonStyle>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorEl}
-                anchorOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: "top",
-                  horizontal: "right",
-                }}
-                open={open}
-                onClose={handleClose}
-              >
-                <StyledMenuItem onClick={logOut} to="/signup">
-                  Sign up
-                </StyledMenuItem>
-              </Menu>
             </div>
           </StyledToolbar>
         </AppBarStyling>
