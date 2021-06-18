@@ -8,6 +8,7 @@ export const allProjects = createSlice({
   initialState: {
     projectList: [],
     projectUploadSuccess: false,
+    projectDeleteSuccess: false,
   },
   reducers: {
     addProject: (store, action) => {
@@ -18,6 +19,9 @@ export const allProjects = createSlice({
     },
     setProjectUploadSuccess: (store, action) => {
       store.projectUploadSuccess = action.payload;
+    },
+    setProjectDeleteSuccess: (store, action) => {
+      store.projectDeleteSuccess = action.payload;
     },
     deleteProject: (store, action) => {
       store.projectList = store.projectList.filter(
@@ -43,10 +47,7 @@ export const fetchProjects = (filters = {}, page) => {
   }
 
   return (dispatch) => {
-    fetch(
-      `http://localhost:8080/projects?page=${page}` +
-        new URLSearchParams(queryParams)
-    )
+    fetch('http://localhost:8080/projects?' + new URLSearchParams(queryParams))
       .then((res) => res.json())
       .then((projectList) => {
         dispatch(allProjects.actions.setProjectList(projectList));
@@ -87,6 +88,9 @@ export const deleteProject = (id) => {
       .then(
         (data) => {
           dispatch(allProjects.actions.deleteProject(data._id));
+          dispatch(allProjects.actions.setProjectDeleteSuccess(true));
+          dispatch(allProjects.actions.setProjectDeleteSuccess(false));
+          dispatch(ui.actions.setLoading(false));
         }
         // add loader (false )
         // reload projects page
@@ -100,3 +104,5 @@ export const deleteProject = (id) => {
 //   }
 //   store.currentStep = action.payload;
 // }
+
+// just a comment hereee

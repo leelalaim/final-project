@@ -11,7 +11,7 @@ const BannerContainer = styled.div`
 
 const BannerImage = styled.img`
   object-fit: cover;
-  height: 50vh;
+  height: 65vh;
 `;
 
 const BannerHeader = styled.h1`
@@ -22,7 +22,7 @@ const BannerHeader = styled.h1`
   top: 35%;
   color: #ffffff;
   background-color: rgba(0, 0, 0, 0.3);
-  font-size: 35px;
+  font-size: 25px;
   @media (min-width: 375px) and (max-width: 767px) {
     top: 40%;
     font-size: 40px;
@@ -66,7 +66,7 @@ export const ProjectsBanner = () => {
   return (
     <BannerContainer>
       <BannerImage src={projectsimage}></BannerImage>
-      <BannerHeader>Creativity starts here...</BannerHeader>
+      <BannerHeader>Creativity <br />starts here...</BannerHeader>
       <BannerParagraph>
         Bootcamp projects worth seeing.
       </BannerParagraph>
