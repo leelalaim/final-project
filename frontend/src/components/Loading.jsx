@@ -1,56 +1,37 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components/macro";
 
-const StyledSpinner = styled.svg`
-  animation: rotate 2s linear infinite;
-  margin: -25px 0 0 -25px;
-  width: 50px;
-  height: 50px;
-
-  & .path {
-    stroke: #f5c91c;
-    stroke-linecap: round;
-    animation: dash 1.5s ease-in-out infinite;
-  }
-
-  @keyframes rotate {
-    100% {
-      transform: rotate(360deg);
-    }
-  }
-  @keyframes dash {
-    0% {
-      stroke-dasharray: 1, 150;
-      stroke-dashoffset: 0;
-    }
-    50% {
-      stroke-dasharray: 90, 150;
-      stroke-dashoffset: -35;
-    }
-    100% {
-      stroke-dasharray: 90, 150;
-      stroke-dashoffset: -124;
-    }
-  }
+const breatheAnimation = keyframes`
+ 0% { height: 100px; width: 100px; }
+ 30% { height: 400px; width: 400px; opacity: 1 }
+ 40% { height: 405px; width: 405px; opacity: 0.3; }
+ 100% { height: 100px; width: 100px; opacity: 0.6; }
 `;
 
-const Container = styled.section`
+const Load = styled.div`
+  height: 100px;
+  width: 100px;
+  border-style: solid;
+  border-width: 5px;
+  border-radius: 50%;
+  border-color: #f5c81e;
+  animation-name: ${breatheAnimation};
+  animation-duration: 8s;
+  animation-iteration-count: infinite;
+`;
+
+const LoaderContainer = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
+  flex-direction: column;
+  min-height: 100vh;
 `;
 
-export const Loading = () => (
-  <Container>
-    <StyledSpinner viewBox="0 0 50 50">
-      <circle
-        className="path"
-        cx="25"
-        cy="25"
-        r="20"
-        fill="none"
-        strokeWidth="4"
-      />
-    </StyledSpinner>
-  </Container>
-);
+export const Loading = () => {
+  return (
+    <LoaderContainer>
+      <Load></Load>
+    </LoaderContainer>
+  );
+};

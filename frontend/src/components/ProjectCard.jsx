@@ -155,11 +155,6 @@ const DescriptionSpan = styled.span`
   font-style: italic;
 `;
 
-// const InfoContainer = styled(DialogContent)`
-//   border-top: #f5c81e;
-//   border-bottom: #f5c81e;
-// `;
-
 export const ProjectCard = ({ project }) => {
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
@@ -231,17 +226,11 @@ export const ProjectCard = ({ project }) => {
               <Span>Live at:</Span> <a href={project.url}>{project.url}</a>
             </Typography>
             <Typography gutterBottom>
-              <Span>See repository at:</Span> <a href={project.github}>{project.github}</a>
+              <Span>See repository at:</Span>{" "}
+              <a href={project.github}>{project.github}</a>
             </Typography>
-
-            {/* <Typography gutterBottom>
-              <FaTrashAlt onClick={console.log("CLICKDELETE")} />
-            </Typography> */}
           </DialogContent>
           <DialogActions>
-            {/* <ButtonBase onClick={console.log("CLICKDELETE")}>
-              <FaTrashAlt />
-            </ButtonBase> */}
             <Button
               variant="contained"
               autoFocus

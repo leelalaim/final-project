@@ -84,8 +84,12 @@ export const Upload = () => {
     // redirect()
   };
 
+  // if (isLoading) {
+  //   return <Loading />;
+  // } else {
   return (
     <>
+      {isLoading && <Loading />}
       {projectUploadSuccess && (
         <Redirect
           to={{
@@ -162,8 +166,8 @@ export const Upload = () => {
             Upload
           </Button>
         </Form>
-        {isLoading && <Loading />}
       </Section>
     </>
   );
+  // }
 };
