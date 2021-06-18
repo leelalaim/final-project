@@ -78,6 +78,7 @@ export const deleteOptions = (id) => {
 
 export const deleteProject = (id) => {
   return (dispatch, getState) => {
+    dispatch(ui.actions.setLoading(true));
     fetch(`http://localhost:8080/delete/${id}`, deleteOptions(id))
       .then((res) => res.json())
       .then(

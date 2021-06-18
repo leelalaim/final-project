@@ -158,6 +158,7 @@ export const SignUp = () => {
             >
               Sign Up!
             </Button>
+            <p>Disclaimer for storing e-mails</p>
             <Grid container justify="flex-end"></Grid>
           </form>
           <p>{errorMessage && errorMessage.errorCode}</p>

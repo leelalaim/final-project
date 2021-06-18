@@ -148,7 +148,8 @@ app.get('/projects', async (req, res) => {
 
 //Upload
 app.post('/upload', parser.single('image'), async (req, res) => {
-  const { url, projectName, bootcamp, description, week, stack, github } = req.body;
+  const { url, projectName, bootcamp, description, week, stack, github } =
+    req.body;
   try {
     const newProject = new Project({
       projectName: projectName,
@@ -176,7 +177,10 @@ app.delete('/delete/:id', async (req, res) => {
     const deletedProject = await Project.findByIdAndDelete(id);
 
     if (deletedProject) {
+      console.log('deletedProject');
       res.json(deletedProject);
+      console.log('projectlist');
+      res.json(Project);
     } else {
       res.status(404).json({ message: 'Not found' });
     }

@@ -174,7 +174,6 @@ export const ProjectCard = ({ project }) => {
 
   return (
     <FlexContainer>
-      {console.log(project._id)}
       <CardContainer>
         <PopUpButton
           variant="outlined"
