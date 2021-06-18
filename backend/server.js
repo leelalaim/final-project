@@ -120,7 +120,14 @@ app.get('/', (req, res) => {
 
 //MVP
 app.get('/projects', async (req, res) => {
-  const { bootcamp, stack, week } = req.query;
+  const { bootcamp, stack, week, page } = req.query;
+  console.log('page');
+  console.log(page);
+  const pageSize = 20;
+
+  const pageResults = (page) => {
+    return (page - 1) * pageSize;
+  };
 
   const query = {};
   if (bootcamp) {
@@ -136,9 +143,13 @@ app.get('/projects', async (req, res) => {
   }
 
   try {
-    const data = await Project.find(query).sort({ createdAt: -1 });
+    const data = await Project.find(query)
+      .sort({ createdAt: -1 })
+      .limit(20)
+      .skip(pageResults(page));
 
     res.json(data);
+    // console.log(data);
   } catch (error) {
     res
       .status(400)

@@ -16,6 +16,7 @@ const ProjectCards = styled.div`
 export const Projects = () => {
   const dispatch = useDispatch();
   const projects = useSelector((store) => store.allProjects.projectList);
+  const [page, setPage] = useState(1)
 
   useEffect(() => {
     dispatch(fetchProjects());
