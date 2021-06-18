@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { ui } from 'reducers/ui';
 
 // import { API_URL } from 'reusable/urls';
 
@@ -47,12 +48,14 @@ export const fetchProjects = (filters = {}) => {
 
 export const uploadProject = (formData) => {
   return (dispatch, getState) => {
+    dispatch(ui.actions.setLoading(true));
     fetch('http://localhost:8080/upload', {
       method: 'POST',
       body: formData,
     })
       .then((res) => res.json())
       .then((project) => {
+        dispatch(ui.actions.setLoading(false));
         dispatch(allProjects.actions.addProject(project));
         dispatch(allProjects.actions.setProjectUploadSuccess(true));
         dispatch(allProjects.actions.setProjectUploadSuccess(false));

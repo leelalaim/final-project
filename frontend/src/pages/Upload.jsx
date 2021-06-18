@@ -4,6 +4,7 @@ import styled from "styled-components/macro";
 import { uploadProject } from "../reducers/allProjects";
 import { UploadBanner } from "../components/UploadBanner";
 import { Redirect } from "react-router-dom";
+import { Loading } from "../components/Loading";
 
 const Section = styled.section`
   height: 400px;
@@ -53,6 +54,7 @@ export const Upload = () => {
   const projectUploadSuccess = useSelector(
     (store) => store.allProjects.projectUploadSuccess
   );
+  const isLoading = useSelector((store) => store.ui.isLoading);
 
   const onFormSubmit = (e) => {
     e.preventDefault();
@@ -141,7 +143,9 @@ export const Upload = () => {
             Upload
           </Button>
         </Form>
+        {isLoading && <Loading />}
       </Section>
     </>
   );
 };
+
