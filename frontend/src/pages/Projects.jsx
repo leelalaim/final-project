@@ -6,6 +6,7 @@ import { fetchProjects } from "../reducers/allProjects";
 import { ProjectsBanner } from "../components/ProjectsBanner";
 import { ProjectCard } from "../components/ProjectCard";
 import { FilterForm } from "../components/FilterForm";
+import { ProjectsSecondBanner } from "../components/ProjectsSecondBanner";
 
 const ProjectCards = styled.div`
   display: flex;
@@ -35,6 +36,7 @@ export const Projects = () => {
           <ProjectCard project={project} />
         ))}
       </ProjectCards>
+      <ProjectsSecondBanner />
     </>
   );
 };

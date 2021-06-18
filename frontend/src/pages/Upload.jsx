@@ -6,6 +6,8 @@ import { UploadBanner } from "../components/UploadBanner";
 import { Redirect } from "react-router-dom";
 import { Loading } from "../components/Loading";
 
+import devGallery from "../";
+
 const Section = styled.section`
   height: 400px;
 `;
@@ -44,6 +46,7 @@ export const Upload = () => {
   const [bootcamp, setBootcamp] = useState("");
   const [projectName, setProjectName] = useState("");
   const [url, setUrl] = useState("");
+  const [github, setGitHub] = useState("");
   const [stack, setStack] = useState("");
   const [description, setDescription] = useState("");
   const [week, setWeek] = useState("");
@@ -63,6 +66,7 @@ export const Upload = () => {
     formData.append("bootcamp", bootcamp);
     formData.append("projectName", projectName);
     formData.append("url", url);
+    formData.append("github", github);
     formData.append("stack", stack);
     formData.append("description", description);
     formData.append("week", week);
@@ -103,6 +107,12 @@ export const Upload = () => {
             value={url}
             placeholder="URL to live page"
             onChange={(e) => setUrl(e.target.value)}
+          ></Input>
+          <Input
+            type="text"
+            value={github}
+            placeholder="URL to GitHub repository"
+            onChange={(e) => setGitHub(e.target.value)}
           ></Input>
           {/* <label>Add the stacks</label> */}
           <Input
@@ -148,4 +158,3 @@ export const Upload = () => {
     </>
   );
 };
-

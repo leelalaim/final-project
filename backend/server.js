@@ -81,6 +81,9 @@ const projectSchema = new mongoose.Schema({
   url: {
     type: String,
   },
+  github: {
+    type: String,
+  },
   stack: {
     type: String,
   },
@@ -145,11 +148,12 @@ app.get('/projects', async (req, res) => {
 
 //Upload
 app.post('/upload', parser.single('image'), async (req, res) => {
-  const { url, projectName, bootcamp, description, week, stack } = req.body;
+  const { url, projectName, bootcamp, description, week, stack, github } = req.body;
   try {
     const newProject = new Project({
       projectName: projectName,
       url: url,
+      github: github,
       bootcamp: bootcamp,
       stack: stack,
       description: description,

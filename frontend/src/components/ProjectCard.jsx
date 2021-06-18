@@ -1,7 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import styled from "styled-components/macro";
-import { fetchDelete } from "reducers/allProjects";
+import { deleteProject } from "reducers/allProjects";
 
 // Material UI
 import { withStyles } from "@material-ui/core/styles";
@@ -13,6 +13,7 @@ import MuiDialogActions from "@material-ui/core/DialogActions";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
+import ButtonBase from "@material-ui/core/ButtonBase";
 
 // Font Awesome
 import { FaTrashAlt } from "react-icons/fa";
@@ -167,12 +168,14 @@ export const ProjectCard = ({ project }) => {
     setOpen(false);
   };
 
-  // const handleDelete = (id) =>{
-  //   dispatch(fetchDelete(id))
-  // }
+  const handleDelete = (e, id) => {
+    e.preventDefault();
+    dispatch(deleteProject(id));
+  };
 
   return (
     <FlexContainer>
+      {console.log(project._id)}
       <CardContainer>
         <PopUpButton
           variant="outlined"
@@ -198,8 +201,8 @@ export const ProjectCard = ({ project }) => {
             <Typography gutterBottom>
               <DescriptionSpan>
                 "
-                {project.description === null
-                  ? "Not assigned"
+                {project.description === ""
+                  ? "No description provided"
                   : project.description}
                 "
               </DescriptionSpan>
@@ -211,22 +214,34 @@ export const ProjectCard = ({ project }) => {
               <Span>Stack:</Span> {project.stack}
             </Typography>
             <Typography gutterBottom>
-              <Span>Week of bootcamp:</Span> {project.week}
+              <Span>Week of bootcamp:</Span>{" "}
+              {project.week === "" ? "N/A" : project.week}
             </Typography>
             <Typography gutterBottom>
               <Span>Live at:</Span> <a href={project.url}>{project.url}</a>
             </Typography>
+            <Typography gutterBottom>
+              <Span>See repository at:</Span> <a href={project.github}>{project.github}</a>
+            </Typography>
+
             {/* <Typography gutterBottom>
-          <FaTrashAlt onClick={console.log('CLICKDELETE')}/>
+              <FaTrashAlt onClick={console.log("CLICKDELETE")} />
             </Typography> */}
           </DialogContent>
           <DialogActions>
-            {/* <Button autoFocus onClick={handleClose} color="primary">
-              Save changes
-            </Button> */}
-            <button onClick={console.log("CLICKDELETE")}>
+            {/* <ButtonBase onClick={console.log("CLICKDELETE")}>
               <FaTrashAlt />
-            </button>
+            </ButtonBase> */}
+            <Button
+              variant="contained"
+              autoFocus
+              onClick={(e) => {
+                handleDelete(e, project._id);
+              }}
+              color="primary"
+            >
+              <FaTrashAlt />
+            </Button>
           </DialogActions>
         </DialogContainer>
       </CardContainer>
