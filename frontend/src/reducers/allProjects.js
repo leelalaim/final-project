@@ -9,6 +9,7 @@ export const allProjects = createSlice({
     projectList: [],
     projectUploadSuccess: false,
     projectDeleteSuccess: false,
+    totalPages: 1,
   },
   reducers: {
     addProject: (store, action) => {
@@ -28,10 +29,13 @@ export const allProjects = createSlice({
         (deletedProject) => deletedProject._id !== action.payload
       );
     },
+    setTotalPages: (store, action) => {
+      store.totalPages = action.payload;
+    },
   },
 });
 
-export const fetchProjects = (filters = {}, page) => {
+export const fetchProjects = (filters = {}, page = 1) => {
   const { stack, bootcamp, week } = filters;
   const queryParams = {};
   if (stack) {
@@ -47,10 +51,15 @@ export const fetchProjects = (filters = {}, page) => {
   }
 
   return (dispatch) => {
-    fetch('http://localhost:8080/projects?' + new URLSearchParams(queryParams))
+    fetch(
+      `http://localhost:8080/projects?page=${page}` +
+        new URLSearchParams(queryParams)
+    )
       .then((res) => res.json())
       .then((projectList) => {
-        dispatch(allProjects.actions.setProjectList(projectList));
+        console.log(projectList);
+        dispatch(allProjects.actions.setProjectList(projectList.projects));
+        dispatch(allProjects.actions.setTotalPages(projectList.pagesTotal));
       });
   };
 };

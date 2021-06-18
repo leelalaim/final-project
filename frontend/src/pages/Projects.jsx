@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components/macro";
 
@@ -8,6 +8,8 @@ import { ProjectCard } from "../components/ProjectCard";
 import { FilterForm } from "../components/FilterForm";
 import { ProjectsSecondBanner } from "../components/ProjectsSecondBanner";
 
+import Pagination from "@material-ui/lab/Pagination";
+
 const ProjectCards = styled.div`
   display: flex;
   flex-wrap: wrap;
@@ -16,7 +18,8 @@ const ProjectCards = styled.div`
 export const Projects = () => {
   const dispatch = useDispatch();
   const projects = useSelector((store) => store.allProjects.projectList);
-  const [page, setPage] = useState(1)
+  const pageTotal = useSelector((store) => store.allProjects.totalPages)
+  const [pageNumber, setPageNumber] = useState(1)
 
   useEffect(() => {
     dispatch(fetchProjects());
@@ -25,6 +28,11 @@ export const Projects = () => {
   const onFilterFormSubmit = (filters) => {
     dispatch(fetchProjects(filters));
   };
+
+  const onPageChange = (event, page) => {
+    setPageNumber(page)
+    dispatch(fetchProjects({}, page))
+  }
 
   return (
     <>
@@ -36,7 +44,9 @@ export const Projects = () => {
         {projects.map((project) => (
           <ProjectCard key= {project._id} project={project} />
         ))}
+       
       </ProjectCards>
+      <Pagination count={pageTotal} page={pageNumber} onChange={onPageChange}/>
       <ProjectsSecondBanner />
     </>
   );

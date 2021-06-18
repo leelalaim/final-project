@@ -123,7 +123,7 @@ app.get('/projects', async (req, res) => {
   const { bootcamp, stack, week, page } = req.query;
   console.log('page');
   console.log(page);
-  const pageSize = 20;
+  const pageSize = 10;
 
   const pageResults = (page) => {
     return (page - 1) * pageSize;
@@ -142,14 +142,16 @@ app.get('/projects', async (req, res) => {
     query.week = week;
   }
 
+  const countProjects = await Project.countDocuments();
+  console.log(countProjects);
+
   try {
-    const data = await Project.find(query)
+    const projects = await Project.find(query)
       .sort({ createdAt: -1 })
-      .limit(20)
+      .limit(10)
       .skip(pageResults(page));
 
-    res.json(data);
-    // console.log(data);
+    res.json({ projects, pagesTotal: Math.ceil(countProjects / pageSize) });
   } catch (error) {
     res
       .status(400)
@@ -188,9 +190,7 @@ app.delete('/delete/:id', async (req, res) => {
     const deletedProject = await Project.findByIdAndDelete(id);
 
     if (deletedProject) {
-      console.log('deletedProject');
       res.json(deletedProject);
-      console.log('projectlist');
       res.json(Project);
     } else {
       res.status(404).json({ message: 'Not found' });
