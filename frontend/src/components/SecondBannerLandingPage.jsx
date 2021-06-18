@@ -13,19 +13,20 @@ const Container = styled.section`
 const Banner = styled.img`
   object-fit: cover;
   width: 100vw;
-  height: 40vh;
+  height: 35vh;
 `;
 
 const TextContainer = styled.div`
   position: absolute;
   top: 22%;
-  left: 20%;
+  right: 10%;
+  border: 1px solid black;
 `;
 
 const Text = styled.h1`
   display: flex;
   color: white;
-  font-size: 35px;
+  font-size: 30px;
   font-weight: 400;
   margin: 0;
   line-heigh: 35px;
@@ -41,13 +42,13 @@ const LowerText = styled(Text)`
   display: flex;
   justify-content: flex-end;
   color: #f4e03f;
-  font-size: 45px;
+  font-size: 40px;
   margin: 0 0 0 10px;
 `;
 
 const BannerButton = styled(Link)`
   position: absolute;
-  bottom: 30%;
+  bottom: 15%;
   left: 50%;
   color: #ffffff;
   border: 1px solid #ffffff;
