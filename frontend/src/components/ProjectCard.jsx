@@ -159,6 +159,8 @@ export const ProjectCard = ({ project }) => {
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
 
+  let accessToken = useSelector((store) => store.user.accessToken);
+
   const projectDeleteSuccess = useSelector(
     (store) => store.user.projectDeleteSuccess
   );
@@ -231,16 +233,17 @@ export const ProjectCard = ({ project }) => {
             </Typography>
           </DialogContent>
           <DialogActions>
-            <Button
-              variant="contained"
-              autoFocus
-              onClick={(e) => {
-                handleDelete(e, project._id);
-              }}
-              color="primary"
-            >
-              <FaTrashAlt />
-            </Button>
+              {accessToken ? 
+                <Button
+                  variant="contained"
+                  autoFocus
+                  onClick={(e) => {
+                    handleDelete(e, project._id);
+                  }}
+                  color="primary"
+                >
+                  <FaTrashAlt />
+                </Button> : ''}
           </DialogActions>
         </DialogContainer>
       </CardContainer>
