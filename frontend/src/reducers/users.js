@@ -105,3 +105,12 @@ export const fetchLogIn = (email, password) => {
       });
   };
 };
+
+
+export const getAccessToken = (store) => {
+  if (store.users.user) {
+    return store.users.user.accessToken
+  }
+  
+  return null;
+}
