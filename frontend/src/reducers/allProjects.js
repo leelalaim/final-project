@@ -69,6 +69,9 @@ export const uploadProject = (formData) => {
     dispatch(ui.actions.setLoading(true));
     fetch('http://localhost:8080/upload', {
       method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${getState().user.accessToken}`
+      },
       body: formData,
     })
       .then((res) => res.json())

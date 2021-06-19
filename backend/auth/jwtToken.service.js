@@ -9,6 +9,6 @@ export const jwtService = {
   },
 
   getAuthTokenData(token) {
-    return jwt.verify(token);
+    return jwt.verify(token, process.env.TOKEN_SECRET);
   }
 }

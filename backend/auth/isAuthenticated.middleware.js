@@ -1,4 +1,4 @@
-import jwtService from './jwtToken.service';
+import { jwtService } from './jwtToken.service';
 
 export function isAuthenticated (req, res, next) {
   const authHeader = req.headers['authorization']
@@ -9,7 +9,8 @@ export function isAuthenticated (req, res, next) {
   try {
     jwtService.getAuthTokenData(token);
     next();
-  } catch {
+  } catch(e) {
+    console.log(e);
     res.sendStatus(403);
   }
 };
