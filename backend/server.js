@@ -1,87 +1,21 @@
 import express from 'express';
 import cors from 'cors';
-import mongoose from 'mongoose';
 import bcrypt from 'bcrypt-nodejs';
+import mongoose from 'mongoose';
 import { upload } from './cloudinary';
 import { jwtService } from './auth';
 import { authenticateToken } from './auth';
+import { Project } from './project';
+import { User } from './user';
 
-const mongoUrl =
-  process.env.MONGO_URL || 'mongodb://localhost/bootcamp-projects';
+const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost/bootcamp-projects';
 mongoose.connect(mongoUrl, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-});
-
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  }
+);
 mongoose.Promise = Promise;
-
-//Schemas
-const userSchema = new mongoose.Schema({
-  email: {
-    type: String,
-    unique: true,
-    match: [
-      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-      'Please enter a valid email address',
-    ],
-  },
-  password: {
-    type: String,
-    // required: true,
-  },
-});
-
-//Connect logged in user to uploaded project
-const projectSchema = new mongoose.Schema({
-  ownerId: {
-    type: String,
-    required: true,
-  },
-  email: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    // required: true,
-    trim: true,
-    validate: {
-      validator: (value) => {
-        return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value);
-      },
-      message: 'Please, enter a valid email',
-    },
-  },
-  bootcamp: {
-    type: String,
-    // required: true,
-  },
-  projectName: {
-    type: String,
-  },
-  url: {
-    type: String,
-  },
-  github: {
-    type: String,
-  },
-  stack: {
-    type: String,
-  },
-  description: {
-    type: String,
-  },
-  week: {
-    type: String,
-  },
-  projectImage: String,
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-});
-
-//Models
-const Project = mongoose.model('Project', projectSchema);
-const User = mongoose.model('User', userSchema);
 
 const port = process.env.PORT || 8080;
 const app = express();
@@ -138,7 +72,7 @@ app.get('/projects', async (req, res) => {
 //Upload
 app.post('/upload', authenticateToken, upload.single('image'), async (req, res) => {
   const { url, projectName, bootcamp, description, week, stack, github } = req.body;
-  
+
   try {
     const newProject = new Project({
       ownerId: req.user.id,
