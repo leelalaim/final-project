@@ -86,7 +86,7 @@ app.post('/upload', authenticateToken, upload.single('image'), async (req, res) 
       projectImage: (req.file && req.file.path) || '',
       // projectImage: req.file.path,
     });
-    newProject.save();
+    await newProject.save();
     res.status(200).json(newProject);
   } catch (err) {
     res.status(400).json({ message: 'Could not save', errors: err });
@@ -102,7 +102,6 @@ app.delete('/delete/:id', authenticateToken, isProjectOwner, async (req, res) =>
 
     if (deletedProject) {
       res.json(deletedProject);
-      res.json(Project);
     } else {
       res.status(404).json({ message: 'Not found' });
     }
