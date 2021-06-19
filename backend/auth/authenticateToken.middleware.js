@@ -1,6 +1,6 @@
 import { jwtService } from './jwtToken.service';
 
-export function isAuthenticated (req, res, next) {
+export function authenticateToken (req, res, next) {
   const authHeader = req.headers['authorization']
   const token = authHeader && authHeader.split(' ')[1]
 

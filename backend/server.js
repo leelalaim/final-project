@@ -4,7 +4,7 @@ import mongoose from 'mongoose';
 import bcrypt from 'bcrypt-nodejs';
 import { upload } from './cloudinary';
 import { jwtService } from './auth';
-import { isAuthenticated } from './auth';
+import { authenticateToken } from './auth';
 
 const mongoUrl =
   process.env.MONGO_URL || 'mongodb://localhost/bootcamp-projects';
@@ -135,7 +135,7 @@ app.get('/projects', async (req, res) => {
 });
 
 //Upload
-app.post('/upload', isAuthenticated, upload.single('image'), async (req, res) => {
+app.post('/upload', authenticateToken, upload.single('image'), async (req, res) => {
   const { url, projectName, bootcamp, description, week, stack, github } =
     req.body;
   try {
@@ -158,7 +158,7 @@ app.post('/upload', isAuthenticated, upload.single('image'), async (req, res) =>
 });
 
 //Delete
-app.delete('/delete/:id', isAuthenticated, async (req, res) => {
+app.delete('/delete/:id', authenticateToken, async (req, res) => {
   const { id } = req.params;
 
   try {
