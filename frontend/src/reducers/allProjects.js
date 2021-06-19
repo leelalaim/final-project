@@ -1,14 +1,15 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { ui } from "reducers/ui";
+import { createSlice } from '@reduxjs/toolkit';
+import { ui } from 'reducers/ui';
 
 // import { API_URL } from 'reusable/urls';
 
 export const allProjects = createSlice({
-  name: "allProjects",
+  name: 'allProjects',
   initialState: {
     projectList: [],
     projectUploadSuccess: false,
     projectDeleteSuccess: false,
+    totalPages: 1,
   },
   reducers: {
     addProject: (store, action) => {
@@ -28,10 +29,13 @@ export const allProjects = createSlice({
         (deletedProject) => deletedProject._id !== action.payload
       );
     },
+    setTotalPages: (store, action) => {
+      store.totalPages = action.payload;
+    },
   },
 });
 
-export const fetchProjects = (filters = {}) => {
+export const fetchProjects = (filters = {}, page = 1) => {
   const { stack, bootcamp, week } = filters;
   const queryParams = {};
   if (stack) {
@@ -47,10 +51,15 @@ export const fetchProjects = (filters = {}) => {
   }
 
   return (dispatch) => {
-    fetch("http://localhost:8080/projects?" + new URLSearchParams(queryParams))
+    fetch(
+      `http://localhost:8080/projects?page=${page}` +
+        new URLSearchParams(queryParams)
+    )
       .then((res) => res.json())
       .then((projectList) => {
-        dispatch(allProjects.actions.setProjectList(projectList));
+        console.log(projectList);
+        dispatch(allProjects.actions.setProjectList(projectList.projects));
+        dispatch(allProjects.actions.setTotalPages(projectList.pagesTotal));
       });
   };
 };
@@ -58,8 +67,11 @@ export const fetchProjects = (filters = {}) => {
 export const uploadProject = (formData) => {
   return (dispatch, getState) => {
     dispatch(ui.actions.setLoading(true));
-    fetch("http://localhost:8080/upload", {
-      method: "POST",
+    fetch('http://localhost:8080/upload', {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${getState().user.accessToken}`
+      },
       body: formData,
     })
       .then((res) => res.json())
@@ -72,10 +84,13 @@ export const uploadProject = (formData) => {
   };
 };
 
-export const deleteOptions = (id) => {
+export const deleteOptions = (id, accessToken) => {
   return {
-    method: "DELETE",
-    headers: { "Content-type": "application/json" },
+    method: 'DELETE',
+    headers: {
+      'Content-type': 'application/json',
+      'Authorization': `Bearer ${accessToken}`
+    },
     body: JSON.stringify({ id: id }),
   };
 };
@@ -83,7 +98,7 @@ export const deleteOptions = (id) => {
 export const deleteProject = (id) => {
   return (dispatch, getState) => {
     dispatch(ui.actions.setLoading(true));
-    fetch(`http://localhost:8080/delete/${id}`, deleteOptions(id))
+    fetch(`http://localhost:8080/delete/${id}`, deleteOptions(id, getState().user.accessToken))
       .then((res) => res.json())
       .then(
         (data) => {
