@@ -10,7 +10,7 @@ import { Loading } from "../components/Loading";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-import devGallery from "../";
+// import devGallery from "../";
 
 const Section = styled.section`
   height: 400px;

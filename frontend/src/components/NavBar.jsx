@@ -78,11 +78,11 @@ const Logo = styled.img`
   margin-right: 20px;
 `;
 
-const StyledMenuItem = styled(Link)`
-  text-decoration: none;
-  color: black;
-  padding: 10px;
-`;
+// const StyledMenuItem = styled(Link)`
+//   text-decoration: none;
+//   color: black;
+//   padding: 10px;
+// `;
 
 export const NavBar = () => {
   const classes = useStyles();
