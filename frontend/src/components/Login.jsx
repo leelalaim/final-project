@@ -5,7 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components/macro";
 
 //Inner Dependencies
-import { fetchLogIn } from "../reducers/user";
+import { fetchLogIn } from "../reducers/users";
 
 //Material UI
 import Button from "@material-ui/core/Button";
@@ -67,7 +67,7 @@ export const Login = () => {
   const [password, setPassword] = useState("");
   const [open, setOpen] = React.useState(false);
 
-  const errorMessage = useSelector((store) => store.user.errors);
+  const errorMessage = useSelector((store) => store.users.errors);
   const successToast = () => toast.success("You have successfully signed in!");
 
   const onFormSubmit = (e) => {

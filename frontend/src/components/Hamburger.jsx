@@ -6,7 +6,7 @@ import styled from "styled-components/macro";
 import logo from "../assets/logo.png";
 import { Login } from "../components/Login";
 
-import { user } from "../reducers/user";
+import { users } from "../reducers/users";
 import "../../src/index.css";
 
 const LogoHamburger = styled.img`
@@ -32,7 +32,7 @@ export const Hamburger = () => {
   const dispatch = useDispatch();
   let content;
 
-  let emailRedux = useSelector((store) => store.user.email);
+  const emailRedux = useSelector((store) => store.users.user && store.users.user.email);
 
   const onMenuStateChange = (state) => {
     setIsOpen(state.isOpen);
@@ -43,12 +43,12 @@ export const Hamburger = () => {
   };
 
   const logOut = () => {
-    dispatch(user.actions.setLogOut());
+    dispatch(users.actions.setLogOut());
     localStorage.clear();
     // successToast()
   };
 
-  if (emailRedux === null) {
+  if (!emailRedux) {
     content = (
       <>
         <a href="/">

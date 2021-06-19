@@ -5,27 +5,22 @@ import { API_URL } from 'reusable/urls';
 
 const initialState = localStorage.getItem('user')
   ? {
-      email: JSON.parse(localStorage.getItem('user')).email,
-      accessToken: JSON.parse(localStorage.getItem('user')).accessToken,
+      user: JSON.parse(localStorage.getItem('user')),
       errors: null,
       signUpSuccess: false,
     }
   : {
-      email: null,
-      accessToken: null,
+      user: null,
       errors: null,
       signUpSuccess: false,
     };
 
-export const user = createSlice({
-  name: 'user',
+export const users = createSlice({
+  name: 'users',
   initialState,
   reducers: {
-    setEmail: (store, action) => {
-      store.email = action.payload;
-    },
-    setAccessToken: (store, action) => {
-      store.accessToken = action.payload;
+    setUser: (store, action) => {
+      store.user = action.payload;
     },
     setErrors: (store, action) => {
       console.log(action);
@@ -33,8 +28,7 @@ export const user = createSlice({
     },
     setLogOut: () => {
       return {
-        email: null,
-        accessToken: null,
+        user: null,
         errors: null,
         signUpSuccess: false
       };
@@ -65,10 +59,9 @@ export const fetchSignUp = (email, password) => {
       })
       .then((data) => {
         batch(() => {
-          dispatch(user.actions.setEmail(data.email));
-          dispatch(user.actions.setAccessToken(data.accessToken));
-          dispatch(user.actions.setSignUpSuccess(true));
-          // dispatch(user.actions.setSignUpSuccess(false));
+          dispatch(users.actions.setUser(data));
+          dispatch(users.actions.setSignUpSuccess(true));
+          // dispatch(users.actions.setSignUpSuccess(false));
         });
 
         localStorage.setItem(
@@ -81,7 +74,7 @@ export const fetchSignUp = (email, password) => {
       })
       .catch((error) => {
         error.json().then((errorData) => {
-          dispatch(user.actions.setErrors(errorData));
+          dispatch(users.actions.setErrors(errorData));
         });
       });
   };
@@ -99,22 +92,15 @@ export const fetchLogIn = (email, password) => {
       })
       .then((data) => {
         batch(() => {
-          dispatch(user.actions.setEmail(data.email));
-          dispatch(user.actions.setAccessToken(data.accessToken));
-          dispatch(user.actions.setErrors(null));
+          dispatch(users.actions.setUser(data));
+          dispatch(users.actions.setErrors(null));
         });
 
-        localStorage.setItem(
-          'user',
-          JSON.stringify({
-            email: data.email,
-            accessToken: data.accessToken,
-          })
-        );
+        localStorage.setItem('user', JSON.stringify(data));
       })
       .catch((error) => {
         error.json().then((errorData) => {
-          dispatch(user.actions.setErrors(errorData));
+          dispatch(users.actions.setErrors(errorData));
         });
       });
   };

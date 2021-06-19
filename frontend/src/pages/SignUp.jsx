@@ -25,8 +25,8 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 //Inner Dependencies
-import { fetchSignUp } from "../reducers/user";
-import { user } from "reducers/user";
+import { fetchSignUp } from "../reducers/users";
+import { users } from "reducers/users";
 
 const useStyles = makeStyles((theme) => ({
   "@global": {
@@ -60,9 +60,9 @@ export const SignUp = () => {
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
 
-  let errorMessage = useSelector((store) => store.user.errors);
+  let errorMessage = useSelector((store) => store.users.errors);
   const signUpSuccess = useSelector(
-    (store) => store.user.signUpSuccess
+    (store) => store.users.signUpSuccess
   );
 
   if (signUpSuccess) {
@@ -73,7 +73,7 @@ export const SignUp = () => {
     e.preventDefault();
     if (password !== repeatPassword) {
       dispatch(
-        user.actions.setErrors({
+        users.actions.setErrors({
           errorCode: "The passwords do not match",
           message: "The passwords do not match",
         })

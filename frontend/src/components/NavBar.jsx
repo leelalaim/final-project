@@ -14,7 +14,7 @@ import Menu from "@material-ui/core/Menu";
 import styled from "styled-components/macro";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
-import { user } from "../reducers/user";
+import { users } from "../reducers/users";
 import { Login } from "../components/Login";
 import logo from "../assets/logo.png";
 
@@ -91,7 +91,7 @@ export const NavBar = () => {
   const open = Boolean(anchorEl);
   let content;
 
-  let emailRedux = useSelector((store) => store.user.email);
+  const emailRedux = useSelector((store) => store.users.user && store.users.user.email);
   const successToast = () => toast.success("You have successfully signed out!");
 
   const dispatch = useDispatch();
@@ -108,18 +108,13 @@ export const NavBar = () => {
     setAnchorEl(null);
   };
 
-  // const logIn = () => {
-  //   dispatch(user.actions.setLogOut());
-  //   localStorage.clear();
-  // };
-
   const logOut = () => {
-    dispatch(user.actions.setLogOut());
+    dispatch(users.actions.setLogOut());
     localStorage.clear();
     // successToast()
   };
 
-  if (emailRedux === null) {
+  if (!emailRedux) {
     content = (
       <Container className={classes.root}>
         {/* <FormGroup>
