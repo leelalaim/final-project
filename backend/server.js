@@ -34,6 +34,10 @@ const userSchema = new mongoose.Schema({
 
 //Connect logged in user to uploaded project
 const projectSchema = new mongoose.Schema({
+  ownerId: {
+    type: String,
+    required: true,
+  },
   email: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
@@ -62,9 +66,6 @@ const projectSchema = new mongoose.Schema({
   stack: {
     type: String,
   },
-  // hearts: {
-  //   type:
-  // },
   description: {
     type: String,
   },
@@ -136,10 +137,11 @@ app.get('/projects', async (req, res) => {
 
 //Upload
 app.post('/upload', authenticateToken, upload.single('image'), async (req, res) => {
-  const { url, projectName, bootcamp, description, week, stack, github } =
-    req.body;
+  const { url, projectName, bootcamp, description, week, stack, github } = req.body;
+  
   try {
     const newProject = new Project({
+      ownerId: req.user.id,
       projectName: projectName,
       url: url,
       github: github,

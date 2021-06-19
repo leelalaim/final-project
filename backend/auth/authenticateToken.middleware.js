@@ -7,7 +7,7 @@ export function authenticateToken (req, res, next) {
   if (token == null) return res.sendStatus(401);
 
   try {
-    jwtService.getAuthTokenData(token);
+    req.user = jwtService.getAuthTokenData(token);
     next();
   } catch(e) {
     console.log(e);
