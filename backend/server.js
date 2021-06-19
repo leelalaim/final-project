@@ -1,31 +1,10 @@
 import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
-import crypto from 'crypto';
 import bcrypt from 'bcrypt-nodejs';
-import dotenv from 'dotenv';
-import cloudinaryFramework from 'cloudinary';
-import multer from 'multer';
-import cloudinaryStorage from 'multer-storage-cloudinary';
-
-dotenv.config();
-const cloudinary = cloudinaryFramework.v2;
-cloudinary.config({
-  cloud_name: 'mmolliss',
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
-
-const storage = cloudinaryStorage({
-  cloudinary,
-  params: {
-    folder: 'projectImage',
-    allowedFormats: ['jpg', 'png'],
-    transformation: [{ width: 500, height: 500, crop: 'limit' }],
-  },
-});
-
-const parser = multer({ storage });
+import { upload } from './cloudinary';
+import { jwtService } from './auth';
+import { isAuthenticated } from './auth';
 
 const mongoUrl =
   process.env.MONGO_URL || 'mongodb://localhost/bootcamp-projects';
@@ -50,10 +29,6 @@ const userSchema = new mongoose.Schema({
   password: {
     type: String,
     // required: true,
-  },
-  accessToken: {
-    type: String,
-    default: () => crypto.randomBytes(128).toString('hex'),
   },
 });
 
@@ -160,7 +135,7 @@ app.get('/projects', async (req, res) => {
 });
 
 //Upload
-app.post('/upload', parser.single('image'), async (req, res) => {
+app.post('/upload', isAuthenticated, upload.single('image'), async (req, res) => {
   const { url, projectName, bootcamp, description, week, stack, github } =
     req.body;
   try {
@@ -183,7 +158,7 @@ app.post('/upload', parser.single('image'), async (req, res) => {
 });
 
 //Delete
-app.delete('/delete/:id', async (req, res) => {
+app.delete('/delete/:id', isAuthenticated, async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -224,7 +199,11 @@ app.post('/signup', async (req, res) => {
     user.save();
     res
       .status(201)
-      .json({ id: user._id, accessToken: user.accessToken, email: user.email });
+      .json({ 
+        id: user._id,
+        accessToken: jwtService.createAuthToken(user._id),
+        email: user.email 
+    });
   } catch (error) {
     res.status(400).json({
       errorCode: 'uknown-error',
@@ -258,8 +237,7 @@ app.post('/login', async (req, res) => {
     res.json({
       id: user._id,
       email: user.email,
-      password: user.password,
-      accessToken: user.accessToken,
+      accessToken: jwtService.createAuthToken(user._id),
     });
   } catch (error) {
     res
