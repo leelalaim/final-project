@@ -2,11 +2,11 @@ import express from 'express';
 import cors from 'cors';
 import bcrypt from 'bcrypt-nodejs';
 import mongoose from 'mongoose';
-import { upload } from './cloudinary';
-import { jwtService } from './auth';
-import { authenticateToken } from './auth';
-import { Project, isProjectOwner } from './project';
-import { User } from './user';
+import { upload } from './src/cloudinary';
+import { jwtService } from './src/auth';
+import { authenticateToken } from './src/auth';
+import { Project, isProjectOwner } from './src/project';
+import { User } from './src/user';
 
 const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost/bootcamp-projects';
 mongoose.connect(mongoUrl, {
