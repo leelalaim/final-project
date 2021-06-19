@@ -5,7 +5,7 @@ import mongoose from 'mongoose';
 import { upload } from './cloudinary';
 import { jwtService } from './auth';
 import { authenticateToken } from './auth';
-import { Project } from './project';
+import { Project, isProjectOwner } from './project';
 import { User } from './user';
 
 const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost/bootcamp-projects';
@@ -94,7 +94,7 @@ app.post('/upload', authenticateToken, upload.single('image'), async (req, res) 
 });
 
 //Delete
-app.delete('/delete/:id', authenticateToken, async (req, res) => {
+app.delete('/delete/:id', authenticateToken, isProjectOwner, async (req, res) => {
   const { id } = req.params;
 
   try {
