@@ -72,9 +72,8 @@ const BannerButton = styled(Link)`
 export const SecondBannerLandingPage = () => {
   let content;
 
-  let emailRedux = useSelector((store) => store.user.email);
-
-  if (emailRedux === null) {
+  const emailRedux = useSelector((store) => store.users.user && store.users.user.email);
+  if (!emailRedux) {
     content = (
       <Container>
         <Banner src={SecondBanner} />

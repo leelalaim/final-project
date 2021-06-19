@@ -15,6 +15,13 @@ const ProjectCards = styled.div`
   flex-wrap: wrap;
 `;
 
+const PaginationContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 30px 0;
+`;
+
 export const Projects = () => {
   const dispatch = useDispatch();
   const projects = useSelector((store) => store.allProjects.projectList);
@@ -46,7 +53,9 @@ export const Projects = () => {
         ))}
        
       </ProjectCards>
-      <Pagination count={pageTotal} page={pageNumber} onChange={onPageChange}/>
+      <PaginationContainer>
+        <Pagination count={pageTotal} page={pageNumber} onChange={onPageChange}/>
+      </PaginationContainer>
       <ProjectsSecondBanner />
     </>
   );

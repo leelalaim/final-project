@@ -159,10 +159,9 @@ export const ProjectCard = ({ project }) => {
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
 
-  let accessToken = useSelector((store) => store.user.accessToken);
-
+  const userId = useSelector((store) => store.users.user && store.users.user.id);
   const projectDeleteSuccess = useSelector(
-    (store) => store.user.projectDeleteSuccess
+    (store) => store.users.projectDeleteSuccess
   );
 
   if (projectDeleteSuccess) {
@@ -233,7 +232,7 @@ export const ProjectCard = ({ project }) => {
             </Typography>
           </DialogContent>
           <DialogActions>
-              {accessToken ? 
+              {userId === project.ownerId ? 
                 <Button
                   variant="contained"
                   autoFocus

@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { ui } from 'reducers/ui';
+import { getAccessToken } from './users';
 
 // import { API_URL } from 'reusable/urls';
 
@@ -70,7 +71,7 @@ export const uploadProject = (formData) => {
     fetch('http://localhost:8080/upload', {
       method: 'POST',
       headers: {
-        'Authorization': `Bearer ${getState().user.accessToken}`
+        'Authorization': `Bearer ${getAccessToken(getState())}`
       },
       body: formData,
     })
@@ -98,7 +99,7 @@ export const deleteOptions = (id, accessToken) => {
 export const deleteProject = (id) => {
   return (dispatch, getState) => {
     dispatch(ui.actions.setLoading(true));
-    fetch(`http://localhost:8080/delete/${id}`, deleteOptions(id, getState().user.accessToken))
+    fetch(`http://localhost:8080/delete/${id}`, deleteOptions(id, getAccessToken(getState())))
       .then((res) => res.json())
       .then(
         (data) => {

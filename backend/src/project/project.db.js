@@ -6,18 +6,18 @@ const projectSchema = new mongoose.Schema({
     type: String,
     required: true,
   },
-  email: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    // required: true,
-    trim: true,
-    validate: {
-      validator: (value) => {
-        return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value);
-      },
-      message: 'Please, enter a valid email',
-    },
-  },
+  // email: {
+  //   type: mongoose.Schema.Types.ObjectId,
+  //   ref: 'User',
+  //   // required: true,
+  //   trim: true,
+  //   validate: {
+  //     validator: (value) => {
+  //       return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value);
+  //     },
+  //     message: 'Please, enter a valid email',
+  //   },
+  // },
   bootcamp: {
     type: String,
     // required: true,
