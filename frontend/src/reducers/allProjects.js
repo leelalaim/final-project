@@ -69,6 +69,9 @@ export const uploadProject = (formData) => {
     dispatch(ui.actions.setLoading(true));
     fetch('http://localhost:8080/upload', {
       method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${getState().user.accessToken}`
+      },
       body: formData,
     })
       .then((res) => res.json())
@@ -81,10 +84,13 @@ export const uploadProject = (formData) => {
   };
 };
 
-export const deleteOptions = (id) => {
+export const deleteOptions = (id, accessToken) => {
   return {
     method: 'DELETE',
-    headers: { 'Content-type': 'application/json' },
+    headers: {
+      'Content-type': 'application/json',
+      'Authorization': `Bearer ${accessToken}`
+    },
     body: JSON.stringify({ id: id }),
   };
 };
@@ -92,7 +98,7 @@ export const deleteOptions = (id) => {
 export const deleteProject = (id) => {
   return (dispatch, getState) => {
     dispatch(ui.actions.setLoading(true));
-    fetch(`http://localhost:8080/delete/${id}`, deleteOptions(id))
+    fetch(`http://localhost:8080/delete/${id}`, deleteOptions(id, getState().user.accessToken))
       .then((res) => res.json())
       .then(
         (data) => {

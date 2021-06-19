@@ -10,6 +10,7 @@ import { Projects } from './pages/Projects';
 import { Upload } from './pages/Upload';
 import { SignUp } from './pages/SignUp';
 import { Login } from './components/Login';
+import { About } from './pages/About';
 import { allProjects } from './reducers/allProjects';
 import { user } from 'reducers/user';
 import { ui } from 'reducers/ui';
@@ -37,6 +38,7 @@ export const App = () => {
           <Route path='/upload' component={Upload} />
           <Route path='/signup' component={SignUp} />
           <Route path='/login' component={Login} />
+          <Route path='/about' component={About} />
           {/* <Footer /> */}
         </Switch>
         <ToastContainer />

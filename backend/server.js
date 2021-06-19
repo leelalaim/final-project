@@ -1,111 +1,21 @@
 import express from 'express';
 import cors from 'cors';
-import mongoose from 'mongoose';
-import crypto from 'crypto';
 import bcrypt from 'bcrypt-nodejs';
-import dotenv from 'dotenv';
-import cloudinaryFramework from 'cloudinary';
-import multer from 'multer';
-import cloudinaryStorage from 'multer-storage-cloudinary';
+import mongoose from 'mongoose';
+import { upload } from './src/cloudinary';
+import { jwtService } from './src/auth';
+import { authenticateToken } from './src/auth';
+import { Project, isProjectOwner } from './src/project';
+import { User } from './src/user';
 
-dotenv.config();
-const cloudinary = cloudinaryFramework.v2;
-cloudinary.config({
-  cloud_name: 'mmolliss',
-  api_key: process.env.CLOUDINARY_API_KEY,
-  api_secret: process.env.CLOUDINARY_API_SECRET,
-});
-
-const storage = cloudinaryStorage({
-  cloudinary,
-  params: {
-    folder: 'projectImage',
-    allowedFormats: ['jpg', 'png'],
-    transformation: [{ width: 500, height: 500, crop: 'limit' }],
-  },
-});
-
-const parser = multer({ storage });
-
-const mongoUrl =
-  process.env.MONGO_URL || 'mongodb://localhost/bootcamp-projects';
+const mongoUrl = process.env.MONGO_URL || 'mongodb://localhost/bootcamp-projects';
 mongoose.connect(mongoUrl, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  useCreateIndex: true,
-});
-
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true,
+  }
+);
 mongoose.Promise = Promise;
-
-//Schemas
-const userSchema = new mongoose.Schema({
-  email: {
-    type: String,
-    unique: true,
-    match: [
-      /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/,
-      'Please enter a valid email address',
-    ],
-  },
-  password: {
-    type: String,
-    // required: true,
-  },
-  accessToken: {
-    type: String,
-    default: () => crypto.randomBytes(128).toString('hex'),
-  },
-});
-
-//Connect logged in user to uploaded project
-const projectSchema = new mongoose.Schema({
-  email: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: 'User',
-    // required: true,
-    trim: true,
-    validate: {
-      validator: (value) => {
-        return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value);
-      },
-      message: 'Please, enter a valid email',
-    },
-  },
-  bootcamp: {
-    type: String,
-    // required: true,
-  },
-  projectName: {
-    type: String,
-  },
-  url: {
-    type: String,
-  },
-  github: {
-    type: String,
-  },
-  stack: {
-    type: String,
-  },
-  // hearts: {
-  //   type:
-  // },
-  description: {
-    type: String,
-  },
-  week: {
-    type: String,
-  },
-  projectImage: String,
-  createdAt: {
-    type: Date,
-    default: Date.now,
-  },
-});
-
-//Models
-const Project = mongoose.model('Project', projectSchema);
-const User = mongoose.model('User', userSchema);
 
 const port = process.env.PORT || 8080;
 const app = express();
@@ -160,11 +70,12 @@ app.get('/projects', async (req, res) => {
 });
 
 //Upload
-app.post('/upload', parser.single('image'), async (req, res) => {
-  const { url, projectName, bootcamp, description, week, stack, github } =
-    req.body;
+app.post('/upload', authenticateToken, upload.single('image'), async (req, res) => {
+  const { url, projectName, bootcamp, description, week, stack, github } = req.body;
+
   try {
     const newProject = new Project({
+      ownerId: req.user.id,
       projectName: projectName,
       url: url,
       github: github,
@@ -175,7 +86,7 @@ app.post('/upload', parser.single('image'), async (req, res) => {
       projectImage: (req.file && req.file.path) || '',
       // projectImage: req.file.path,
     });
-    newProject.save();
+    await newProject.save();
     res.status(200).json(newProject);
   } catch (err) {
     res.status(400).json({ message: 'Could not save', errors: err });
@@ -183,7 +94,7 @@ app.post('/upload', parser.single('image'), async (req, res) => {
 });
 
 //Delete
-app.delete('/delete/:id', async (req, res) => {
+app.delete('/delete/:id', authenticateToken, isProjectOwner, async (req, res) => {
   const { id } = req.params;
 
   try {
@@ -191,7 +102,6 @@ app.delete('/delete/:id', async (req, res) => {
 
     if (deletedProject) {
       res.json(deletedProject);
-      res.json(Project);
     } else {
       res.status(404).json({ message: 'Not found' });
     }
@@ -224,7 +134,11 @@ app.post('/signup', async (req, res) => {
     user.save();
     res
       .status(201)
-      .json({ id: user._id, accessToken: user.accessToken, email: user.email });
+      .json({ 
+        id: user._id,
+        accessToken: jwtService.createAuthToken(user._id),
+        email: user.email 
+    });
   } catch (error) {
     res.status(400).json({
       errorCode: 'uknown-error',
@@ -258,8 +172,7 @@ app.post('/login', async (req, res) => {
     res.json({
       id: user._id,
       email: user.email,
-      password: user.password,
-      accessToken: user.accessToken,
+      accessToken: jwtService.createAuthToken(user._id),
     });
   } catch (error) {
     res
