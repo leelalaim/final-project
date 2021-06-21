@@ -14,13 +14,16 @@ const Banner = styled.img`
   object-fit: cover;
   width: 100vw;
   height: 35vh;
+ 
 `;
 
 const TextContainer = styled.div`
   position: absolute;
   top: 22%;
   right: 10%;
-  border: 1px solid black;
+  @media (min-width: 375px) {
+
+  }
 `;
 
 const Text = styled.h1`
@@ -29,13 +32,13 @@ const Text = styled.h1`
   font-size: 30px;
   font-weight: 400;
   margin: 0;
-  line-heigh: 35px;
   justify-content: flex-end;
   line-height: 35px;
-  @media (min-width: 768px) and (max-width: 1023px) {
-    font-size: 80px;
-    margin-bottom: -70px;
+  @media (min-width: 375px) {
+    line-height: 37px;
+    font-size: 33px;
   }
+  
 `;
 
 const LowerText = styled(Text)`
@@ -44,6 +47,13 @@ const LowerText = styled(Text)`
   color: #f4e03f;
   font-size: 40px;
   margin: 0 0 0 10px;
+  @media (min-width: 414px) {
+    font-size: 45px;
+  }
+  @media (min-width: 375px) {
+    font-size: 46px;
+  }
+ 
 `;
 
 const BannerButton = styled(Link)`
@@ -56,6 +66,11 @@ const BannerButton = styled(Link)`
   border-radius: 30px;
   background-color: rgba(72, 72, 72, 0.9);
   text-decoration: none;
+  font-size: 12px;
+  @media (min-width: 375px) {
+    font-size: 20px;
+  }
+ 
 `;
 
 // const SignInButton = styled(Login)`
