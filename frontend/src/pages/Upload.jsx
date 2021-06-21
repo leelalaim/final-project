@@ -13,13 +13,12 @@ import "react-toastify/dist/ReactToastify.css";
 // import devGallery from "../";
 
 const Section = styled.section`
-  height: 400px;
 `;
 
 const Form = styled.form`
   display: flex;
   flex-direction: column;
-  padding: 100px;
+  padding: 40px;
 `;
 
 const Input = styled.input`
@@ -43,7 +42,13 @@ const Button = styled.button`
   padding: 10px;
   font-weight: bold;
   cursor: pointer;
+  align-items: center;
 `;
+
+const ButtonWrapper = styled.div `
+  display: flex;
+  justify-content: center;
+`
 
 export const Upload = () => {
   const dispatch = useDispatch();
@@ -157,7 +162,8 @@ export const Upload = () => {
             cols="1"
             onChange={(e) => setDescription(e.target.value)}
           ></TextArea>
-          <Button
+          <ButtonWrapper>
+             <Button
             type="submit"
             onClick={() => {
               console.log("CLICK");
@@ -165,6 +171,8 @@ export const Upload = () => {
           >
             Upload
           </Button>
+          </ButtonWrapper>
+         
         </Form>
       </Section>
     </>

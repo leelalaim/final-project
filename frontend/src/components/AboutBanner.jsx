@@ -29,31 +29,31 @@ width: 90%;
 }
 `;
 
-const BannerParagraph = styled.p`
-font-size: 20px;
-font-weight: 300;
-margin: 0;
-position: absolute;
-left: 30px;
-top: 50%;
-line-height: 25px;
-@media (min-width: 375px) {
-  top: 50%;
-  font-size: 25px;
-  line-height: 29px;
-}
-`;
+// const BannerParagraph = styled.p`
+// font-size: 20px;
+// font-weight: 300;
+// margin: 0;
+// position: absolute;
+// left: 30px;
+// top: 50%;
+// line-height: 25px;
+// @media (min-width: 375px) {
+//   top: 50%;
+//   font-size: 25px;
+//   line-height: 29px;
+// }
+// `;
 
 //HELLO!!!
 
-export const UploadBanner = () => {
+export const AboutBanner = () => {
   return (
     <BannerContainer>
       <BannerImage src={projectsimage}></BannerImage>
-      <BannerHeader>Upload</BannerHeader>
-      <BannerParagraph>
+      <BannerHeader>About devGallery project</BannerHeader>
+      {/* <BannerParagraph>
         Share your project <br/> with the world! <br/> And some more text here
-      </BannerParagraph>
+      </BannerParagraph> */}
     </BannerContainer>
   );
 };
