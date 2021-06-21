@@ -1,7 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { batch } from 'react-redux';
-
-import { API_URL } from 'reusable/urls';
+import { getApiUrl } from 'reusable/urls';
 
 const initialState = localStorage.getItem('user')
   ? {
@@ -50,7 +49,7 @@ const options = (email, password) => {
 // Signup fetch
 export const fetchSignUp = (email, password) => {
   return (dispatch, getState) => {
-    fetch(API_URL('signup'), options(email, password))
+    fetch(getApiUrl('signup'), options(email, password))
       .then((res) => {
         if (!res.ok) {
           throw res;
@@ -83,7 +82,7 @@ export const fetchSignUp = (email, password) => {
 //Login fetch
 export const fetchLogIn = (email, password) => {
   return (dispatch, getState) => {
-    fetch(API_URL('login'), options(email, password))
+    fetch(getApiUrl('login'), options(email, password))
       .then((res) => {
         if (!res.ok) {
           throw res;

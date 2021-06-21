@@ -1,0 +1,1 @@
+export const getApiUrl = (slug) => `${process.env.REACT_APP_BASE_URL}/${slug}`;

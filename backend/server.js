@@ -23,12 +23,12 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-//Paths
+// Paths
 app.get('/', (req, res) => {
   res.send('Hello World');
 });
 
-//MVP
+// Projects
 app.get('/projects', async (req, res) => {
   const { bootcamp, stack, week, page } = req.query;
   const pageSize = 10;
@@ -66,8 +66,8 @@ app.get('/projects', async (req, res) => {
   }
 });
 
-//Upload
-app.post('/upload', authenticateToken, upload.single('image'), async (req, res) => {
+// Upload
+app.post('/projects', authenticateToken, upload.single('image'), async (req, res) => {
   const { url, projectName, bootcamp, description, week, stack, github } = req.body;
 
   try {
@@ -89,8 +89,8 @@ app.post('/upload', authenticateToken, upload.single('image'), async (req, res) 
   }
 });
 
-//Delete
-app.delete('/delete/:id', authenticateToken, isProjectOwner, async (req, res) => {
+// Delete
+app.delete('/projects/:id', authenticateToken, isProjectOwner, async (req, res) => {
   const { id } = req.params;
 
   try {
