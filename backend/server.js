@@ -52,7 +52,7 @@ app.get('/projects', async (req, res) => {
 
   try {
     const projects = await Project.find(query)
-      .populate('owner')
+      .populate('owner', '-password')
       .sort({ createdAt: -1 })
       .limit(10)
       .skip(pageResults(page));
