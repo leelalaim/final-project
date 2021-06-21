@@ -13,6 +13,10 @@ import "react-toastify/dist/ReactToastify.css";
 // import devGallery from "../";
 
 const Section = styled.section`
+  @media (min-width: 1280px) {
+    width: 50%;
+    margin: 0 auto;
+  }
 `;
 
 const Form = styled.form`
@@ -143,7 +147,7 @@ export const Upload = () => {
           <Input
             type="text"
             value={week}
-            placeholder="Week"
+            placeholder="Week (write in the following format 'Week 8')"
             onChange={(e) => setWeek(e.target.value)}
           ></Input>
           <Input

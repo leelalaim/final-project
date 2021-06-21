@@ -2,7 +2,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components/macro";
 import SecondBanner from "assets/joanna-kosinska-1_CMoFsPfso-unsplash.jpg";
-
+import { Link } from "react-router-dom";
 import { BannerButton } from './BannerButton'
 
 // import { Login } from "../components/Login";
@@ -19,6 +19,10 @@ const Banner = styled.img`
     height: 25vh;
     object-position: 50% 20%;
   }
+  @media (min-width: 1280px) {
+    height: 30vh;
+    object-position: 60% 20%;
+  }
 `;
 
 const TextContainer = styled.div`
@@ -28,6 +32,9 @@ const TextContainer = styled.div`
   @media (min-width: 768px) {
     top: 22%;
     right: 20%;
+  }
+  @media (min-width: 1280px) {
+    right: 32%;
   }
 `;
 
@@ -46,6 +53,10 @@ const Text = styled.h1`
   @media (min-width: 768px) {
     line-height: 45px;
     font-size: 45px;
+  }
+  @media (min-width: 1280px) {
+    line-height: 60px;
+    font-size: 60px;
   }
   
 `;
@@ -66,13 +77,42 @@ const LowerText = styled(Text)`
     line-height: 50px;
     font-size: 60px;
   }
+  @media (min-width: 1280px) {
+    line-height: 75px;
+    font-size: 80px;
+  }
  
 `;
 
-// const BannerButtonUpload = styled(BannerButton)`
-// bottom: 15%;
-// left: 30%;
-// `
+const BannerButtonUpload = styled(Link)` 
+position: absolute;
+  bottom: 30%;
+  left: 33%;
+  color: #ffffff;
+  border: 1px solid #ffffff;
+  padding: 5px 20px;
+  border-radius: 30px;
+  background-color: rgba(72, 72, 72, 0.9);
+  text-decoration: none;
+  font-size: 15px;
+  @media (min-width: 375px) {
+    font-size: 17px;
+    left: 35%;
+    bottom: 25%;
+  }
+  @media (min-width: 768px) {
+    font-size: 23px;
+    left: 40%;
+    bottom: 20%;
+  }
+  @media (min-width: 1280px) {
+    left: 75%;
+    bottom: 37%;
+    font-size: 35px;
+    padding: 12px 27px;
+    border-radius: 35px;
+  }
+`
 // const SignInButton = styled(Login)`
 //   position: absolute;
 //   bottom: 30%;
@@ -91,7 +131,7 @@ export const SecondBannerLandingPage = () => {
           <Text>Want to share</Text>
           <LowerText>your project?</LowerText>
         </TextContainer>
-        <BannerButton to="/signup">Sign Up</BannerButton>
+        <BannerButtonUpload to="/signup">Sign Up</BannerButtonUpload>
       </Container>
     );
   } else {
@@ -102,7 +142,7 @@ export const SecondBannerLandingPage = () => {
           <Text>Want to share</Text>
           <LowerText>your project?</LowerText>
         </TextContainer>
-        <BannerButton />
+        <BannerButtonUpload to="/upload">Upload</BannerButtonUpload>
       </Container>
     );
   }

@@ -11,11 +11,15 @@ const AboutContainer = styled.section`
   flex-direction: column;
   justify-content: center;
   margin: 0 30px;
+  @media (min-width: 1280px) {
+    width: 60vw;
+    margin: 0 auto;
+  }
 `;
 
 const Header = styled.h1`
   font-size: 19px;
-  margin: 20px 0 0;
+  margin: 30px 0 0;
   @media (min-width: 375px) {
     font-size: 25px;
   }
@@ -24,8 +28,12 @@ const Header = styled.h1`
 const Paragraph = styled.p`
   font-size: 15px;
   font-weight: 300;
-  @media (min-width: 375px) {
+  @media (min-width: 375px) and (max-width: 1279px) {
     font-size: 20px;
+    line-height: 25px;
+  }
+  @media (min-width: 1280px) {
+    font-size: 25px;
     line-height: 25px;
   }
 `;

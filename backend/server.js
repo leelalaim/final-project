@@ -31,8 +31,6 @@ app.get('/', (req, res) => {
 //MVP
 app.get('/projects', async (req, res) => {
   const { bootcamp, stack, week, page } = req.query;
-  console.log('page');
-  console.log(page);
   const pageSize = 10;
 
   const pageResults = (page) => {
@@ -53,7 +51,6 @@ app.get('/projects', async (req, res) => {
   }
 
   const countProjects = await Project.countDocuments();
-  console.log(countProjects);
 
   try {
     const projects = await Project.find(query)

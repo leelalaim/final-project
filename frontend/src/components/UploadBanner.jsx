@@ -24,24 +24,45 @@ color: #ffffff;
 background-color: rgba(0, 0, 0, 0.3);
 font-size: 33px;
 width: 90%;
-@media (min-width: 375px) {
+@media (min-width: 375px) and (max-width: 767px) {
   font-size: 43px;
+}
+@media (min-width: 768px) and (max-width: 1279px) {
+  top: 40%;
+  font-size: 50px;
+  padding: 20px;
+}
+@media (min-width: 1280px) {
+  top: 40%;
+  font-size: 70px;
+  padding: 20px;
 }
 `;
 
 const BannerParagraph = styled.p`
-font-size: 20px;
-font-weight: 300;
-margin: 0;
-position: absolute;
-left: 30px;
-top: 50%;
-line-height: 25px;
-@media (min-width: 375px) {
+  color: #4a4a4a;
+  font-size: 20px;
+  font-weight: 300;
+  margin: 0;
+  position: absolute;
+  left: 30px;
   top: 50%;
-  font-size: 25px;
-  line-height: 29px;
-}
+  line-height: 25px;
+  @media (min-width: 375px) and (max-width: 767px) {
+    top: 64%;
+    font-size: 28px;
+    line-height: 29px;
+  }
+  @media (min-width: 768px) and (max-width: 1279px) {
+    top: 64%;
+    font-size: 45px;
+    line-height: 50px;
+  }
+  @media (min-width: 1280px) {
+    top: 64%;
+    font-size: 50px;
+    line-height: 50px;
+  }
 `;
 
 //HELLO!!!
@@ -52,7 +73,7 @@ export const UploadBanner = () => {
       <BannerImage src={projectsimage}></BannerImage>
       <BannerHeader>Upload</BannerHeader>
       <BannerParagraph>
-        Share your project <br/> with the world! <br/> And some more text here
+        Share your project <br/> with the world!
       </BannerParagraph>
     </BannerContainer>
   );

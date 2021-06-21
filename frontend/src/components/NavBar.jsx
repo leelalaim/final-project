@@ -71,8 +71,8 @@ const IconButtonStyle = styled(IconButton)`
 const Logo = styled.img`
   width: 100px;
   margin-right: 20px;
-  @media (min-width: 768px) {
-    width: 200px;
+  @media (min-width: 1280px) {
+    width: 110px;
   }
 `;
 

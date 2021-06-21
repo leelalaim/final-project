@@ -84,10 +84,10 @@ const CardContainer = styled.div`
     width: 50vw;
   }
   @media (min-width: 1280px) and (max-width: 1600px) {
-    width: 25vw;
+    width: 50vw;
   }
   @media (min-width: 1601px) {
-    width: 17vw;
+    width: 30vw;
   }
 `;
 
