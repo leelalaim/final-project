@@ -29,7 +29,7 @@ const Link = styled.a`
 export const Footer = () => {
     return (
         <FooterContainer>
-            <FooterText>Created by: <Link href="https://www.linkedin.com/in/malin-vannesjö-57aa9051/">Malin</Link>, <Link href="#">Hannah</Link> & <Link href="#">Laima</Link></FooterText>
+            <FooterText>Created by: <Link href="https://www.linkedin.com/in/malin-vannesjö-57aa9051/">Malin</Link>, <Link href="https://www.linkedin.com/in/hannah-jesinkey/">Hannah</Link> & <Link href="https://www.linkedin.com/in/laimaduhovnaja/">Laima</Link></FooterText>
         </FooterContainer>
     )
 }

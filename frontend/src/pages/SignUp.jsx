@@ -51,6 +51,9 @@ const useStyles = makeStyles((theme) => ({
 
 const PageContainer = styled.section`
   height: 95vh;
+  @media (min-width: 768px) {
+    padding-top: 50px;
+  }
 `;
 
 const Avatars = styled(Avatar)`

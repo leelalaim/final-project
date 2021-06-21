@@ -72,7 +72,7 @@ const LowerText = styled(Text)`
 
 const BannerButtonUpload = styled(BannerButton)`
 bottom: 15%;
-left: 20%;
+left: 30%;
 `
 // const SignInButton = styled(Login)`
 //   position: absolute;
@@ -92,7 +92,7 @@ export const SecondBannerLandingPage = () => {
           <Text>Want to share</Text>
           <LowerText>your project?</LowerText>
         </TextContainer>
-        <BannerButtonUpload to="/signup">Sign Up</BannerButtonUpload>
+        <BannerButton to="/signup">Sign Up</BannerButton>
       </Container>
     );
   } else {

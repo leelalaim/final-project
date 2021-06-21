@@ -32,10 +32,16 @@ const BannerHeader = styled.h1`
     font-size: 50px;
     padding: 20px;
   }
+  @media (min-width: 1280px) {
+    top: 40%;
+    font-size: 70px;
+    padding: 20px;
+  }
   
 `;
 
 const BannerParagraph = styled.p`
+  color: #4a4a4a;
   font-size: 20px;
   font-weight: 300;
   margin: 0;
@@ -49,6 +55,11 @@ const BannerParagraph = styled.p`
     line-height: 29px;
   }
   @media (min-width: 768px) and (max-width: 1279px) {
+    top: 64%;
+    font-size: 45px;
+    line-height: 50px;
+  }
+  @media (min-width: 1280px) {
     top: 64%;
     font-size: 45px;
     line-height: 50px;
