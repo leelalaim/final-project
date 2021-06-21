@@ -2,7 +2,6 @@ import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components/macro";
 import SecondBanner from "assets/joanna-kosinska-1_CMoFsPfso-unsplash.jpg";
-import { Link } from "react-router-dom";
 
 import { BannerButton } from './BannerButton'
 
@@ -70,10 +69,10 @@ const LowerText = styled(Text)`
  
 `;
 
-const BannerButtonUpload = styled(BannerButton)`
-bottom: 15%;
-left: 30%;
-`
+// const BannerButtonUpload = styled(BannerButton)`
+// bottom: 15%;
+// left: 30%;
+// `
 // const SignInButton = styled(Login)`
 //   position: absolute;
 //   bottom: 30%;
