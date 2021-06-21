@@ -34,15 +34,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const SignInButton = styled(Button)`
-// background-color: #f5c81e;
-// color: white;
-// border-radius: 50px;
-// border: none;
-// width: 50%;
-// padding: 10px;
-// font-weight: bold;
-// cursor: pointer;
-// align-items: center;
   color: #494949;
   border-color: #494949;
   :hover {
@@ -74,22 +65,22 @@ const Input = styled(TextField)`
 // MY STYLING
 
 const Avatars = styled(Avatar)`
-background-color: #eeca4a;
+  background-color: #eeca4a;
 `
 
 const HeaderWrapper = styled.div`
-display: flex;
-flex-direction: column;
-justify-content: center;
-align-items: center;
-padding-top: 30px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding-top: 30px;
 `
 
 const InputWrapper = styled.div`
-display: flex;
-flex-direction: column;
-align-items: flex-start;
-width: 95%
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 95%
 `
 
 const ButtonWrapper = styled.div `
@@ -98,32 +89,32 @@ const ButtonWrapper = styled.div `
 `
 
 const NoAccountWrapper = styled.div`
-display: flex;
-margin: 10px 0 0;
+  display: flex;
+  margin: 10px 0 0;
 `
 const NoAccountParagraph = styled.p`
-margin: 0;
-font-size: 12px;
+  margin: 0;
+  font-size: 12px;
 `
 
 const SignUp = styled.a`
-margin: 0;
-font-size: 12px;
-font-weight: 600;
-margin-left: 5px;
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  margin-left: 5px;
 `
 
 const ButtonInner = styled(Button)`
-background-color: #f5c81e;
-color: white;
-border-radius: 50px;
-border: none;
-width: 50%;
-padding: 10px;
-font-weight: bold;
-cursor: pointer;
-align-items: center;
-margin-top: 30px;
+  background-color: #f5c81e;
+  color: white;
+  border-radius: 50px;
+  border: none;
+  width: 50%;
+  padding: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  align-items: center;
+  margin-top: 30px;
 `
 
 const InputField = styled(Input)`
@@ -136,7 +127,7 @@ const CancelButton = styled(Button)`
 `
 
 
-export const Login = () => {
+export const Signin = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
@@ -181,7 +172,6 @@ export const Login = () => {
         </HeaderWrapper>
         
         <DialogContent>
-          {/* <DialogContentText>Sign in!</DialogContentText> */}
           <FormContainer>
             <Form className={classes.root} onSubmit={onFormSubmit}>
               <InputWrapper>

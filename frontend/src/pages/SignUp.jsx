@@ -5,19 +5,13 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import styled from "styled-components/macro";
 
-// import { Link } from "react-router-dom";
-
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
 import CssBaseline from "@material-ui/core/CssBaseline";
-// import FormControlLabel from "@material-ui/core/FormControlLabel";
-// import Checkbox from "@material-ui/core/Checkbox";
-// import Link from "@material-ui/core/Link";
 import Grid from "@material-ui/core/Grid";
-// import Box from "@material-ui/core/Box";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
@@ -55,8 +49,12 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const PageContainer = styled.section`
+  height: 95vh;
+`;
+
 const Avatars = styled(Avatar)`
-background-color: #eeca4a;
+  background-color: #eeca4a;
 `
 
 const FormHeader = styled(Typography)`
@@ -71,19 +69,19 @@ const Form = styled.form`
 `;
 
 const InputField = styled(TextField)`
-width: 100%;
+  width: 100%;
 `
 
 const SignUpButton = styled(Button)`
-background-color: #f5c81e;
-color: white;
-border-radius: 50px;
-border: none;
-width: 50%;
-padding: 10px;
-font-weight: bold;
-cursor: pointer;
-align-items: center;
+  background-color: #f5c81e;
+  color: white;
+  border-radius: 50px;
+  border: none;
+  width: 50%;
+  padding: 10px;
+  font-weight: bold;
+  cursor: pointer;
+  align-items: center;
 `
 
 const ButtonWrapper = styled.div `
@@ -123,12 +121,11 @@ export const SignUp = () => {
   console.log(errorMessage);
 
   return (
-    <>
+    <PageContainer>
       {signUpSuccess && (
         <Redirect
           to={{
             pathname: "/projects",  
-            // state: { from: location }
           }}
         />
       )}
@@ -205,6 +202,6 @@ export const SignUp = () => {
           <p>{errorMessage && errorMessage.errorCode}</p>
         </div>
       </Container>
-    </>
+    </PageContainer>
   );
 };

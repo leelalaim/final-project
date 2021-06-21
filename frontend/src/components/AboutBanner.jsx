@@ -24,8 +24,13 @@ color: #ffffff;
 background-color: rgba(0, 0, 0, 0.3);
 font-size: 33px;
 width: 90%;
-@media (min-width: 375px) {
+@media (min-width: 375px) and (max-width: 767px) {
   font-size: 43px;
+}
+@media (min-width: 768px) and (max-width: 1279px) {
+  top: 40%;
+  font-size: 50px;
+  padding: 20px;
 }
 `;
 

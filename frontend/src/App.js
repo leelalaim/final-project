@@ -10,7 +10,7 @@ import { LandingPage } from './pages/LandingPage';
 import { Projects } from './pages/Projects';
 import { Upload } from './pages/Upload';
 import { SignUp } from './pages/SignUp';
-import { Login } from './components/Login';
+import { Signin } from './components/Signin';
 import { About } from './pages/About';
 import { allProjects } from './reducers/allProjects';
 import { Footer } from './components/Footer';
@@ -39,7 +39,7 @@ export const App = () => {
           <Route path='/projects' component={Projects} />
           <Route path='/upload' component={Upload} />
           <Route path='/signup' component={SignUp} />
-          <Route path='/login' component={Login} />
+          <Route path='/signin' component={Signin} />
           <Route path='/about' component={About} />
         </Switch>
         <Footer />

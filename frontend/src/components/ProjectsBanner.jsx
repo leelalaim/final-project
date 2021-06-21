@@ -28,24 +28,11 @@ const BannerHeader = styled.h1`
     font-size: 43px;
   }
   @media (min-width: 768px) and (max-width: 1279px) {
+    top: 40%;
     font-size: 50px;
     padding: 20px;
   }
-  // @media (min-width: 375px) and (max-width: 767px) {
-  //   top: 40%;
-  //   font-size: 40px;
-  //   padding: 10px 10px 10px 30px;
-  // }
-  // @media (min-width: 768px) and (max-width: 1279px) {
-  //   top: 40%;
-  //   font-size: 60px;
-  //   padding: 10px 10px 10px 30px;
-  // }
-  // @media (min-width: 1280px) {
-  //   top: 45%;
-  //   font-size: 60px;
-  //   padding: 10px 10px 10px 30px;
-  // }
+  
 `;
 
 const BannerParagraph = styled.p`
@@ -64,20 +51,8 @@ const BannerParagraph = styled.p`
   @media (min-width: 768px) and (max-width: 1279px) {
     top: 64%;
     font-size: 45px;
-    line-height: 45px;
+    line-height: 50px;
   }
-  // @media (min-width: 375px) and (max-width: 767px) {
-  //   font-size: 25px;
-  //   top: 70%;
-  // }
-  // @media (min-width: 768px) and (max-width: 1279px) {
-  //   font-size: 35px;
-  //   top: 65%;
-  // }
-  // @media (min-width: 1280px) {
-  //   font-size: 35px;
-  //   top: 70%;
-  // }
 `;
 
 export const ProjectsBanner = () => {

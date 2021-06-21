@@ -16,15 +16,19 @@ const Banner = styled.img`
   object-fit: cover;
   width: 100vw;
   height: 35vh;
- 
+  @media (min-width: 768px) {
+    height: 25vh;
+    object-position: 50% 20%;
+  }
 `;
 
 const TextContainer = styled.div`
   position: absolute;
   top: 22%;
   right: 10%;
-  @media (min-width: 375px) {
-
+  @media (min-width: 768px) {
+    top: 22%;
+    right: 20%;
   }
 `;
 
@@ -39,6 +43,10 @@ const Text = styled.h1`
   @media (min-width: 375px) {
     line-height: 37px;
     font-size: 33px;
+  }
+  @media (min-width: 768px) {
+    line-height: 45px;
+    font-size: 45px;
   }
   
 `;
@@ -55,18 +63,21 @@ const LowerText = styled(Text)`
   @media (min-width: 375px) {
     font-size: 46px;
   }
+  @media (min-width: 768px) {
+    line-height: 50px;
+    font-size: 60px;
+  }
  
 `;
 
+const BannerButtonUpload = styled(BannerButton)`
+bottom: 15%;
+left: 20%;
+`
 // const SignInButton = styled(Login)`
 //   position: absolute;
 //   bottom: 30%;
 //   left: 50%;
-//   // color: #ffffff;
-//   // border: 1px solid #ffffff;
-//   // padding: 10px 30px;
-//   // border-radius: 30px;
-//   // background-color: rgba(72, 72, 72, 0.9);
 // `;
 
 export const SecondBannerLandingPage = () => {
@@ -81,7 +92,7 @@ export const SecondBannerLandingPage = () => {
           <Text>Want to share</Text>
           <LowerText>your project?</LowerText>
         </TextContainer>
-        <BannerButton to="/signup">Sign Up</BannerButton>
+        <BannerButtonUpload to="/signup">Sign Up</BannerButtonUpload>
       </Container>
     );
   } else {

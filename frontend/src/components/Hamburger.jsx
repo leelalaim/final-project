@@ -4,7 +4,7 @@ import { slide as Menu } from "react-burger-menu";
 import { Link } from "react-router-dom";
 import styled from "styled-components/macro";
 import logo from "../assets/logo.png";
-import { Login } from "../components/Login";
+import { Signin } from "./Signin";
 
 import { users } from "../reducers/users";
 import "../../src/index.css";
@@ -25,7 +25,7 @@ const LogoHamburger = styled.img`
   }
 `;
 
-const HamburgerLogin = styled(Login)`
+const HamburgerLogin = styled(Signin)`
   background-color: black;
   text-decoration: none;
 `;

@@ -14,6 +14,9 @@ const Banner = styled.img`
   object-fit: cover;
   width: 100vw;
   height: 40vh;
+  @media (min-width: 768px) {
+    height: 23vh;
+  }
 `;
 
 const TextContainer = styled.div`
@@ -24,6 +27,10 @@ const TextContainer = styled.div`
   @media (min-width: 375px) {
     top: 32%;
     left: 15%;
+  }
+  @media (min-width: 768px) {
+    top: 20%;
+    left: 20%;
   }
 `;
 
@@ -49,6 +56,10 @@ const LowerText = styled(Text)`
   font-weight: 500;
   @media (min-width: 375px) {
     font-size: 45px;
+  }
+  @media (min-width: 768px) {
+    font-size: 50px;
+    line-height: 50px;
   }
 `;
 
