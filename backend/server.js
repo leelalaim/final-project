@@ -136,6 +136,7 @@ app.post('/signup', async (req, res) => {
         email: user.email 
     });
   } catch (error) {
+    console.log(error);
     res.status(400).json({
       errorCode: 'uknown-error',
       message: 'Could not create user',
@@ -171,6 +172,7 @@ app.post('/login', async (req, res) => {
       accessToken: jwtService.createAuthToken(user._id),
     });
   } catch (error) {
+    console.log(error);
     res
       .status(400)
       .json({ errorCode: 'uknown-error', message: 'Invalid request', error });
