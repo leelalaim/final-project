@@ -1,3 +1,3 @@
 const BASE_URL = 'http://localhost:8080';
 
-export const getApiUrl = (slug) => `${process.env.REACT_APP_BASE_URL}/${slug}`;
+export const getApiUrl = (slug) => `${BASE_URL}/${slug}`;

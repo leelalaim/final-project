@@ -96,7 +96,7 @@ export const deleteOptions = (id, accessToken) => {
 export const deleteProject = (id) => {
   return (dispatch, getState) => {
     dispatch(ui.actions.setLoading(true));
-    fetch(getApiUrl(`/projects/${id}`), deleteOptions(id, getAccessToken(getState())))
+    fetch(getApiUrl(`projects/${id}`), deleteOptions(id, getAccessToken(getState())))
       .then((res) => res.json())
       .then(
         (data) => {
