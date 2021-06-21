@@ -37,7 +37,6 @@ const BannerHeader = styled.h1`
     font-size: 70px;
     padding: 20px;
   }
-  
 `;
 
 const BannerParagraph = styled.p`

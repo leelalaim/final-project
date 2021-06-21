@@ -8,7 +8,6 @@ import { fetchProjects } from "../reducers/allProjects";
 import { MainBanner } from '../components/MainBanner'
 import { ProjectCard } from '../components/ProjectCard'
 import { SecondBannerLandingPage } from '../components/SecondBannerLandingPage'
-// import { Login } from '../components/Login'
 
 const ProjectCards = styled.div`
   display: flex;

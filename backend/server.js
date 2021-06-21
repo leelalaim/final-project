@@ -50,13 +50,13 @@ app.get('/projects', async (req, res) => {
     query.week = week;
   }
 
-  const countProjects = await Project.countDocuments();
-
   try {
     const projects = await Project.find(query)
       .sort({ createdAt: -1 })
       .limit(10)
       .skip(pageResults(page));
+    
+    const countProjects = await Project.countDocuments(query);
 
     res.json({ projects, pagesTotal: Math.ceil(countProjects / pageSize) });
   } catch (error) {
@@ -81,7 +81,6 @@ app.post('/upload', authenticateToken, upload.single('image'), async (req, res) 
       description: description,
       week: week,
       projectImage: (req.file && req.file.path) || '',
-      // projectImage: req.file.path,
     });
     await newProject.save();
     res.status(200).json(newProject);

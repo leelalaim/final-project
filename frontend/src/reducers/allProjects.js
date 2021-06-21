@@ -53,12 +53,11 @@ export const fetchProjects = (filters = {}, page = 1) => {
 
   return (dispatch) => {
     fetch(
-      `http://localhost:8080/projects?page=${page}` +
+      `http://localhost:8080/projects?page=${page}&` +
         new URLSearchParams(queryParams)
     )
       .then((res) => res.json())
       .then((projectList) => {
-        console.log(projectList);
         dispatch(allProjects.actions.setProjectList(projectList.projects));
         dispatch(allProjects.actions.setTotalPages(projectList.pagesTotal));
       });

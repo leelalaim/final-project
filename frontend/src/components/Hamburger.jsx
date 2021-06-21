@@ -48,7 +48,6 @@ export const Hamburger = () => {
   const logOut = () => {
     dispatch(users.actions.setLogOut());
     localStorage.clear();
-    // successToast()
   };
 
   if (!emailRedux) {

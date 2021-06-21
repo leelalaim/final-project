@@ -8,8 +8,6 @@ const FooterContainer = styled.footer`
   flex-direction: column;
   width: 100%;
   height: 50px;
-  // background-color: #D7D6D6;
-  // position: fixed;
   bottom: 0;
   background: rgba(99, 98, 98, 0.5);
   margin-top: -5px;
