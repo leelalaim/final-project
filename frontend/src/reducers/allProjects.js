@@ -53,7 +53,7 @@ export const fetchProjects = (filters = {}, page = 1) => {
 
   return (dispatch) => {
     fetch(
-      `http://localhost:8080/projects?page=${page}` +
+      `https://dev-gallery.herokuapp.com/projects?page=${page}` +
         new URLSearchParams(queryParams)
     )
       .then((res) => res.json())
@@ -68,7 +68,7 @@ export const fetchProjects = (filters = {}, page = 1) => {
 export const uploadProject = (formData) => {
   return (dispatch, getState) => {
     dispatch(ui.actions.setLoading(true));
-    fetch('http://localhost:8080/upload', {
+    fetch('https://dev-gallery.herokuapp.com/upload', {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${getAccessToken(getState())}`
@@ -99,7 +99,7 @@ export const deleteOptions = (id, accessToken) => {
 export const deleteProject = (id) => {
   return (dispatch, getState) => {
     dispatch(ui.actions.setLoading(true));
-    fetch(`http://localhost:8080/delete/${id}`, deleteOptions(id, getAccessToken(getState())))
+    fetch(`https://dev-gallery.herokuapp.com/delete/${id}`, deleteOptions(id, getAccessToken(getState())))
       .then((res) => res.json())
       .then(
         (data) => {
