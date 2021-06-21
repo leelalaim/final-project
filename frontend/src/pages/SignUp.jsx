@@ -66,8 +66,13 @@ const FormHeader = styled(Typography)`
 const Form = styled.form`
   display: flex;
   flex-direction: column;
+
   padding: 40px;
 `;
+
+const InputField = styled(TextField)`
+width: 100%;
+`
 
 const SignUpButton = styled(Button)`
 background-color: #f5c81e;
@@ -143,8 +148,8 @@ export const SignUp = () => {
             autoComplete="off"
           >
             <Grid container spacing={2}>
-              <Grid item xs={12} sm={6}>
-                <TextField
+              <Grid item xs={12} sm={12}>
+                <InputField
                   variant="outlined"
                   required
                   name="email"
@@ -156,7 +161,7 @@ export const SignUp = () => {
                 />
               </Grid>
               <Grid item xs={12} sm={6}>
-                <TextField
+                <InputField
                   variant="outlined"
                   required
                   name="password"
@@ -169,7 +174,7 @@ export const SignUp = () => {
                 />
               </Grid>
               <Grid item xs={12}>
-                <TextField
+                <InputField
                   variant="outlined"
                   required
                   name="repeat password"
