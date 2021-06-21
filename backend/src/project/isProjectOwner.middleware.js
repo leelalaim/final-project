@@ -9,7 +9,7 @@ export async function isProjectOwner (req, res, next) {
     return res.status(404).json({ message: 'Project not found' });
   }
 
-  if (project.ownerId !== userId) {
+  if (project.owner.toString() !== userId) {
     return res.status(403).json({ message: 'Only owners can perform that operation' });
   }
 

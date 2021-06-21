@@ -10,8 +10,6 @@ import { Loading } from "../components/Loading";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-// import devGallery from "../";
-
 const Section = styled.section`
   @media (min-width: 1280px) {
     width: 50%;
@@ -90,12 +88,8 @@ export const Upload = () => {
     formData.append("week", week);
     formData.append("projectImage", projectImage);
     dispatch(uploadProject(formData));
-    // redirect()
   };
 
-  // if (isLoading) {
-  //   return <Loading />;
-  // } else {
   return (
     <>
       {isLoading && <Loading />}
@@ -103,7 +97,6 @@ export const Upload = () => {
         <Redirect
           to={{
             pathname: "/projects",
-            // state: { from: location }
           }}
         />
       )}
@@ -116,14 +109,12 @@ export const Upload = () => {
             placeholder="Bootcamp"
             onChange={(e) => setBootcamp(e.target.value)}
           ></Input>
-          {/* <label>Name of project</label> */}
           <Input
             type="text"
             value={projectName}
             placeholder="Project name"
             onChange={(e) => setProjectName(e.target.value)}
           ></Input>
-          {/* <label>URL to live page</label> */}
           <Input
             type="text"
             value={url}
@@ -136,14 +127,12 @@ export const Upload = () => {
             placeholder="URL to GitHub repository"
             onChange={(e) => setGitHub(e.target.value)}
           ></Input>
-          {/* <label>Add the stacks</label> */}
           <Input
             type="text"
             value={stack}
             placeholder="Stack"
             onChange={(e) => setStack(e.target.value)}
           ></Input>
-          {/* <label>Which week of the bootcamp</label> */}
           <Input
             type="text"
             value={week}
@@ -157,7 +146,6 @@ export const Upload = () => {
             placeholder="Upload Image"
             onChange={(e) => setProjectImage(e.target.value)}
           ></Input>
-          {/* <label>Add a project description</label> */}
           <TextArea
             type="text"
             value={description}

@@ -52,6 +52,7 @@ app.get('/projects', async (req, res) => {
 
   try {
     const projects = await Project.find(query)
+      .populate('owner')
       .sort({ createdAt: -1 })
       .limit(10)
       .skip(pageResults(page));
@@ -72,7 +73,7 @@ app.post('/projects', authenticateToken, upload.single('image'), async (req, res
 
   try {
     const newProject = new Project({
-      ownerId: req.user.id,
+      owner: req.user.id,
       projectName: projectName,
       url: url,
       github: github,

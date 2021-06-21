@@ -232,7 +232,7 @@ export const ProjectCard = ({ project }) => {
             </Typography>
           </DialogContent>
           <DialogActions>
-              {userId === project.ownerId ? 
+              {userId === project.owner._id ? 
                 <Button
                   variant="contained"
                   autoFocus

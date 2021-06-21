@@ -1,23 +1,12 @@
-import mongoose from 'mongoose';
+import mongoose, { Schema } from 'mongoose';
 
 //Connect logged in user to uploaded project
 const projectSchema = new mongoose.Schema({
-  ownerId: {
-    type: String,
-    required: true,
+  owner: {
+    type: Schema.Types.ObjectId,
+    ref: 'User',
+    required: true
   },
-  // email: {
-  //   type: mongoose.Schema.Types.ObjectId,
-  //   ref: 'User',
-  //   // required: true,
-  //   trim: true,
-  //   validate: {
-  //     validator: (value) => {
-  //       return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value);
-  //     },
-  //     message: 'Please, enter a valid email',
-  //   },
-  // },
   bootcamp: {
     type: String,
     // required: true,
