@@ -16,6 +16,9 @@ const BannerImage = styled.img`
 const TextContainer = styled.div`
   position: absolute;
   top: 27%;
+  @media (min-width: 768px) {
+    left: 15%;
+  }
 `;
 
 const BannerHeader = styled.h1`
@@ -25,8 +28,9 @@ const BannerHeader = styled.h1`
   margin: 0 0 10px 35px;
   letter-spacing: 2px;
   line-height: 40px;
-  @media (min-width: 768px) and (max-width: 1023px) {
+  @media (min-width: 768px) {
     font-size: 70px;
+    line-height: 65px;
   }
 `
 
@@ -38,6 +42,7 @@ const BannerParagraph = styled.p`
   letter-spacing: 3px;
   @media (min-width: 768px) and (max-width: 1023px) {
     font-size: 40px;
+    line-height: 40px;
   }
 `
 

@@ -24,8 +24,12 @@ const BannerHeader = styled.h1`
   background-color: rgba(0, 0, 0, 0.3);
   font-size: 33px;
   width: 90%;
-  @media (min-width: 375px) {
+  @media (min-width: 375px) and (max-width: 767px) {
     font-size: 43px;
+  }
+  @media (min-width: 768px) and (max-width: 1279px) {
+    font-size: 50px;
+    padding: 20px;
   }
   // @media (min-width: 375px) and (max-width: 767px) {
   //   top: 40%;
@@ -52,10 +56,15 @@ const BannerParagraph = styled.p`
   left: 30px;
   top: 62%;
   line-height: 25px;
-  @media (min-width: 375px) {
+  @media (min-width: 375px) and (max-width: 767px) {
     top: 64%;
     font-size: 28px;
     line-height: 29px;
+  }
+  @media (min-width: 768px) and (max-width: 1279px) {
+    top: 64%;
+    font-size: 45px;
+    line-height: 45px;
   }
   // @media (min-width: 375px) and (max-width: 767px) {
   //   font-size: 25px;

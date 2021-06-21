@@ -4,6 +4,8 @@ import styled from "styled-components/macro";
 import devGallery from "assets/dev-gallery.png";
 import { Link } from "react-router-dom";
 
+import { BannerButton } from './BannerButton'
+
 const Container = styled.section`
   position: relative;
 `;
@@ -50,23 +52,6 @@ const LowerText = styled(Text)`
   }
 `;
 
-const BannerButton = styled(Link)`
-  position: absolute;
-  bottom: 20%;
-  left: 18%;
-  color: #ffffff;
-  border: 1px solid #ffffff;
-  padding: 7px 27px;
-  border-radius: 30px;
-  background-color: rgba(72, 72, 72, 0.9);
-  text-decoration: none;
-  @media (min-width: 375px) {
-    font-size: 25px;
-    left: 15%;
-    bottom: 15%;
-  }
-`;
-
 // const SignInButton = styled(Login)`
 //   position: absolute;
 //   bottom: 30%;
@@ -100,7 +85,7 @@ export const ProjectsSecondBanner = () => {
           <Text>Want to share</Text>
           <LowerText>your project?</LowerText>
         </TextContainer>
-        <BannerButton to="/upload">Upload</BannerButton>
+        <BannerButton />
       </Container>
     );
   }

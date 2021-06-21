@@ -4,6 +4,8 @@ import styled from "styled-components/macro";
 import SecondBanner from "assets/joanna-kosinska-1_CMoFsPfso-unsplash.jpg";
 import { Link } from "react-router-dom";
 
+import { BannerButton } from './BannerButton'
+
 // import { Login } from "../components/Login";
 
 const Container = styled.section`
@@ -56,23 +58,6 @@ const LowerText = styled(Text)`
  
 `;
 
-const BannerButton = styled(Link)`
-  position: absolute;
-  bottom: 15%;
-  left: 50%;
-  color: #ffffff;
-  border: 1px solid #ffffff;
-  padding: 10px 30px;
-  border-radius: 30px;
-  background-color: rgba(72, 72, 72, 0.9);
-  text-decoration: none;
-  font-size: 12px;
-  @media (min-width: 375px) {
-    font-size: 20px;
-  }
- 
-`;
-
 // const SignInButton = styled(Login)`
 //   position: absolute;
 //   bottom: 30%;
@@ -107,7 +92,7 @@ export const SecondBannerLandingPage = () => {
           <Text>Want to share</Text>
           <LowerText>your project?</LowerText>
         </TextContainer>
-        <BannerButton to="/upload">Upload</BannerButton>
+        <BannerButton />
       </Container>
     );
   }
