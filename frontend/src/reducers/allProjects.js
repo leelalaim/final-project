@@ -1,8 +1,7 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { ui } from 'reducers/ui';
 import { getAccessToken } from './users';
-
-// import { API_URL } from 'reusable/urls';
+import { getApiUrl } from 'reusable/urls';
 
 export const allProjects = createSlice({
   name: 'allProjects',
@@ -52,22 +51,21 @@ export const fetchProjects = (filters = {}, page = 1) => {
   }
 
   return (dispatch) => {
-    fetch(
-      `http://localhost:8080/projects?page=${page}&` +
+    fetch(getApiUrl(`projects?page=${page}&` +
         new URLSearchParams(queryParams)
-    )
-      .then((res) => res.json())
-      .then((projectList) => {
-        dispatch(allProjects.actions.setProjectList(projectList.projects));
-        dispatch(allProjects.actions.setTotalPages(projectList.pagesTotal));
-      });
+    ))
+    .then((res) => res.json())
+    .then((projectList) => {
+      dispatch(allProjects.actions.setProjectList(projectList.projects));
+      dispatch(allProjects.actions.setTotalPages(projectList.pagesTotal));
+    });
   };
 };
 
 export const uploadProject = (formData) => {
   return (dispatch, getState) => {
     dispatch(ui.actions.setLoading(true));
-    fetch('http://localhost:8080/upload', {
+    fetch(getApiUrl('projects'), {
       method: 'POST',
       headers: {
         'Authorization': `Bearer ${getAccessToken(getState())}`
@@ -98,7 +96,7 @@ export const deleteOptions = (id, accessToken) => {
 export const deleteProject = (id) => {
   return (dispatch, getState) => {
     dispatch(ui.actions.setLoading(true));
-    fetch(`http://localhost:8080/delete/${id}`, deleteOptions(id, getAccessToken(getState())))
+    fetch(getApiUrl(`/projects/${id}`), deleteOptions(id, getAccessToken(getState())))
       .then((res) => res.json())
       .then(
         (data) => {
