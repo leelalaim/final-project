@@ -3,6 +3,8 @@ import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
+import styled from "styled-components/macro";
+
 // import { Link } from "react-router-dom";
 
 // Material UI
@@ -35,23 +37,54 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   paper: {
-    marginTop: theme.spacing(8),
+    paddingTop: theme.spacing(15),
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
   },
   avatar: {
     margin: theme.spacing(1),
-    backgroundColor: theme.palette.secondary.main,
+    backgroundColor: theme.palette.secondary.light,
   },
   form: {
     width: "100%", // Fix IE 11 issue.
-    marginTop: theme.spacing(3),
+    marginTop: theme.spacing(5),
   },
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
 }));
+
+const Avatars = styled(Avatar)`
+background-color: #eeca4a;
+`
+
+const FormHeader = styled(Typography)`
+ font-size: 20px;
+`
+
+const Form = styled.form`
+  display: flex;
+  flex-direction: column;
+  padding: 40px;
+`;
+
+const SignUpButton = styled(Button)`
+background-color: #f5c81e;
+color: white;
+border-radius: 50px;
+border: none;
+width: 50%;
+padding: 10px;
+font-weight: bold;
+cursor: pointer;
+align-items: center;
+`
+
+const ButtonWrapper = styled.div `
+  display: flex;
+  justify-content: center;
+`
 
 export const SignUp = () => {
   const classes = useStyles();
@@ -97,13 +130,13 @@ export const SignUp = () => {
       <Container component="main" maxWidth="xs">
         <CssBaseline />
         <div className={classes.paper}>
-          <Avatar className={classes.avatar}>
+          <Avatars className={classes.avatar}>
             <LockOutlinedIcon />
-          </Avatar>
-          <Typography component="h1" variant="h5">
+          </Avatars>
+          <FormHeader component="h1" variant="h5">
             Sign up
-          </Typography>
-          <form
+          </FormHeader>
+          <Form
             onSubmit={onFormSubmit}
             className={classes.root}
             noValidate
@@ -149,7 +182,8 @@ export const SignUp = () => {
                 />
               </Grid>
             </Grid>
-            <Button
+            <ButtonWrapper>
+               <SignUpButton
               type="submit"
               fullWidth
               variant="contained"
@@ -157,10 +191,12 @@ export const SignUp = () => {
               className={classes.submit}
             >
               Sign Up!
-            </Button>
+            </SignUpButton>
+            </ButtonWrapper>
+           
             <p>Disclaimer for storing e-mails</p>
             <Grid container justify="flex-end"></Grid>
-          </form>
+          </Form>
           <p>{errorMessage && errorMessage.errorCode}</p>
         </div>
       </Container>

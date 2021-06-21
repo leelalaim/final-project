@@ -4,6 +4,10 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components/macro";
 
+
+import Avatar from "@material-ui/core/Avatar";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
+
 //Inner Dependencies
 import { fetchLogIn } from "../reducers/users";
 
@@ -49,16 +53,30 @@ const FormContainer = styled.div`
 `;
 
 const Form = styled.form`
-  padding: 50px;
-  @media (min-width: 780px) {
-    padding: 100px;
-  }
+border: 1px solid black;
+padding: 0;
 `;
 
 const Input = styled(TextField)`
   // padding: 10px;
   // width: 100%;
 `;
+
+
+// MY STYLING
+
+const Avatars = styled(Avatar)`
+background-color: #eeca4a;
+`
+
+const HeaderWrapper = styled.div`
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+padding-top: 30px;
+`
+
 
 export const Login = () => {
   const classes = useStyles();
@@ -97,7 +115,13 @@ export const Login = () => {
         onClose={handleClose}
         aria-labelledby="form-dialog-title"
       >
+        <HeaderWrapper>
+          <Avatars className={classes.avatar}>
+            <LockOutlinedIcon />
+          </Avatars>
         <DialogTitle id="form-dialog-title">Sign in!</DialogTitle>
+        </HeaderWrapper>
+        
         <DialogContent>
           {/* <DialogContentText>Sign in!</DialogContentText> */}
           <FormContainer>
