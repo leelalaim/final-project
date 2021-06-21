@@ -11,7 +11,7 @@ const BannerContainer = styled.div`
 
 const BannerImage = styled.img`
   object-fit: cover;
-  height: 65vh;
+  height: 60vh;
 `;
 
 const BannerHeader = styled.h1`
@@ -19,56 +19,65 @@ const BannerHeader = styled.h1`
   padding: 10px 0px 10px 30px;
   position: absolute;
   font-weight: 400;
-  top: 35%;
+  top: 30%;
   color: #ffffff;
   background-color: rgba(0, 0, 0, 0.3);
-  font-size: 25px;
-  @media (min-width: 375px) and (max-width: 767px) {
-    top: 40%;
-    font-size: 40px;
-    padding: 10px 10px 10px 30px;
+  font-size: 33px;
+  width: 90%;
+  @media (min-width: 375px) {
+    font-size: 43px;
   }
-  @media (min-width: 768px) and (max-width: 1279px) {
-    top: 40%;
-    font-size: 60px;
-    padding: 10px 10px 10px 30px;
-  }
-  @media (min-width: 1280px) {
-    top: 45%;
-    font-size: 60px;
-    padding: 10px 10px 10px 30px;
-  }
+  // @media (min-width: 375px) and (max-width: 767px) {
+  //   top: 40%;
+  //   font-size: 40px;
+  //   padding: 10px 10px 10px 30px;
+  // }
+  // @media (min-width: 768px) and (max-width: 1279px) {
+  //   top: 40%;
+  //   font-size: 60px;
+  //   padding: 10px 10px 10px 30px;
+  // }
+  // @media (min-width: 1280px) {
+  //   top: 45%;
+  //   font-size: 60px;
+  //   padding: 10px 10px 10px 30px;
+  // }
 `;
 
 const BannerParagraph = styled.p`
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 300;
   margin: 0;
   position: absolute;
   left: 30px;
-  top: 70%;
-  line-height: 35px;
-  @media (min-width: 375px) and (max-width: 767px) {
-    font-size: 25px;
-    top: 70%;
+  top: 62%;
+  line-height: 25px;
+  @media (min-width: 375px) {
+    top: 64%;
+    font-size: 28px;
+    line-height: 29px;
   }
-  @media (min-width: 768px) and (max-width: 1279px) {
-    font-size: 35px;
-    top: 65%;
-  }
-  @media (min-width: 1280px) {
-    font-size: 35px;
-    top: 70%;
-  }
+  // @media (min-width: 375px) and (max-width: 767px) {
+  //   font-size: 25px;
+  //   top: 70%;
+  // }
+  // @media (min-width: 768px) and (max-width: 1279px) {
+  //   font-size: 35px;
+  //   top: 65%;
+  // }
+  // @media (min-width: 1280px) {
+  //   font-size: 35px;
+  //   top: 70%;
+  // }
 `;
 
 export const ProjectsBanner = () => {
   return (
     <BannerContainer>
       <BannerImage src={projectsimage}></BannerImage>
-      <BannerHeader>Creativity <br />starts here...</BannerHeader>
+      <BannerHeader>Creativity starts here...</BannerHeader>
       <BannerParagraph>
-        Bootcamp projects worth seeing.
+        Bootcamp projects <br /> that are worth seeing.
       </BannerParagraph>
     </BannerContainer>
   );
