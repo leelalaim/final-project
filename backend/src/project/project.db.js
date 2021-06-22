@@ -1,7 +1,8 @@
 import mongoose, { Schema } from 'mongoose';
 
-//Connect logged in user to uploaded project
+// Projectschema
 const projectSchema = new mongoose.Schema({
+  //Connect logged in user to uploaded project
   owner: {
     type: Schema.Types.ObjectId,
     ref: 'User',
@@ -9,7 +10,6 @@ const projectSchema = new mongoose.Schema({
   },
   bootcamp: {
     type: String,
-    // required: true,
   },
   projectName: {
     type: String,

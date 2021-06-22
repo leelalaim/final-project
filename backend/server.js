@@ -31,7 +31,7 @@ app.get('/', (req, res) => {
 // Projects
 app.get('/projects', async (req, res) => {
   const { bootcamp, stack, week, page } = req.query;
-  const pageSize = 10;
+  const pageSize = 9;
 
   const pageResults = (page) => {
     return (page - 1) * pageSize;
@@ -54,7 +54,7 @@ app.get('/projects', async (req, res) => {
     const projects = await Project.find(query)
       .populate('owner', '-password')
       .sort({ createdAt: -1 })
-      .limit(10)
+      .limit(9)
       .skip(pageResults(page));
     
     const countProjects = await Project.countDocuments(query);
@@ -139,7 +139,6 @@ app.post('/signup', async (req, res) => {
         email: user.email 
     });
   } catch (error) {
-    console.log(error);
     res.status(400).json({
       errorCode: 'uknown-error',
       message: 'Could not create user',
@@ -175,17 +174,10 @@ app.post('/login', async (req, res) => {
       accessToken: jwtService.createAuthToken(user._id),
     });
   } catch (error) {
-    console.log(error);
     res
       .status(400)
       .json({ errorCode: 'uknown-error', message: 'Invalid request', error });
   }
-});
-
-//Just for development
-app.get('/users', async (req, res) => {
-  const users = await User.find();
-  res.json(users);
 });
 
 // Start the server

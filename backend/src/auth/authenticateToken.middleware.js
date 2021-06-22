@@ -20,7 +20,6 @@ export function authenticateToken (req, res, next) {
     req.user = jwtService.getAuthTokenData(token);
     next();
   } catch(e) {
-    console.log(e);
     res.sendStatus(403);
   }
 };
