@@ -152,7 +152,7 @@ app.post('/signup', async (req, res) => {
 app.post('/login', async (req, res) => {
   const { email, password } = req.body;
   try {
-    const user = await User.findOne({ email: email });
+    const user = await User.findOne({ email });
     if (!user) {
       res.status(401).json({
         errorCode: 'E-mail not registered',

@@ -213,7 +213,7 @@ export const SignUp = () => {
             </SignUpButton>
             </ButtonWrapper>
            
-            <p>Disclaimer for storing e-mails</p>
+            <p>Please note that we store your email in our database for the purpose of signing up and in</p>
             <Grid container justify="flex-end"></Grid>
           </Form>
           <p>{errorMessage && errorMessage.errorCode}</p>

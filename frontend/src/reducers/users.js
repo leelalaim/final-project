@@ -38,22 +38,18 @@ export const users = createSlice({
   },
 });
 
-const options = (username, email, password) => {
-  return {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ 
-      username, 
-      email, 
-      password 
-    }),
-  };
-};
-
 // Signup fetch
 export const fetchSignUp = (username, email, password) => {
   return (dispatch, getState) => {
-    fetch(getApiUrl('signup'), options(username, email, password))
+    fetch(getApiUrl('signup'), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        username, 
+        email, 
+        password 
+      }),
+    })
       .then((res) => {
         if (!res.ok) {
           throw res;
@@ -67,13 +63,7 @@ export const fetchSignUp = (username, email, password) => {
           // dispatch(users.actions.setSignUpSuccess(false));
         });
 
-        localStorage.setItem(
-          'user',
-          JSON.stringify({
-            email: data.email,
-            accessToken: data.accessToken,
-          })
-        );
+        localStorage.setItem('user', JSON.stringify(data));
       })
       .catch((error) => {
         error.json().then((errorData) => {
@@ -86,7 +76,14 @@ export const fetchSignUp = (username, email, password) => {
 //Login fetch
 export const fetchLogIn = (email, password) => {
   return (dispatch, getState) => {
-    fetch(getApiUrl('login'), options(email, password))
+    fetch(getApiUrl('login'), {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        email, 
+        password 
+      }),
+    })
       .then((res) => {
         if (!res.ok) {
           throw res;
