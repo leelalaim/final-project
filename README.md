@@ -1,5 +1,8 @@
 # Project Auth
 
+[![Netlify Status](https://api.netlify.com/api/v1/badges/08f479bf-ac87-43ca-aa68-ce75a25b8e44/deploy-status)](https://app.netlify.com/sites/dev-gallery/deploys)
+
+
 Replace this readme with your own information about your project.
 
 Start by briefly describing the assignment in a sentence or two. Keep it short and to the point.
