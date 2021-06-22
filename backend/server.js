@@ -30,7 +30,8 @@ app.get('/', (req, res) => {
 
 // Projects
 app.get('/projects', async (req, res) => {
-  const { bootcamp, stack, week, page } = req.query;
+  const { bootcamp, stack, week, page } = req.query; 
+  //Page size 9 to match the frontend styling
   const pageSize = 9;
 
   const pageResults = (page) => {
@@ -73,6 +74,7 @@ app.post('/projects', authenticateToken, upload.single('image'), async (req, res
 
   try {
     const newProject = new Project({
+      //attaching the owner of the project to the project so only they can delete
       owner: req.user.id,
       projectName: projectName,
       url: url,
