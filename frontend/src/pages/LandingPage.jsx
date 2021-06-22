@@ -37,7 +37,7 @@ export const LandingPage = () => {
       <MainBanner />
       <ProjectCards>
         {projects.slice(0, 6).map((project) => ( 
-        <ProjectCard project={project}/>
+        <ProjectCard key={project.id} project={project}/>
         ))}
       </ProjectCards>
       <SeeMoreContainer>

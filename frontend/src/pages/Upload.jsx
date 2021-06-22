@@ -11,6 +11,10 @@ import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const Section = styled.section`
+  @media (min-width: 767px) {
+    width: 65%;
+    margin: 0 auto;
+  }
   @media (min-width: 1280px) {
     width: 50%;
     margin: 0 auto;
@@ -45,6 +49,11 @@ const Button = styled.button`
   font-weight: bold;
   cursor: pointer;
   align-items: center;
+  @media (min-width: 768px) {
+    width: 25%;
+    padding: 15px;
+    font-size: 17px;
+  }
 `;
 
 const ButtonWrapper = styled.div `

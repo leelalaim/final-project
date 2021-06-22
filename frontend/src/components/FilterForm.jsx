@@ -38,6 +38,10 @@ const Button = styled.button`
   width: 50%;
   padding: 10px;
   font-weight: bold;
+  @media (min-width: 768px) {
+    width: 25%;
+    padding: 15px;
+  }
 `;
 
 const bootcamps = ["", "Technigo", "LeWagon", "Salt", "Academy", "Other"];

@@ -44,6 +44,10 @@ const Text = styled.h1`
     font-size: 27px;
     line-height: 30px;
   }
+  @media (min-width: 768px) {
+    font-size: 30px;
+    line-height: 33px;
+  }
 `;
 
 const LowerText = styled(Text)`
@@ -56,8 +60,8 @@ const LowerText = styled(Text)`
     font-size: 35px;
   }
   @media (min-width: 768px) {
-    font-size: 50px;
-    line-height: 53px;
+    font-size: 55px;
+    line-height: 57px;
   }
 `;
 
@@ -74,13 +78,15 @@ const BannerButton = styled(Link)`
   font-size: 15px;
   @media (min-width: 375px) {
     font-size: 17px;
-    left: 35%;
-    bottom: 25%;
+    left: 30%;
+    bottom: 20%;
+    padding: 10px 30px;
+    font-weight: 600;
   }
   @media (min-width: 768px) {
     font-size: 23px;
     left: 40%;
-    bottom: 20%;
+    bottom: 15%;
   }
 `;
 

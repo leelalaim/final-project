@@ -50,9 +50,9 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const PageContainer = styled.section`
-  height: 95vh;
   @media (min-width: 768px) {
     padding-top: 50px;
+    height: 98vh;
   }
 `;
 
@@ -122,8 +122,6 @@ export const SignUp = () => {
       dispatch(fetchSignUp(username, email, password));
     }
   };
-  console.log(errorMessage);
-  console.log('patata');
 
   return (
     <PageContainer>
@@ -174,7 +172,7 @@ export const SignUp = () => {
                   onChange={(e) => setEmail(e.target.value)}
                 />
               </Grid>
-              <Grid item xs={12} sm={6}>
+              <Grid item xs={12} sm={12}>
                 <InputField
                   variant="outlined"
                   required

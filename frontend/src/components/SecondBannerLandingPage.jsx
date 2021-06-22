@@ -82,9 +82,9 @@ const LowerText = styled(Text)`
 `;
 
 const BannerButtonUpload = styled(Link)` 
-position: absolute;
-  bottom: 30%;
-  left: 33%;
+  position: absolute;
+  bottom: 20%;
+  left: 35%;
   color: #ffffff;
   border: 1px solid #ffffff;
   padding: 5px 20px;
@@ -94,13 +94,15 @@ position: absolute;
   font-size: 15px;
   @media (min-width: 375px) {
     font-size: 17px;
-    left: 35%;
-    bottom: 25%;
+    left: 40%;
+    bottom: 20%;
+    padding: 10px 30px;
+    font-weight: 500;
   }
   @media (min-width: 768px) {
     font-size: 23px;
-    left: 40%;
-    bottom: 20%;
+    left: 50%;
+    bottom: 15%;
   }
   @media (min-width: 1280px) {
     left: 75%;

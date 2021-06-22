@@ -3,14 +3,16 @@ import styled from "styled-components/macro";
 import { AboutBanner } from "../components/AboutBanner";
 
 const Container = styled.section`
-  height: 95vh;
+  @media (min-width: 767px) {
+    height: 100vh;
+  } 
 `;
 
 const AboutContainer = styled.section`
   display: flex;
   flex-direction: column;
   justify-content: center;
-  margin: 0 30px;
+  margin: 0 30px 30px;
   @media (min-width: 1280px) {
     width: 60vw;
     margin: 0 auto;
