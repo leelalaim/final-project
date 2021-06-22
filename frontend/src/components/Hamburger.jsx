@@ -19,9 +19,12 @@ const LogoHamburger = styled.img`
   margin-right: 20px;
   @media (min-width: 415px) and (max-width: 768px) {
     width: 130px;
+    top: 2.7%;
+    left: 7%;
   }
   @media (min-width: 781px) {
     display: none;
+    
   }
 `;
 

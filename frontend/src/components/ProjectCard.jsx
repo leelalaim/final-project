@@ -80,11 +80,11 @@ const CardContainer = styled.div`
   display: flex;
   justify-content: center;
   width: 100vw;
-  @media (min-width: 768px) and (max-width: 1279px) {
+  @media (min-width: 768px) and (max-width: 1000px) {
     width: 50vw;
   }
-  @media (min-width: 1280px) and (max-width: 1600px) {
-    width: 50vw;
+  @media (min-width: 1001px) and (max-width: 1600px) {
+    width: 30vw;
   }
   @media (min-width: 1601px) {
     width: 30vw;
