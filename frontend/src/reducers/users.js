@@ -38,18 +38,22 @@ export const users = createSlice({
   },
 });
 
-const options = (email, password) => {
+const options = (username, email, password) => {
   return {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({ email: email, password: password }),
+    body: JSON.stringify({ 
+      username, 
+      email, 
+      password 
+    }),
   };
 };
 
 // Signup fetch
-export const fetchSignUp = (email, password) => {
+export const fetchSignUp = (username, email, password) => {
   return (dispatch, getState) => {
-    fetch(getApiUrl('signup'), options(email, password))
+    fetch(getApiUrl('signup'), options(username, email, password))
       .then((res) => {
         if (!res.ok) {
           throw res;

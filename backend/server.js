@@ -110,7 +110,7 @@ app.delete('/projects/:id', authenticateToken, isProjectOwner, async (req, res) 
 //Sign Up
 app.post('/signup', async (req, res) => {
   const salt = bcrypt.genSaltSync();
-  const { email, password } = req.body;
+  const { email, password, username } = req.body;
 
   try {
     let user = await User.findOne({
@@ -127,12 +127,14 @@ app.post('/signup', async (req, res) => {
     user = new User({
       email,
       password: bcrypt.hashSync(password, salt),
+      username
     });
     user.save();
     res
       .status(201)
       .json({ 
         id: user._id,
+        username: user.username,
         accessToken: jwtService.createAuthToken(user._id),
         email: user.email 
     });

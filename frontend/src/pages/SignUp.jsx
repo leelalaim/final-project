@@ -95,6 +95,7 @@ const ButtonWrapper = styled.div `
 export const SignUp = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
+  const [username, setUserName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [repeatPassword, setRepeatPassword] = useState("");
@@ -118,10 +119,11 @@ export const SignUp = () => {
         })
       );
     } else {
-      dispatch(fetchSignUp(email, password));
+      dispatch(fetchSignUp(username, email, password));
     }
   };
   console.log(errorMessage);
+  console.log('patata');
 
   return (
     <PageContainer>
@@ -148,6 +150,18 @@ export const SignUp = () => {
             autoComplete="off"
           >
             <Grid container spacing={2}>
+              <Grid item xs={12} sm={12}>
+                <InputField
+                  variant="outlined"
+                  required
+                  name="username"
+                  id="standard-basic"
+                  label="Username"
+                  value={username}
+                  autoComplete="username"
+                  onChange={(e) => setUserName(e.target.value)}
+                />
+              </Grid>
               <Grid item xs={12} sm={12}>
                 <InputField
                   variant="outlined"

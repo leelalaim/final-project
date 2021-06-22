@@ -4,7 +4,6 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components/macro";
 
-
 import Avatar from "@material-ui/core/Avatar";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 
@@ -53,7 +52,7 @@ const FormContainer = styled.div`
 `;
 
 const Form = styled.form`
-padding: 0;
+  padding: 0;
 `;
 
 const Input = styled(TextField)`
@@ -61,12 +60,11 @@ const Input = styled(TextField)`
   // width: 100%;
 `;
 
-
 // MY STYLING
 
 const Avatars = styled(Avatar)`
   background-color: #eeca4a;
-`
+`;
 
 const HeaderWrapper = styled.div`
   display: flex;
@@ -74,35 +72,35 @@ const HeaderWrapper = styled.div`
   justify-content: center;
   align-items: center;
   padding-top: 30px;
-`
+`;
 
 const InputWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  width: 95%
-`
+  width: 95%;
+`;
 
-const ButtonWrapper = styled.div `
+const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
-`
+`;
 
 const NoAccountWrapper = styled.div`
   display: flex;
   margin: 10px 0 0;
-`
+`;
 const NoAccountParagraph = styled.p`
   margin: 0;
   font-size: 12px;
-`
+`;
 
 const SignUp = styled.a`
   margin: 0;
   font-size: 12px;
   font-weight: 600;
   margin-left: 5px;
-`
+`;
 
 const ButtonInner = styled(Button)`
   background-color: #f5c81e;
@@ -115,17 +113,14 @@ const ButtonInner = styled(Button)`
   cursor: pointer;
   align-items: center;
   margin-top: 30px;
-`
+`;
 
 const InputField = styled(Input)`
   padding: 0 0px 10px;
   width: 100%;
-`
+`;
 
-const CancelButton = styled(Button)`
-
-`
-
+const CancelButton = styled(Button)``;
 
 export const Signin = () => {
   const classes = useStyles();
@@ -135,7 +130,7 @@ export const Signin = () => {
   const [open, setOpen] = React.useState(false);
 
   const errorMessage = useSelector((store) => store.users.errors);
-  const successToast = () => toast.success("You have successfully signed in!");
+  const user = useSelector((store) => store.users.user);
 
   const onFormSubmit = (e) => {
     e.preventDefault();
@@ -149,6 +144,13 @@ export const Signin = () => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  // if (user) {
+  //   console.log('here');
+  //   toast.success("You have successfully signed in!");
+  //   handleClose();
+  //   return;
+  // }
 
   return (
     <div>
@@ -168,9 +170,9 @@ export const Signin = () => {
           <Avatars className={classes.avatar}>
             <LockOutlinedIcon />
           </Avatars>
-        <DialogTitle id="form-dialog-title">Sign in!</DialogTitle>
+          <DialogTitle id="form-dialog-title">Sign in!</DialogTitle>
         </HeaderWrapper>
-        
+
         <DialogContent>
           <FormContainer>
             <Form className={classes.root} onSubmit={onFormSubmit}>
@@ -191,24 +193,21 @@ export const Signin = () => {
                   label="Password"
                 />
                 <NoAccountWrapper>
-                <NoAccountParagraph>Don't have an account? </NoAccountParagraph>
-                <SignUp href="/signup"> Sign up</SignUp>
+                  <NoAccountParagraph>
+                    Don't have an account?{" "}
+                  </NoAccountParagraph>
+                  <SignUp href="/signup"> Sign up</SignUp>
                 </NoAccountWrapper>
-                </InputWrapper>
+              </InputWrapper>
               <ButtonWrapper>
-                  <ButtonInner
-                type="submit"
-                // href="/projects"
-                onClick={() => {
-                  handleClose();
-                  successToast();
-                }}
-                color="primary"
-              >
-                Sign in
-              </ButtonInner>
+                <ButtonInner
+                  type="submit"
+                  color="primary"
+                >
+                  Sign in
+                </ButtonInner>
               </ButtonWrapper>
-            
+
               <ToastContainer />
             </Form>
             <p>{errorMessage && errorMessage.errorCode}</p>

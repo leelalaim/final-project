@@ -214,6 +214,9 @@ export const ProjectCard = ({ project }) => {
               </DescriptionSpan>
             </Typography>
             <Typography gutterBottom>
+              <Span>User:</Span> {project.owner.username}
+            </Typography>
+            <Typography gutterBottom>
               <Span>Bootcamp:</Span> {project.bootcamp}
             </Typography>
             <Typography gutterBottom>
