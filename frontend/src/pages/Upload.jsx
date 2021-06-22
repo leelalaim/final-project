@@ -1,9 +1,10 @@
+//Outer Dependencies
 import React, { useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import styled from "styled-components/macro";
 
-// Inner dependancies
+// Inner Dependancies
 import { uploadProject } from "../reducers/allProjects";
 import { UploadBanner } from "../components/UploadBanner";
 import { Loading } from "../components/Loading";
@@ -12,6 +13,7 @@ import { Loading } from "../components/Loading";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+//Styled Components
 const Section = styled.section`
   @media (min-width: 767px) {
     width: 65%;
@@ -58,11 +60,12 @@ const Button = styled.button`
   }
 `;
 
-const ButtonWrapper = styled.div `
+const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
-`
+`;
 
+//Page
 export const Upload = () => {
   const dispatch = useDispatch();
   const [bootcamp, setBootcamp] = useState("");
@@ -111,75 +114,68 @@ export const Upload = () => {
           }}
         />
       )}
-      {!isLoading &&
-      <>
-        <UploadBanner />
-        <Section>
-          <Form onSubmit={onFormSubmit}>
-            <Input
-              type="text"
-              value={bootcamp}
-              placeholder="Bootcamp"
-              onChange={(e) => setBootcamp(e.target.value)}
-            ></Input>
-            <Input
-              type="text"
-              value={projectName}
-              placeholder="Project name"
-              onChange={(e) => setProjectName(e.target.value)}
-            ></Input>
-            <Input
-              type="text"
-              value={url}
-              placeholder="URL to live page"
-              onChange={(e) => setUrl(e.target.value)}
-            ></Input>
-            <Input
-              type="text"
-              value={github}
-              placeholder="URL to GitHub repository"
-              onChange={(e) => setGitHub(e.target.value)}
-            ></Input>
-            <Input
-              type="text"
-              value={stack}
-              placeholder="Stack"
-              onChange={(e) => setStack(e.target.value)}
-            ></Input>
-            <Input
-              type="text"
-              value={week}
-              placeholder="Week (write in the following format 'Week 8')"
-              onChange={(e) => setWeek(e.target.value)}
-            ></Input>
-            <Input
-              type="file"
-              ref={fileInput}
-              placeholder="Upload Image"
-              onChange={(e) => setProjectImage(e.target.value)}
-            ></Input>
-            <TextArea
-              type="text"
-              value={description}
-              placeholder="Decription"
-              rows="4"
-              cols="1"
-              onChange={(e) => setDescription(e.target.value)}
-            ></TextArea>
-            <ButtonWrapper>
-              <Button
-              type="submit"
-              onClick={() => {
-                console.log("CLICK");
-              }}
-            >
-              Upload
-            </Button>
-            </ButtonWrapper>
-          </Form>
-        </Section>
-      </>
-      }
+      {!isLoading && (
+        <>
+          <UploadBanner />
+          <Section>
+            <Form onSubmit={onFormSubmit}>
+              <Input
+                type="text"
+                value={bootcamp}
+                placeholder="Bootcamp"
+                onChange={(e) => setBootcamp(e.target.value)}
+              ></Input>
+              <Input
+                type="text"
+                value={projectName}
+                placeholder="Project name"
+                onChange={(e) => setProjectName(e.target.value)}
+              ></Input>
+              <Input
+                type="text"
+                value={url}
+                placeholder="URL to live page"
+                onChange={(e) => setUrl(e.target.value)}
+              ></Input>
+              <Input
+                type="text"
+                value={github}
+                placeholder="URL to GitHub repository"
+                onChange={(e) => setGitHub(e.target.value)}
+              ></Input>
+              <Input
+                type="text"
+                value={stack}
+                placeholder="Stack"
+                onChange={(e) => setStack(e.target.value)}
+              ></Input>
+              <Input
+                type="text"
+                value={week}
+                placeholder="Week (write in the following format 'Week 8')"
+                onChange={(e) => setWeek(e.target.value)}
+              ></Input>
+              <Input
+                type="file"
+                ref={fileInput}
+                placeholder="Upload Image"
+                onChange={(e) => setProjectImage(e.target.value)}
+              ></Input>
+              <TextArea
+                type="text"
+                value={description}
+                placeholder="Decription"
+                rows="4"
+                cols="1"
+                onChange={(e) => setDescription(e.target.value)}
+              ></TextArea>
+              <ButtonWrapper>
+                <Button type="submit">Upload</Button>
+              </ButtonWrapper>
+            </Form>
+          </Section>
+        </>
+      )}
     </>
   );
 };

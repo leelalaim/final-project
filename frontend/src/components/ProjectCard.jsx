@@ -1,7 +1,18 @@
+//Outer Dependencies
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components/macro";
 import { deleteProject } from "reducers/allProjects";
+
+// Font Awesome
+import { FaTrashAlt } from "react-icons/fa";
+
+// React Toastify
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+//Inner Dependencies
+import "../../src/index.css";
 
 // Material UI
 import { withStyles } from "@material-ui/core/styles";
@@ -13,15 +24,6 @@ import MuiDialogActions from "@material-ui/core/DialogActions";
 import IconButton from "@material-ui/core/IconButton";
 import CloseIcon from "@material-ui/icons/Close";
 import Typography from "@material-ui/core/Typography";
-
-// Font Awesome
-import { FaTrashAlt } from "react-icons/fa";
-
-// React Toastify
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
-import "../../src/index.css";
 
 const styles = (theme) => ({
   root: {
@@ -67,6 +69,7 @@ const DialogActions = withStyles((theme) => ({
   },
 }))(MuiDialogActions);
 
+//Styled Components
 const FlexContainer = styled.section`
   @media (min-width: 768px) {
     display: flex;
@@ -158,11 +161,14 @@ const DescriptionSpan = styled.span`
   font-style: italic;
 `;
 
+//Component
 export const ProjectCard = ({ project }) => {
   const dispatch = useDispatch();
   const [open, setOpen] = React.useState(false);
 
-  const userId = useSelector((store) => store.users.user && store.users.user.id);
+  const userId = useSelector(
+    (store) => store.users.user && store.users.user.id
+  );
   const projectDeleteSuccess = useSelector(
     (store) => store.users.projectDeleteSuccess
   );
@@ -238,17 +244,20 @@ export const ProjectCard = ({ project }) => {
             </Typography>
           </DialogContent>
           <DialogActions>
-              {userId === project.owner._id ? 
-                <Button
-                  variant="contained"
-                  autoFocus
-                  onClick={(e) => {
-                    handleDelete(e, project._id);
-                  }}
-                  color="primary"
-                >
-                  <FaTrashAlt />
-                </Button> : ''}
+            {userId === project.owner._id ? (
+              <Button
+                variant="contained"
+                autoFocus
+                onClick={(e) => {
+                  handleDelete(e, project._id);
+                }}
+                color="primary"
+              >
+                <FaTrashAlt />
+              </Button>
+            ) : (
+              ""
+            )}
           </DialogActions>
         </DialogContainer>
       </CardContainer>

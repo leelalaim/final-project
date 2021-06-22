@@ -1,9 +1,13 @@
+//Outer Dependencies
 import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components/macro";
-import devGallery from "assets/dev-gallery (1).png";
 import { Link } from "react-router-dom";
 
+//Inner Dependencies
+import devGallery from "assets/dev-gallery (1).png";
+
+//Styled Components
 const Container = styled.section`
   position: relative;
 `;
@@ -12,8 +16,9 @@ const Banner = styled.img`
   object-fit: cover;
   width: 100vw;
   height: 40vh;
+  margin-top: 25px;
   @media (min-width: 768px) {
-    height: 45vh;
+    height: 30vh;
   }
   @media (min-width: 1440px) {
     height: 50vh;
@@ -26,6 +31,7 @@ const Banner = styled.img`
 const TextContainer = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: flex-end;
   position: absolute;
   top: 29%;
   left: 10%;
@@ -45,7 +51,6 @@ const TextContainer = styled.div`
 
 const Text = styled.h1`
   margin-bottom: 30px;
-  display: flex;
   color: white;
   font-size: 20px;
   font-weight: 400;
@@ -68,8 +73,6 @@ const Text = styled.h1`
 
 const LowerText = styled(Text)`
   margin-bottom: 20px;
-  display: flex;
-  justify-content: flex-end;
   color: #f4e03f;
   font-size: 30px;
   font-weight: 500;
@@ -87,7 +90,6 @@ const LowerText = styled(Text)`
 `;
 
 const BannerButton = styled(Link)`
-  // position: absolute;
   bottom: 30%;
   left: 33%;
   color: #ffffff;
@@ -97,6 +99,7 @@ const BannerButton = styled(Link)`
   background-color: rgba(72, 72, 72, 0.9);
   text-decoration: none;
   font-size: 15px;
+  font-weight: 600;
   @media (min-width: 375px) {
     font-size: 17px;
     left: 30%;
@@ -118,6 +121,7 @@ const BannerButton = styled(Link)`
   }
 `;
 
+//Component
 export const ProjectsSecondBanner = () => {
   let content;
   const emailRedux = useSelector(

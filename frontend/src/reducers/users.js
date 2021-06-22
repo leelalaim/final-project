@@ -2,6 +2,7 @@ import { createSlice } from '@reduxjs/toolkit';
 import { batch } from 'react-redux';
 import { getApiUrl } from 'reusable/urls';
 
+//Initial state dependant on whether there is a logged in user or not. 
 const initialState = localStorage.getItem('user')
   ? {
       user: JSON.parse(localStorage.getItem('user')),
@@ -22,7 +23,6 @@ export const users = createSlice({
       store.user = action.payload;
     },
     setErrors: (store, action) => {
-      console.log(action);
       store.errors = action.payload;
     },
     setLogOut: () => {
@@ -38,7 +38,7 @@ export const users = createSlice({
   },
 });
 
-// Signup fetch
+// Fetch to sign-up to the website
 export const fetchSignUp = (username, email, password) => {
   return (dispatch, getState) => {
     fetch(getApiUrl('signup'), {
@@ -60,7 +60,6 @@ export const fetchSignUp = (username, email, password) => {
         batch(() => {
           dispatch(users.actions.setUser(data));
           dispatch(users.actions.setSignUpSuccess(true));
-          // dispatch(users.actions.setSignUpSuccess(false));
         });
 
         localStorage.setItem('user', JSON.stringify(data));
@@ -73,7 +72,7 @@ export const fetchSignUp = (username, email, password) => {
   };
 };
 
-//Login fetch
+//Fetch to login when you already have a user
 export const fetchLogIn = (email, password) => {
   return (dispatch, getState) => {
     fetch(getApiUrl('login'), {

@@ -9,6 +9,7 @@ const breatheAnimation = keyframes`
  100% { height: 100px; width: 100px; opacity: 0.6; }
 `;
 
+// Styled Components
 const Load = styled.div`
   height: 100px;
   width: 100px;
@@ -29,6 +30,7 @@ const LoaderContainer = styled.div`
   min-height: 100vh;
 `;
 
+//Component
 export const Loading = () => {
   return (
     <LoaderContainer>

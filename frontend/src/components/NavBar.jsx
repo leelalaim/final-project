@@ -1,14 +1,10 @@
+//Outer Dependencies
 import React from "react";
-import { makeStyles } from "@material-ui/core/styles";
-import AppBar from "@material-ui/core/AppBar";
-import Toolbar from "@material-ui/core/Toolbar";
-import IconButton from "@material-ui/core/IconButton";
-import AccountCircle from "@material-ui/icons/AccountCircle";
-import MenuItem from "@material-ui/core/MenuItem";
-import Menu from "@material-ui/core/Menu";
 import styled from "styled-components/macro";
 import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
+
+//Inner Dependencies
 import { users } from "../reducers/users";
 import { Signin } from "./Signin";
 import logo from "../assets/logo.png";
@@ -16,6 +12,15 @@ import logo from "../assets/logo.png";
 // React-toastify
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+
+//Material UI
+import { makeStyles } from "@material-ui/core/styles";
+import AppBar from "@material-ui/core/AppBar";
+import Toolbar from "@material-ui/core/Toolbar";
+import IconButton from "@material-ui/core/IconButton";
+import AccountCircle from "@material-ui/icons/AccountCircle";
+import MenuItem from "@material-ui/core/MenuItem";
+import Menu from "@material-ui/core/Menu";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -29,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+//Styled Components
 const Container = styled.div`
   position: absolute;
   top: 0;
@@ -82,13 +88,16 @@ const Logo = styled.img`
   }
 `;
 
+//Component
 export const NavBar = () => {
   const classes = useStyles();
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   let content;
 
-  const emailRedux = useSelector((store) => store.users.user && store.users.user.email);
+  const emailRedux = useSelector(
+    (store) => store.users.user && store.users.user.email
+  );
   const successToast = () => toast.success("You have successfully signed out!");
 
   const dispatch = useDispatch();
@@ -142,8 +151,7 @@ export const NavBar = () => {
               </StyledTypography>
               <Signin />
             </TypographyWrapper>
-            <div>
-            </div>
+            <div></div>
           </StyledToolbar>
         </AppBarStyling>
       </Container>

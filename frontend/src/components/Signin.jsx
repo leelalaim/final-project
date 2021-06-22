@@ -4,11 +4,12 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "styled-components/macro";
 
-import Avatar from "@material-ui/core/Avatar";
-import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
-
 //Inner Dependencies
 import { fetchLogIn } from "../reducers/users";
+
+// React-toastify
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 //Material UI
 import Button from "@material-ui/core/Button";
@@ -18,10 +19,8 @@ import DialogContent from "@material-ui/core/DialogContent";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
-
-// React-toastify
-import { ToastContainer } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import Avatar from "@material-ui/core/Avatar";
+import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -32,6 +31,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+//Styled Components
 const SignInButton = styled(Button)`
   color: #494949;
   border-color: #494949;
@@ -61,8 +61,6 @@ const Form = styled.form`
 const Input = styled(TextField)`
   padding: 10px;
 `;
-
-// MY STYLING
 
 const Avatars = styled(Avatar)`
   background-color: #eeca4a;
@@ -124,6 +122,7 @@ const InputField = styled(Input)`
 
 const CancelButton = styled(Button)``;
 
+//Component
 export const Signin = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -195,10 +194,7 @@ export const Signin = () => {
                 </NoAccountWrapper>
               </InputWrapper>
               <ButtonWrapper>
-                <ButtonInner
-                  type="submit"
-                  color="primary"
-                >
+                <ButtonInner type="submit" color="primary">
                   Sign in
                 </ButtonInner>
               </ButtonWrapper>

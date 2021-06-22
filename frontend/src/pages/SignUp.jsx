@@ -5,6 +5,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 import styled from "styled-components/macro";
 
+// React Toastify
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+//Inner Dependencies
+import { fetchSignUp } from "../reducers/users";
+import { users } from "reducers/users";
+
 // Material UI
 import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
@@ -15,14 +23,6 @@ import Grid from "@material-ui/core/Grid";
 import LockOutlinedIcon from "@material-ui/icons/LockOutlined";
 import Typography from "@material-ui/core/Typography";
 import Container from "@material-ui/core/Container";
-
-// React Toastify
-import { toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
-
-//Inner Dependencies
-import { fetchSignUp } from "../reducers/users";
-import { users } from "reducers/users";
 
 const useStyles = makeStyles((theme) => ({
   "@global": {
@@ -49,6 +49,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+//Styled Components
 const PageContainer = styled.section`
   @media (min-width: 768px) {
     padding-top: 50px;
@@ -58,11 +59,11 @@ const PageContainer = styled.section`
 
 const Avatars = styled(Avatar)`
   background-color: #eeca4a;
-`
+`;
 
 const FormHeader = styled(Typography)`
- font-size: 20px;
-`
+  font-size: 20px;
+`;
 
 const Form = styled.form`
   display: flex;
@@ -73,7 +74,7 @@ const Form = styled.form`
 
 const InputField = styled(TextField)`
   width: 100%;
-`
+`;
 
 const SignUpButton = styled(Button)`
   background-color: #f5c81e;
@@ -85,13 +86,14 @@ const SignUpButton = styled(Button)`
   font-weight: bold;
   cursor: pointer;
   align-items: center;
-`
+`;
 
-const ButtonWrapper = styled.div `
+const ButtonWrapper = styled.div`
   display: flex;
   justify-content: center;
-`
+`;
 
+//Page
 export const SignUp = () => {
   const classes = useStyles();
   const dispatch = useDispatch();
@@ -101,9 +103,7 @@ export const SignUp = () => {
   const [repeatPassword, setRepeatPassword] = useState("");
 
   let errorMessage = useSelector((store) => store.users.errors);
-  const signUpSuccess = useSelector(
-    (store) => store.users.signUpSuccess
-  );
+  const signUpSuccess = useSelector((store) => store.users.signUpSuccess);
 
   if (signUpSuccess) {
     toast.success("You have successfully signed up!");
@@ -128,7 +128,7 @@ export const SignUp = () => {
       {signUpSuccess && (
         <Redirect
           to={{
-            pathname: "/projects",  
+            pathname: "/projects",
           }}
         />
       )}
@@ -200,18 +200,21 @@ export const SignUp = () => {
               </Grid>
             </Grid>
             <ButtonWrapper>
-               <SignUpButton
-              type="submit"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-            >
-              Sign Up!
-            </SignUpButton>
+              <SignUpButton
+                type="submit"
+                fullWidth
+                variant="contained"
+                color="primary"
+                className={classes.submit}
+              >
+                Sign Up!
+              </SignUpButton>
             </ButtonWrapper>
-           
-            <p>Please note that we store your email in our database for the purpose of signing up and in</p>
+
+            <p>
+              Please note that we store your email in our database for the
+              purpose of signing up and in
+            </p>
             <Grid container justify="flex-end"></Grid>
           </Form>
           <p>{errorMessage && errorMessage.errorCode}</p>

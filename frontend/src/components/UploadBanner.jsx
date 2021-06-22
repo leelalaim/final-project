@@ -1,8 +1,11 @@
+//Outer Dependencies
 import React from "react";
 import styled from "styled-components/macro";
 
+//Inner Dependencies
 import projectsimage from "../assets/projects2 (1).jpg";
 
+//Styled Components
 const BannerContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -65,8 +68,7 @@ const BannerParagraph = styled.p`
   }
 `;
 
-//HELLO!!!
-
+//Components
 export const UploadBanner = () => {
   return (
     <BannerContainer>

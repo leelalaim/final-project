@@ -1,8 +1,11 @@
+//Outer Dependencies
 import React from "react";
 import styled from "styled-components/macro";
 
+//Inner Dependencies
 import heroImage from "../assets/georgie-cobbs-bKjHgo_Lbpo-unsplash (1).jpg";
 
+//Styled Components
 const BannerContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -71,6 +74,7 @@ const BannerParagraph = styled.p`
   }
 `;
 
+//Component
 export const MainBanner = () => {
   return (
     <BannerContainer>

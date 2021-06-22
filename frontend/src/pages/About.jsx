@@ -1,11 +1,15 @@
+//Outer Dependecies
 import React from "react";
 import styled from "styled-components/macro";
+
+//Inner Dependencies
 import { AboutBanner } from "../components/AboutBanner";
 
+//Styled Components
 const Container = styled.section`
   @media (min-width: 767px) {
     height: 100vh;
-  } 
+  }
 `;
 
 const AboutContainer = styled.section`
@@ -40,6 +44,7 @@ const Paragraph = styled.p`
   }
 `;
 
+//Page
 export const About = () => {
   return (
     <Container>
@@ -54,6 +59,9 @@ export const About = () => {
           from other Bootcamps as we wanted students from all over to be able to
           take part in the platform. Now you can view projects from other
           students as well as upload your own and share them with the world!
+        </Paragraph>
+        <Paragraph>
+          If you are interested in seeing the code have a look here{" "}
         </Paragraph>
       </AboutContainer>
     </Container>

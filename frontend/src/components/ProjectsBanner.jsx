@@ -1,8 +1,11 @@
+//Outer Dependencies
 import React from "react";
 import styled from "styled-components/macro";
 
+//Inner Dependencies
 import projectsimage from "../assets/projects2 (1).jpg";
 
+//Styled Components
 const BannerContainer = styled.div`
   display: flex;
   flex-direction: column;
@@ -12,8 +15,9 @@ const BannerContainer = styled.div`
 const BannerImage = styled.img`
   object-fit: cover;
   height: 60vh;
+  margin-bottom: 25px;
   @media (min-width: 767px) {
-    height: 60vh;
+    height: 45vh;
   }
   @media (min-width: 2000px) {
     height: 40vh;
@@ -34,7 +38,7 @@ const BannerHeader = styled.h1`
     font-size: 43px;
   }
   @media (min-width: 768px) and (max-width: 1279px) {
-    top: 40%;
+    top: 30%;
     font-size: 50px;
     padding: 20px;
   }
@@ -60,7 +64,7 @@ const BannerParagraph = styled.p`
     line-height: 29px;
   }
   @media (min-width: 768px) and (max-width: 1279px) {
-    top: 64%;
+    top: 55%;
     font-size: 45px;
     line-height: 50px;
   }
@@ -74,6 +78,7 @@ const BannerParagraph = styled.p`
   }
 `;
 
+//Component
 export const ProjectsBanner = () => {
   return (
     <BannerContainer>

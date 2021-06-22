@@ -1,9 +1,13 @@
+//Outer Dependencies
 import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components/macro";
-import SecondBanner from "assets/joanna-kosinska-1_CMoFsPfso-unsplash (1).jpg";
 import { Link } from "react-router-dom";
 
+//Inner Dependencies
+import SecondBanner from "assets/joanna-kosinska-1_CMoFsPfso-unsplash (1).jpg";
+
+//Styled Components
 const Container = styled.section`
   position: relative;
 `;
@@ -12,6 +16,7 @@ const Banner = styled.img`
   object-fit: cover;
   width: 100vw;
   height: 35vh;
+  margin-top: 25px;
   @media (min-width: 768px) {
     height: 25vh;
     object-position: 50% 20%;
@@ -27,6 +32,9 @@ const Banner = styled.img`
 `;
 
 const TextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
   position: absolute;
   top: 22%;
   right: 10%;
@@ -40,7 +48,6 @@ const TextContainer = styled.div`
 `;
 
 const Text = styled.h1`
-  display: flex;
   color: white;
   font-size: 30px;
   font-weight: 400;
@@ -62,11 +69,9 @@ const Text = styled.h1`
 `;
 
 const LowerText = styled(Text)`
-  display: flex;
-  justify-content: flex-end;
   color: #f4e03f;
   font-size: 40px;
-  margin: 0 0 0 10px;
+  margin: 0 0 20px 0;
   @media (min-width: 414px) {
     font-size: 45px;
   }
@@ -84,16 +89,17 @@ const LowerText = styled(Text)`
 `;
 
 const BannerButtonUpload = styled(Link)`
-  position: absolute;
-  bottom: 20%;
-  left: 35%;
+  display: inline;
+  width: 30%;
   color: #ffffff;
   border: 1px solid #ffffff;
   padding: 5px 20px;
+  text-align: center;
   border-radius: 30px;
   background-color: rgba(72, 72, 72, 0.9);
   text-decoration: none;
   font-size: 15px;
+  font-weight: 600;
   @media (min-width: 375px) {
     font-size: 17px;
     left: 40%;
@@ -128,8 +134,8 @@ export const SecondBannerLandingPage = () => {
         <TextContainer>
           <Text>Want to share</Text>
           <LowerText>your project?</LowerText>
+          <BannerButtonUpload to="/signup">Sign Up</BannerButtonUpload>
         </TextContainer>
-        <BannerButtonUpload to="/signup">Sign Up</BannerButtonUpload>
       </Container>
     );
   } else {

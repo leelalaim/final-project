@@ -35,6 +35,7 @@ export const allProjects = createSlice({
   },
 });
 
+//Fetch for all projects, as well as filtered project list
 export const fetchProjects = (filters = {}, page = 1) => {
   const { stack, bootcamp, week } = filters;
   const queryParams = {};
@@ -62,6 +63,7 @@ export const fetchProjects = (filters = {}, page = 1) => {
   };
 };
 
+//Fetch to upload a new project
 export const uploadProject = (formData) => {
   return (dispatch, getState) => {
     dispatch(ui.actions.setLoading(true));
@@ -82,6 +84,7 @@ export const uploadProject = (formData) => {
   };
 };
 
+//Options for the delete-fetch
 export const deleteOptions = (id, accessToken) => {
   return {
     method: 'DELETE',
@@ -93,6 +96,7 @@ export const deleteOptions = (id, accessToken) => {
   };
 };
 
+//Fetch for deleting your own projects from the list. 
 export const deleteProject = (id) => {
   return (dispatch, getState) => {
     dispatch(ui.actions.setLoading(true));
@@ -105,17 +109,6 @@ export const deleteProject = (id) => {
           dispatch(allProjects.actions.setProjectDeleteSuccess(false));
           dispatch(ui.actions.setLoading(false));
         }
-        // add loader (false )
-        // reload projects page
       );
   };
 };
-
-// setCurrentStep: (store, action) => {
-//   if (store.currentStep) {
-//     store.history = [...store.history, action.payload];
-//   }
-//   store.currentStep = action.payload;
-// }
-
-// just a comment hereee
