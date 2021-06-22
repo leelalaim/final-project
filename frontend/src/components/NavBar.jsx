@@ -52,6 +52,9 @@ const StyledTypography = styled(Link)`
   color: #494949;
   font-weight: 600;
   text-decoration: none;
+  @media (min-width: 1400px) {
+    font-size: 30px;
+  }
 `;
 
 const StyledToolbar = styled(Toolbar)`
@@ -74,17 +77,13 @@ const Logo = styled.img`
   @media (min-width: 1280px) {
     width: 110px;
   }
+  @media (min-width: 1400px) {
+    width: 140px;
+  }
 `;
-
-// const StyledMenuItem = styled(Link)`
-//   text-decoration: none;
-//   color: black;
-//   padding: 10px;
-// `;
 
 export const NavBar = () => {
   const classes = useStyles();
-  // const [auth, setAuth] = React.useState(true);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
   let content;
@@ -93,10 +92,6 @@ export const NavBar = () => {
   const successToast = () => toast.success("You have successfully signed out!");
 
   const dispatch = useDispatch();
-
-  // const handleChange = (event) => {
-  //   setAuth(event.target.checked);
-  // };
 
   const handleMenu = (event) => {
     setAnchorEl(event.currentTarget);
@@ -115,12 +110,6 @@ export const NavBar = () => {
   if (!emailRedux) {
     content = (
       <Container className={classes.root}>
-        {/* <FormGroup>
-          <FormControlLabel
-            control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
-            label={auth ? 'Logout' : 'Login'}
-          />
-        </FormGroup> */}
         <AppBarStyling position="static">
           <StyledToolbar>
             <TypographyWrapper>
@@ -162,12 +151,6 @@ export const NavBar = () => {
   } else {
     content = (
       <Container className={classes.root}>
-        {/* <FormGroup>
-            <FormControlLabel
-              control={<Switch checked={auth} onChange={handleChange} aria-label="login switch" />}
-              label={auth ? 'Logout' : 'Login'}
-            />
-          </FormGroup> */}
         <AppBarStyling position="static">
           <StyledToolbar>
             <TypographyWrapper>

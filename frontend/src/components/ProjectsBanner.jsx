@@ -12,6 +12,12 @@ const BannerContainer = styled.div`
 const BannerImage = styled.img`
   object-fit: cover;
   height: 60vh;
+  @media (min-width: 767px) {
+    height: 50vh;
+  }
+  @media (min-width: 2000px) {
+    height: 40vh;
+  }
 `;
 
 const BannerHeader = styled.h1`

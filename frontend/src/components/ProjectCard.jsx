@@ -89,6 +89,9 @@ const CardContainer = styled.div`
   @media (min-width: 1601px) {
     width: 30vw;
   }
+  @media (min-width: 2000px) {
+    width: 20vw;
+  }
 `;
 
 const PopUpButton = styled(Button)`

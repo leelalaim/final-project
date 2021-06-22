@@ -14,11 +14,19 @@ const Banner = styled.img`
   width: 100vw;
   height: 40vh;
   @media (min-width: 768px) {
-    height: 23vh;
+    height: 45vh;
+  }
+  @media (min-width: 1440px) {
+    height: 50vh;
+  } 
+  @media (min-width: 1500px) {
+    height: 30vh;
   }
 `;
 
 const TextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
   position: absolute;
   top: 29%;
   left: 10%;
@@ -30,9 +38,14 @@ const TextContainer = styled.div`
     top: 20%;
     left: 20%;
   }
+  @media (min-width: 1440px) {
+    top: 20%;
+    left: 25%;
+  }
 `;
 
 const Text = styled.h1`
+  margin-bottom: 30px;
   display: flex;
   color: white;
   font-size: 20px;
@@ -48,9 +61,14 @@ const Text = styled.h1`
     font-size: 30px;
     line-height: 33px;
   }
+  @media (min-width: 1440px) {
+    font-size: 60px;
+    line-height: 63px;
+  }
 `;
 
 const LowerText = styled(Text)`
+  margin-bottom: 20px;
   display: flex;
   justify-content: flex-end;
   color: #f4e03f;
@@ -63,10 +81,14 @@ const LowerText = styled(Text)`
     font-size: 55px;
     line-height: 57px;
   }
+  @media (min-width: 1440px) {
+    font-size: 77px;
+    line-height: 77px;
+  }
 `;
 
 const BannerButton = styled(Link)`
-  position: absolute;
+  // position: absolute;
   bottom: 30%;
   left: 33%;
   color: #ffffff;
@@ -88,6 +110,13 @@ const BannerButton = styled(Link)`
     left: 40%;
     bottom: 15%;
   }
+  @media (min-width: 1440px) {
+    width: 30%;
+    font-size: 30px;
+    left: 40%;
+    bottom: 2%;
+    padding: 10px 40px;
+  }
 `;
 
 export const ProjectsSecondBanner = () => {
@@ -100,8 +129,9 @@ export const ProjectsSecondBanner = () => {
         <TextContainer>
           <Text>Want to share</Text>
           <LowerText>your project?</LowerText>
+          <BannerButton to="/signup">Sign Up</BannerButton>
         </TextContainer>
-        <BannerButton to="/signup">Sign Up</BannerButton>
+        
       </Container>
     );
   } else {
@@ -111,8 +141,9 @@ export const ProjectsSecondBanner = () => {
         <TextContainer>
           <Text>Want to share</Text>
           <LowerText>your project?</LowerText>
+          <BannerButton to="/upload">Upload</BannerButton>
         </TextContainer>
-        <BannerButton to="/upload">Upload</BannerButton>
+        
       </Container>
     );
   }

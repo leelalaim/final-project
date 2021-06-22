@@ -44,6 +44,9 @@ const SignInButton = styled(Button)`
     color: white;
     margin-top: 5px;
   }
+  @media (min-width: 1400px) {
+    width: 100px;
+  }
 `;
 
 const FormContainer = styled.div`
@@ -57,7 +60,6 @@ const Form = styled.form`
 
 const Input = styled(TextField)`
   padding: 10px;
-  // width: 100%;
 `;
 
 // MY STYLING
@@ -144,13 +146,6 @@ export const Signin = () => {
   const handleClose = () => {
     setOpen(false);
   };
-
-  // if (user) {
-  //   console.log('here');
-  //   toast.success("You have successfully signed in!");
-  //   handleClose();
-  //   return;
-  // }
 
   return (
     <div>

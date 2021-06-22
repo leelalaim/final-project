@@ -20,6 +20,10 @@ const Banner = styled.img`
     height: 30vh;
     object-position: 60% 20%;
   }
+  @media (min-width: 1440px) {
+    height: 40vh;
+    object-position: 50% 20%;
+  }
 `;
 
 const TextContainer = styled.div`
@@ -140,8 +144,9 @@ export const SecondBannerLandingPage = () => {
         <TextContainer>
           <Text>Want to share</Text>
           <LowerText>your project?</LowerText>
+          <BannerButtonUpload to="/upload">Upload</BannerButtonUpload>
         </TextContainer>
-        <BannerButtonUpload to="/upload">Upload</BannerButtonUpload>
+        
       </Container>
     );
   }
