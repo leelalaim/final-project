@@ -1,3 +1,4 @@
+// Outer Dependency
 import React, { useState } from "react";
 import styled from "styled-components/macro";
 
@@ -17,6 +18,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+// Styled Components
 const Form = styled.div`
   display: flex;
   flex-direction: column;
@@ -44,6 +46,7 @@ const Button = styled.button`
   }
 `;
 
+// Selections for filtering
 const bootcamps = ["", "Technigo", "LeWagon", "Salt", "Academy", "Other"];
 
 const stacks = [
@@ -84,6 +87,7 @@ const weeks = [
   "Week 20",
 ];
 
+//Component
 export const FilterForm = ({ onSubmit }) => {
   const classes = useStyles();
   const [filters, setFilters] = useState({
@@ -92,6 +96,7 @@ export const FilterForm = ({ onSubmit }) => {
     week: null,
   });
 
+  //Setting each filter for the projects
   const handleChange = (event) => {
     const name = event.target.name;
     setFilters({
@@ -100,6 +105,7 @@ export const FilterForm = ({ onSubmit }) => {
     });
   };
 
+  //When filters are chosen and submit:ed
   const onFilterForm = (e) => {
     e.preventDefault();
     onSubmit(filters);

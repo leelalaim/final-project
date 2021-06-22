@@ -1,14 +1,17 @@
+//Outer Dependencies
 import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { slide as Menu } from "react-burger-menu";
 import { Link } from "react-router-dom";
 import styled from "styled-components/macro";
+
+//Inner Dependencies
 import logo from "../assets/logo.png";
 import { Signin } from "./Signin";
-
 import { users } from "../reducers/users";
 import "../../src/index.css";
 
+//Styled Components
 const LogoHamburger = styled.img`
   display: flex;
   position: absolute;
@@ -24,7 +27,6 @@ const LogoHamburger = styled.img`
   }
   @media (min-width: 781px) {
     display: none;
-    
   }
 `;
 
@@ -33,12 +35,15 @@ const HamburgerLogin = styled(Signin)`
   text-decoration: none;
 `;
 
+//Component
 export const Hamburger = () => {
   const [isOpen, setIsOpen] = useState(false);
   const dispatch = useDispatch();
   let content;
 
-  const emailRedux = useSelector((store) => store.users.user && store.users.user.email);
+  const emailRedux = useSelector(
+    (store) => store.users.user && store.users.user.email
+  );
 
   const onMenuStateChange = (state) => {
     setIsOpen(state.isOpen);

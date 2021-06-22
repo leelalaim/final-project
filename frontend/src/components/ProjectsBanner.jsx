@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components/macro";
 
-import projectsimage from "../assets/projects2.jpg";
+import projectsimage from "../assets/projects2 (1).jpg";
 
 const BannerContainer = styled.div`
   display: flex;

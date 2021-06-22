@@ -1,13 +1,13 @@
 import React from "react";
 import styled from "styled-components/macro";
 
-import heroImage from '../assets/georgie-cobbs-bKjHgo_Lbpo-unsplash.jpg'
+import heroImage from "../assets/georgie-cobbs-bKjHgo_Lbpo-unsplash (1).jpg";
 
 const BannerContainer = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
-`
+`;
 
 const BannerImage = styled.img`
   object-fit: cover;
@@ -15,7 +15,7 @@ const BannerImage = styled.img`
   @media (min-width: 1440px) {
     height: 80vh;
   }
-`
+`;
 const TextContainer = styled.div`
   position: absolute;
   top: 27%;
@@ -49,7 +49,7 @@ const BannerHeader = styled.h1`
     font-size: 100px;
     line-height: 100px;
   }
-`
+`;
 
 const BannerParagraph = styled.p`
   font-size: 25px;
@@ -69,16 +69,18 @@ const BannerParagraph = styled.p`
     font-size: 60px;
     line-height: 70px;
   }
-`
+`;
 
 export const MainBanner = () => {
-return (
+  return (
     <BannerContainer>
-    <BannerImage src={heroImage}></BannerImage>
-    <TextContainer>
-      <BannerHeader>Bootcamp <br/> projects</BannerHeader>
-      <BannerParagraph>by amazing people</BannerParagraph>
-    </TextContainer>
-  </BannerContainer>
-)
-}
+      <BannerImage src={heroImage}></BannerImage>
+      <TextContainer>
+        <BannerHeader>
+          Bootcamp <br /> projects
+        </BannerHeader>
+        <BannerParagraph>by amazing people</BannerParagraph>
+      </TextContainer>
+    </BannerContainer>
+  );
+};

@@ -1,7 +1,9 @@
+// Outer Dependencies
 import React from "react";
 import styled from "styled-components/macro";
 import { Link } from "react-router-dom";
 
+//Styled Components
 const Button = styled(Link)`
   position: absolute;
   bottom: 15%;
@@ -19,7 +21,7 @@ const Button = styled(Link)`
   }
 `;
 
+//Component
 export const BannerButton = () => {
-  return <Button to="/upload">Upload</Button>
-}
-
+  return <Button to="/upload">Upload</Button>;
+};

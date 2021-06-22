@@ -1,9 +1,8 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components/macro";
-import devGallery from "assets/dev-gallery.png";
+import devGallery from "assets/dev-gallery (1).png";
 import { Link } from "react-router-dom";
-
 
 const Container = styled.section`
   position: relative;
@@ -18,7 +17,7 @@ const Banner = styled.img`
   }
   @media (min-width: 1440px) {
     height: 50vh;
-  } 
+  }
   @media (min-width: 1500px) {
     height: 30vh;
   }
@@ -121,7 +120,9 @@ const BannerButton = styled(Link)`
 
 export const ProjectsSecondBanner = () => {
   let content;
-  const emailRedux = useSelector((store) => store.users.user && store.users.user.email);
+  const emailRedux = useSelector(
+    (store) => store.users.user && store.users.user.email
+  );
   if (!emailRedux) {
     content = (
       <Container>
@@ -131,7 +132,6 @@ export const ProjectsSecondBanner = () => {
           <LowerText>your project?</LowerText>
           <BannerButton to="/signup">Sign Up</BannerButton>
         </TextContainer>
-        
       </Container>
     );
   } else {
@@ -143,7 +143,6 @@ export const ProjectsSecondBanner = () => {
           <LowerText>your project?</LowerText>
           <BannerButton to="/upload">Upload</BannerButton>
         </TextContainer>
-        
       </Container>
     );
   }

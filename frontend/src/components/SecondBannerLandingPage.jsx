@@ -1,7 +1,7 @@
 import React from "react";
 import { useSelector } from "react-redux";
 import styled from "styled-components/macro";
-import SecondBanner from "assets/joanna-kosinska-1_CMoFsPfso-unsplash.jpg";
+import SecondBanner from "assets/joanna-kosinska-1_CMoFsPfso-unsplash (1).jpg";
 import { Link } from "react-router-dom";
 
 const Container = styled.section`
@@ -59,7 +59,6 @@ const Text = styled.h1`
     line-height: 60px;
     font-size: 60px;
   }
-  
 `;
 
 const LowerText = styled(Text)`
@@ -82,10 +81,9 @@ const LowerText = styled(Text)`
     line-height: 75px;
     font-size: 80px;
   }
- 
 `;
 
-const BannerButtonUpload = styled(Link)` 
+const BannerButtonUpload = styled(Link)`
   position: absolute;
   bottom: 20%;
   left: 35%;
@@ -115,17 +113,14 @@ const BannerButtonUpload = styled(Link)`
     padding: 12px 27px;
     border-radius: 35px;
   }
-`
-// const SignInButton = styled(Login)`
-//   position: absolute;
-//   bottom: 30%;
-//   left: 50%;
-// `;
+`;
 
 export const SecondBannerLandingPage = () => {
   let content;
 
-  const emailRedux = useSelector((store) => store.users.user && store.users.user.email);
+  const emailRedux = useSelector(
+    (store) => store.users.user && store.users.user.email
+  );
   if (!emailRedux) {
     content = (
       <Container>
@@ -146,7 +141,6 @@ export const SecondBannerLandingPage = () => {
           <LowerText>your project?</LowerText>
           <BannerButtonUpload to="/upload">Upload</BannerButtonUpload>
         </TextContainer>
-        
       </Container>
     );
   }
