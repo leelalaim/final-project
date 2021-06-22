@@ -20,7 +20,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import TextField from "@material-ui/core/TextField";
 
 // React-toastify
-import { ToastContainer, toast } from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
 const useStyles = makeStyles((theme) => ({
@@ -130,7 +130,7 @@ export const Signin = () => {
   const [open, setOpen] = React.useState(false);
 
   const errorMessage = useSelector((store) => store.users.errors);
-  const user = useSelector((store) => store.users.user);
+  // const user = useSelector((store) => store.users.user);
 
   const onFormSubmit = (e) => {
     e.preventDefault();
