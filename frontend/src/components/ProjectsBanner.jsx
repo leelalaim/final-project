@@ -13,7 +13,7 @@ const BannerImage = styled.img`
   object-fit: cover;
   height: 60vh;
   @media (min-width: 767px) {
-    height: 50vh;
+    height: 60vh;
   }
   @media (min-width: 2000px) {
     height: 40vh;
@@ -68,6 +68,9 @@ const BannerParagraph = styled.p`
     top: 64%;
     font-size: 45px;
     line-height: 50px;
+  }
+  @media (min-width: 2000px) {
+    font-size: 60px;
   }
 `;
 
