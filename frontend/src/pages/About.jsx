@@ -41,7 +41,7 @@ const IconContainer = styled.div`
 
 const LinkedInContainer = styled(IconContainer)`
   justify-content: space-between;
-  width: 10%;
+  width: 20%;
 `;
 
 const Paragraph = styled.p`
