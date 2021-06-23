@@ -5,6 +5,10 @@ import styled from "styled-components/macro";
 //Inner Dependencies
 import { TopYellowBanner } from "../components/TopYellowBanner";
 
+// Font Awesome
+import { FaGithub } from "react-icons/fa";
+import { FaLinkedin } from "react-icons/fa";
+
 //Styled Components
 const Container = styled.section`
   @media (min-width: 767px) {
@@ -44,13 +48,19 @@ const Paragraph = styled.p`
   }
 `;
 
+const GitHub = styled(FaGithub)`
+  color: black;
+`;
+
+const LinkedIn = styled(FaLinkedin)`
+  color: black;
+`;
+
 //Page
 export const About = () => {
   return (
     <Container>
-      <TopYellowBanner 
-        Bannerheader='About devGallery project'
-      />
+      <TopYellowBanner Bannerheader="About devGallery project" />
       <AboutContainer>
         <Header>Our story</Header>
         <Paragraph>
@@ -63,7 +73,32 @@ export const About = () => {
           students as well as upload your own and share them with the world!
         </Paragraph>
         <Paragraph>
-          If you are interested in seeing the code have a look here{" "}
+          If you are interested in seeing the code, have a look here{" "}
+          <a href="https://github.com/leelalaim/final-project">
+            <GitHub />
+          </a>
+        </Paragraph>
+        <Paragraph>
+          Interested speaking to us regarding the project? Let's chat on
+          LinkedIn!
+          <Paragraph>
+            Malin:{" "}
+            <a href="https://www.linkedin.com/in/malin-vannesjö-57aa9051/">
+              <LinkedIn />
+            </a>
+          </Paragraph>
+          <Paragraph>
+            Hannah:{" "}
+            <a href="https://www.linkedin.com/in/hannah-jesinkey/">
+              <LinkedIn />
+            </a>
+          </Paragraph>
+          <Paragraph>
+            Laima:{" "}
+            <a href="https://www.linkedin.com/in/laimaduhovnaja/">
+              <LinkedIn />
+            </a>
+          </Paragraph>
         </Paragraph>
       </AboutContainer>
     </Container>
