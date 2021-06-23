@@ -18,11 +18,11 @@ const Banner = styled.img`
   height: 35vh;
   margin-top: 25px;
   @media (min-width: 768px) {
-    height: 25vh;
+    height: 30vh;
     object-position: 50% 20%;
   }
   @media (min-width: 1280px) {
-    height: 30vh;
+    height: 40vh;
     object-position: 60% 20%;
   }
   @media (min-width: 1440px) {
@@ -38,6 +38,7 @@ const TextContainer = styled.div`
   position: absolute;
   top: 22%;
   right: 10%;
+  height: auto;
   @media (min-width: 768px) {
     top: 22%;
     right: 20%;

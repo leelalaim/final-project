@@ -124,30 +124,35 @@ export const Upload = () => {
                 value={bootcamp}
                 placeholder="Bootcamp"
                 onChange={(e) => setBootcamp(e.target.value)}
+                required
               ></Input>
               <Input
                 type="text"
                 value={projectName}
                 placeholder="Project name"
                 onChange={(e) => setProjectName(e.target.value)}
+                required
               ></Input>
               <Input
                 type="text"
                 value={url}
                 placeholder="URL to live page"
                 onChange={(e) => setUrl(e.target.value)}
+                required
               ></Input>
               <Input
                 type="text"
                 value={github}
                 placeholder="URL to GitHub repository"
                 onChange={(e) => setGitHub(e.target.value)}
+                required
               ></Input>
               <Input
                 type="text"
                 value={stack}
                 placeholder="Stack"
                 onChange={(e) => setStack(e.target.value)}
+                required
               ></Input>
               <Input
                 type="text"
@@ -160,6 +165,7 @@ export const Upload = () => {
                 ref={fileInput}
                 placeholder="Upload Image"
                 onChange={(e) => setProjectImage(e.target.value)}
+                required
               ></Input>
               <TextArea
                 type="text"
@@ -168,6 +174,7 @@ export const Upload = () => {
                 rows="4"
                 cols="1"
                 onChange={(e) => setDescription(e.target.value)}
+                required
               ></TextArea>
               <ButtonWrapper>
                 <Button type="submit">Upload</Button>
