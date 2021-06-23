@@ -3,7 +3,7 @@ import React from "react";
 import styled from "styled-components/macro";
 
 //Inner Dependencies
-import { AboutBanner } from "../components/AboutBanner";
+import { TopYellowBanner } from "../components/TopYellowBanner";
 
 //Styled Components
 const Container = styled.section`
@@ -48,7 +48,9 @@ const Paragraph = styled.p`
 export const About = () => {
   return (
     <Container>
-      <AboutBanner />
+      <TopYellowBanner 
+        Bannerheader='About devGallery project'
+      />
       <AboutContainer>
         <Header>Our story</Header>
         <Paragraph>

@@ -18,13 +18,13 @@ const Banner = styled.img`
   height: 40vh;
   margin-top: 25px;
   @media (min-width: 768px) {
-    height: 30vh;
+    height: 40vh;
   }
   @media (min-width: 1440px) {
     height: 50vh;
   }
   @media (min-width: 1500px) {
-    height: 30vh;
+    height: 35vh;
   }
 `;
 
@@ -118,6 +118,7 @@ const BannerButton = styled(Link)`
     left: 40%;
     bottom: 2%;
     padding: 10px 40px;
+    text-align: center;
   }
 `;
 

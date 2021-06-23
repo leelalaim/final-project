@@ -15,6 +15,19 @@ const BannerContainer = styled.div`
 const BannerImage = styled.img`
   object-fit: cover;
   height: 60vh;
+  margin-bottom: 25px;
+  @media (min-width: 767px) {
+    height: 45vh;
+  }
+  @media (min-width: 1280px) and (max-width: 1440px) {
+    height: 55vh;
+  }
+  @media (min-width: 1440px) {
+    height: 55vh;
+  }
+  @media (min-width: 2000px) {
+    height: 45vh;
+  }
 `;
 
 const BannerHeader = styled.h1`
@@ -31,7 +44,7 @@ const BannerHeader = styled.h1`
     font-size: 43px;
   }
   @media (min-width: 768px) and (max-width: 1279px) {
-    top: 40%;
+    top: 30%;
     font-size: 50px;
     padding: 20px;
   }
@@ -49,34 +62,36 @@ const BannerParagraph = styled.p`
   margin: 0;
   position: absolute;
   left: 30px;
-  top: 50%;
+  top: 62%;
   line-height: 25px;
+  width: 190px;
   @media (min-width: 375px) and (max-width: 767px) {
     top: 64%;
     font-size: 28px;
     line-height: 29px;
   }
   @media (min-width: 768px) and (max-width: 1279px) {
-    top: 64%;
+    top: 55%;
     font-size: 45px;
     line-height: 50px;
   }
   @media (min-width: 1280px) {
     top: 64%;
-    font-size: 50px;
+    font-size: 45px;
     line-height: 50px;
+  }
+  @media (min-width: 2000px) {
+    font-size: 60px;
   }
 `;
 
-//Components
-export const UploadBanner = () => {
+//Component
+export const TopYellowBanner = ( {Bannerheader, Bannerparagraph }) => {
   return (
     <BannerContainer>
       <BannerImage src={projectsimage}></BannerImage>
-      <BannerHeader>Upload</BannerHeader>
-      <BannerParagraph>
-        Share your project <br /> with the world!
-      </BannerParagraph>
+      <BannerHeader>{Bannerheader}</BannerHeader>
+      <BannerParagraph>{Bannerparagraph}</BannerParagraph>
     </BannerContainer>
   );
 };

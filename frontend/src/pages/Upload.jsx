@@ -6,8 +6,8 @@ import styled from "styled-components/macro";
 
 // Inner Dependancies
 import { uploadProject } from "../reducers/allProjects";
-import { UploadBanner } from "../components/UploadBanner";
 import { Loading } from "../components/Loading";
+import { TopYellowBanner } from "../components/TopYellowBanner";
 
 // React Toastify
 import { toast } from "react-toastify";
@@ -116,7 +116,10 @@ export const Upload = () => {
       )}
       {!isLoading && (
         <>
-          <UploadBanner />
+           <TopYellowBanner 
+               Bannerheader='Upload'
+               Bannerparagraph='Share your project with the world!'
+          />
           <Section>
             <Form onSubmit={onFormSubmit}>
               <Input

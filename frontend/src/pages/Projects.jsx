@@ -5,10 +5,10 @@ import styled from "styled-components/macro";
 
 //Inner Dependencies
 import { fetchProjects } from "../reducers/allProjects";
-import { ProjectsBanner } from "../components/ProjectsBanner";
 import { ProjectCard } from "../components/ProjectCard";
 import { FilterForm } from "../components/FilterForm";
 import { ProjectsSecondBanner } from "../components/ProjectsSecondBanner";
+import { TopYellowBanner } from "../components/TopYellowBanner"
 
 //Material-UI
 import Pagination from "@material-ui/lab/Pagination";
@@ -48,7 +48,10 @@ export const Projects = () => {
 
   return (
     <>
-      <ProjectsBanner />
+      <TopYellowBanner 
+        Bannerheader='Creativity starts here...'
+        Bannerparagraph='Bootcamp projects that are worth seeing.'
+    />
       <FilterForm
         onSubmit={(filters) => onFilterFormSubmit(filters)}
       ></FilterForm>

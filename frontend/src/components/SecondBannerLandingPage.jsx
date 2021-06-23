@@ -18,7 +18,7 @@ const Banner = styled.img`
   height: 35vh;
   margin-top: 25px;
   @media (min-width: 768px) {
-    height: 30vh;
+    height: 40vh;
     object-position: 50% 20%;
   }
   @media (min-width: 1280px) {
