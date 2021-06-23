@@ -33,6 +33,17 @@ const Header = styled.h1`
   }
 `;
 
+const IconContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+`;
+
+const LinkedInContainer = styled(IconContainer)`
+  justify-content: space-between;
+  width: 10%;
+`;
+
 const Paragraph = styled.p`
   font-size: 15px;
   font-weight: 300;
@@ -48,10 +59,13 @@ const Paragraph = styled.p`
 
 const GitHub = styled(FaGithub)`
   color: black;
+  margin-left: 10px;
+  font-size: 30px;
 `;
 
 const LinkedIn = styled(FaLinkedin)`
   color: black;
+  font-size: 30px;
 `;
 
 //Page
@@ -70,33 +84,35 @@ export const About = () => {
           take part in the platform. Now you can view projects from other
           students as well as upload your own and share them with the world!
         </Paragraph>
-        <Paragraph>
-          If you are interested in seeing the code, have a look here
+        <IconContainer>
+          <Paragraph>
+            If you are interested in seeing the code, have a look here
+          </Paragraph>
           <a href="https://github.com/leelalaim/final-project">
             <GitHub />
           </a>
-        </Paragraph>
+        </IconContainer>
         <Paragraph>
           Interested speaking to us regarding the project? Let's chat on
           LinkedIn!
-          <Paragraph>
-            Malin:
+          <LinkedInContainer>
+            <Paragraph>Malin</Paragraph>
             <a href="https://www.linkedin.com/in/malin-vannesjö-57aa9051/">
               <LinkedIn />
             </a>
-          </Paragraph>
-          <Paragraph>
-            Hannah:
+          </LinkedInContainer>
+          <LinkedInContainer>
+            <Paragraph>Hannah</Paragraph>
             <a href="https://www.linkedin.com/in/hannah-jesinkey/">
               <LinkedIn />
             </a>
-          </Paragraph>
-          <Paragraph>
-            Laima:
+          </LinkedInContainer>
+          <LinkedInContainer>
+            <Paragraph>Laima</Paragraph>
             <a href="https://www.linkedin.com/in/laimaduhovnaja/">
               <LinkedIn />
             </a>
-          </Paragraph>
+          </LinkedInContainer>
         </Paragraph>
       </AboutContainer>
     </section>

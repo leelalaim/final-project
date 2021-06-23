@@ -133,6 +133,11 @@ const BannerButton = styled(Link)`
     padding: 10px 40px;
     text-align: center;
   }
+  :hover {
+    background-color: rgba(255, 255, 255, 0.6);
+    color: #575757;
+    border: 1px solid #575757;
+  }
 `;
 
 //Component
