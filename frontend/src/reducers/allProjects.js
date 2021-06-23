@@ -52,11 +52,13 @@ export const fetchProjects = (filters = {}, page = 1) => {
   }
 
   return (dispatch) => {
+    dispatch(ui.actions.setLoading(true));
     fetch(getApiUrl(`projects?page=${page}&` +
         new URLSearchParams(queryParams)
     ))
     .then((res) => res.json())
     .then((projectList) => {
+      dispatch(ui.actions.setLoading(false));
       dispatch(allProjects.actions.setProjectList(projectList.projects));
       dispatch(allProjects.actions.setTotalPages(projectList.pagesTotal));
     });

@@ -8,7 +8,8 @@ import { fetchProjects } from "../reducers/allProjects";
 import { ProjectCard } from "../components/ProjectCard";
 import { FilterForm } from "../components/FilterForm";
 import { ProjectsSecondBanner } from "../components/ProjectsSecondBanner";
-import { TopYellowBanner } from "../components/TopYellowBanner"
+import { TopYellowBanner } from "../components/TopYellowBanner";
+import { Loading } from "../components/Loading";
 
 //Material-UI
 import Pagination from "@material-ui/lab/Pagination";
@@ -46,27 +47,34 @@ export const Projects = () => {
     dispatch(fetchProjects({}, page));
   };
 
+  const isLoading = useSelector((store) => store.ui.isLoading);
+
   return (
     <>
-      <TopYellowBanner 
-        Bannerheader='Creativity starts here...'
-        Bannerparagraph='Bootcamp projects that are worth seeing.'
-    />
+      <TopYellowBanner
+        Bannerheader="Creativity starts here..."
+        Bannerparagraph="Bootcamp projects that are worth seeing."
+      />
       <FilterForm
         onSubmit={(filters) => onFilterFormSubmit(filters)}
       ></FilterForm>
-      <ProjectCards>
-        {projects.map((project) => (
-          <ProjectCard key={project._id} project={project} />
-        ))}
-      </ProjectCards>
-      <PaginationContainer>
-        <Pagination
-          count={pageTotal}
-          page={pageNumber}
-          onChange={onPageChange}
-        />
-      </PaginationContainer>
+      {isLoading && <Loading />}
+      {!isLoading && (
+        <>
+          <ProjectCards>
+            {projects.map((project) => (
+              <ProjectCard key={project._id} project={project} />
+            ))}
+          </ProjectCards>
+          <PaginationContainer>
+            <Pagination
+              count={pageTotal}
+              page={pageNumber}
+              onChange={onPageChange}
+            />
+          </PaginationContainer>
+        </>
+      )}
       <ProjectsSecondBanner />
     </>
   );

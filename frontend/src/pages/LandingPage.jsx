@@ -9,6 +9,7 @@ import { fetchProjects } from "../reducers/allProjects";
 import { MainBanner } from "../components/MainBanner";
 import { ProjectCard } from "../components/ProjectCard";
 import { SecondBannerLandingPage } from "../components/SecondBannerLandingPage";
+import { Loading } from "../components/Loading";
 
 //Styled Components
 const ProjectCards = styled.div`
@@ -35,14 +36,19 @@ export const LandingPage = () => {
     dispatch(fetchProjects());
   }, [dispatch]);
 
+  const isLoading = useSelector((store) => store.ui.isLoading);
+
   return (
     <div>
       <MainBanner />
+      {isLoading && <Loading />}
+      {!isLoading &&
       <ProjectCards>
         {projects.slice(0, 6).map((project) => (
           <ProjectCard key={project.id} project={project} />
         ))}
       </ProjectCards>
+      }
       <SeeMoreContainer>
         <SeeMore to="/projects">See more..</SeeMore>
       </SeeMoreContainer>
