@@ -27,10 +27,10 @@ const BannerImage = styled.img`
     height: 50vh;
   }
   @media (min-width: 1280px) {
-    height: 60vh;
+    height: 65vh;
   }
   @media (min-width: 1400px) {
-    height: 65vh;
+    height: 70vh;
   }
 `;
 
@@ -80,9 +80,9 @@ const BannerParagraph = styled.p`
     padding-left: 6%;
   }
   @media (min-width: 1280px) {
+    margin-top: 40px;
     font-size: 40px;
     line-height: 46px;
-    width: 400px;
     padding-left: 6%;
   }
 `;

@@ -33,15 +33,19 @@ const TextContainer = styled.div`
   flex-direction: column;
   align-items: flex-end;
   position: absolute;
-  top: 29%;
+  top: 35%;
   left: 10%;
   @media (min-width: 375px) {
     top: 32%;
     left: 10%;
   }
   @media (min-width: 768px) {
-    top: 20%;
+    top: 36%;
     left: 20%;
+  }
+  @media (min-width: 1280px) {
+    top: 36%;
+    left: 5%;
   }
   @media (min-width: 1440px) {
     top: 20%;

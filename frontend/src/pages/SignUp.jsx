@@ -213,7 +213,7 @@ export const SignUp = () => {
 
             <p>
               Please note that we store your email in our database for the
-              purpose of signing up and in
+              purpose of signing up and signing in.
             </p>
             <Grid container justify="flex-end"></Grid>
           </Form>

@@ -42,8 +42,16 @@ const Container = styled.div`
   left: 0;
   z-index: 1;
   border: none;
+  padding-left: 2%;
+  padding-top: 2%;
   @media (max-width: 781px) {
     display: none;
+  }
+  @media (min-width: 1280px) {
+    padding-left: 4%;
+  }
+  @media (min-width: 1440px) {
+    padding-left: 4.5%;
   }
 `;
 

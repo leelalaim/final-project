@@ -27,9 +27,9 @@ const LogoHamburger = styled.img`
     top: 2.7%;
     left: 5%;
   }
-  @media (min-width: 768px) {
-    left: 6%;
-  }
+  // @media (min-width: 768px) {
+  //   left: 6%;
+  // }
   @media (min-width: 781px) {
     display: none;
   }
