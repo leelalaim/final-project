@@ -62,6 +62,7 @@ app.get('/projects', async (req, res) => {
 
     res.json({ projects, pagesTotal: Math.ceil(countProjects / pageSize) });
   } catch (error) {
+    console.log(error);
     res
       .status(400)
       .json({ error: 'Oops, no luck with that filter', details: error });
@@ -88,6 +89,7 @@ app.post('/projects', authenticateToken, upload.single('image'), async (req, res
     await newProject.save();
     res.status(200).json(newProject);
   } catch (err) {
+    console.log(error);
     res.status(400).json({ message: 'Could not save', errors: err });
   }
 });
@@ -105,6 +107,7 @@ app.delete('/projects/:id', authenticateToken, isProjectOwner, async (req, res) 
       res.status(404).json({ message: 'Not found' });
     }
   } catch (error) {
+    console.log(error);
     res.status(400).json({ message: 'Invalid request', error });
   }
 });
@@ -115,13 +118,14 @@ app.post('/signup', async (req, res) => {
   const { email, password, username } = req.body;
 
   try {
-    let user = await User.findOne({
-      email,
-    });
+    let user = await User.findOne(
+      { $or: [{ email }, { username }] }
+    );
+
     if (user) {
       res.status(403).json({
-        errorCode: 'E-mail is already in use',
-        message: 'A user with that e-mail already exists',
+        errorCode: 'invalid-credentials',
+        message: 'E-mail or username is already in use',
       });
       return;
     }
@@ -131,7 +135,7 @@ app.post('/signup', async (req, res) => {
       password: bcrypt.hashSync(password, salt),
       username
     });
-    user.save();
+    await user.save();
     res
       .status(201)
       .json({ 
@@ -141,10 +145,10 @@ app.post('/signup', async (req, res) => {
         email: user.email 
     });
   } catch (error) {
+    console.log(error);
     res.status(400).json({
       errorCode: 'uknown-error',
       message: 'Could not create user',
-      error,
     });
   }
 });
@@ -176,6 +180,7 @@ app.post('/login', async (req, res) => {
       accessToken: jwtService.createAuthToken(user._id),
     });
   } catch (error) {
+    console.log(error);
     res
       .status(400)
       .json({ errorCode: 'uknown-error', message: 'Invalid request', error });

@@ -122,7 +122,7 @@ export const SignUp = () => {
       dispatch(fetchSignUp(username, email, password));
     }
   };
-
+  
   return (
     <PageContainer>
       {signUpSuccess && (
@@ -144,7 +144,6 @@ export const SignUp = () => {
           <Form
             onSubmit={onFormSubmit}
             className={classes.root}
-            noValidate
             autoComplete="off"
           >
             <Grid container spacing={2}>
@@ -164,6 +163,7 @@ export const SignUp = () => {
                 <InputField
                   variant="outlined"
                   required
+                  type="email"
                   name="email"
                   id="standard-basic"
                   label="Email"
@@ -217,7 +217,7 @@ export const SignUp = () => {
             </p>
             <Grid container justify="flex-end"></Grid>
           </Form>
-          <p>{errorMessage && errorMessage.errorCode}</p>
+          <p>{errorMessage && errorMessage.message}</p>
         </div>
       </Container>
     </PageContainer>
