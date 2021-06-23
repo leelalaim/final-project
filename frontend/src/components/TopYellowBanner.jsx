@@ -10,6 +10,13 @@ const BannerContainer = styled.div`
   display: flex;
   flex-direction: column;
   position: relative;
+  width: 100vw;
+`;
+
+const TextWrapper = styled.div`
+  position: absolute;
+  top: 30%;
+  width: 100%;
 `;
 
 const BannerImage = styled.img`
@@ -17,41 +24,38 @@ const BannerImage = styled.img`
   height: 60vh;
   margin-bottom: 25px;
   @media (min-width: 767px) {
-    height: 45vh;
+    height: 50vh;
   }
-  @media (min-width: 1280px) and (max-width: 1440px) {
-    height: 55vh;
+  @media (min-width: 1280px) {
+    height: 60vh;
   }
-  @media (min-width: 1440px) {
-    height: 55vh;
-  }
-  @media (min-width: 2000px) {
-    height: 45vh;
+  @media (min-width: 1400px) {
+    height: 65vh;
   }
 `;
 
 const BannerHeader = styled.h1`
-  margin: 0;
-  padding: 10px 0px 10px 30px;
-  position: absolute;
+  margin: 0 0 10px 0px;
+  padding: 3% 0 5% 10%;
   font-weight: 400;
-  top: 30%;
   color: #ffffff;
   background-color: rgba(0, 0, 0, 0.3);
   font-size: 33px;
   width: 90%;
   @media (min-width: 375px) and (max-width: 767px) {
     font-size: 43px;
+    padding: 3% 0 5% 6%;
+    width: 94%;
   }
-  @media (min-width: 768px) and (max-width: 1279px) {
-    top: 30%;
+  @media (min-width: 768px) {
     font-size: 50px;
-    padding: 20px;
+    padding: 2% 22% 2% 6%;
+    width: 70%;
   }
   @media (min-width: 1280px) {
-    top: 40%;
-    font-size: 70px;
-    padding: 20px;
+    font-size: 60px;
+    padding: 2% 22% 2% 6%;
+    width: 70%;
   }
 `;
 
@@ -60,38 +64,38 @@ const BannerParagraph = styled.p`
   font-size: 20px;
   font-weight: 300;
   margin: 0;
-  position: absolute;
-  left: 30px;
-  top: 62%;
+  padding-left: 10%;
   line-height: 25px;
   width: 190px;
   @media (min-width: 375px) and (max-width: 767px) {
-    top: 64%;
     font-size: 28px;
-    line-height: 29px;
+    line-height: 32px;
+    width: 250px;
+    padding-left: 6%;
   }
-  @media (min-width: 768px) and (max-width: 1279px) {
-    top: 55%;
-    font-size: 45px;
-    line-height: 50px;
+  @media (min-width: 768px) {
+    font-size: 37px;
+    line-height: 46px;
+    width: 400px;
+    padding-left: 6%;
   }
   @media (min-width: 1280px) {
-    top: 64%;
-    font-size: 45px;
-    line-height: 50px;
-  }
-  @media (min-width: 2000px) {
-    font-size: 60px;
+    font-size: 40px;
+    line-height: 46px;
+    width: 400px;
+    padding-left: 6%;
   }
 `;
 
 //Component
-export const TopYellowBanner = ( {Bannerheader, Bannerparagraph }) => {
+export const TopYellowBanner = ({ Bannerheader, Bannerparagraph }) => {
   return (
     <BannerContainer>
       <BannerImage src={projectsimage}></BannerImage>
-      <BannerHeader>{Bannerheader}</BannerHeader>
-      <BannerParagraph>{Bannerparagraph}</BannerParagraph>
+      <TextWrapper>
+        <BannerHeader>{Bannerheader}</BannerHeader>
+        <BannerParagraph>{Bannerparagraph}</BannerParagraph>
+      </TextWrapper>
     </BannerContainer>
   );
 };

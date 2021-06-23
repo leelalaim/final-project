@@ -8,7 +8,7 @@ const FooterContainer = styled.footer`
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  width: 100%;
+  width: 100vw;
   height: 50px;
   bottom: 0;
   background: rgba(99, 98, 98, 0.5);

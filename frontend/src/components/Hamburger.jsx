@@ -16,14 +16,19 @@ const LogoHamburger = styled.img`
   display: flex;
   position: absolute;
   z-index: 1;
-  top: 5%;
-  left: 10%;
+  top: 6%;
+  left: 7%;
   width: 80px;
-  margin-right: 20px;
+  @media (min-width: 375px) {
+    left: 5%;
+  }
   @media (min-width: 415px) and (max-width: 768px) {
     width: 130px;
     top: 2.7%;
-    left: 7%;
+    left: 5%;
+  }
+  @media (min-width: 768px) {
+    left: 6%;
   }
   @media (min-width: 781px) {
     display: none;

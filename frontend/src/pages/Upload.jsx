@@ -116,10 +116,7 @@ export const Upload = () => {
       )}
       {!isLoading && (
         <>
-           <TopYellowBanner 
-               Bannerheader='Upload'
-               Bannerparagraph='Share your project with the world!'
-          />
+          <TopYellowBanner Bannerheader="Share your project with the world!" />
           <Section>
             <Form onSubmit={onFormSubmit}>
               <Input
@@ -160,7 +157,7 @@ export const Upload = () => {
               <Input
                 type="text"
                 value={week}
-                placeholder="Week (write in the following format 'Week 8')"
+                placeholder="Week (write in format 'Week 8')"
                 onChange={(e) => setWeek(e.target.value)}
               ></Input>
               <Input

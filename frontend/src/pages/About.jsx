@@ -21,6 +21,9 @@ const AboutContainer = styled.section`
   flex-direction: column;
   justify-content: center;
   margin: 0 30px 30px;
+  @media (min-width: 768px) {
+    margin: 0 7%;
+  }
   @media (min-width: 1280px) {
     width: 60vw;
     margin: 0 auto;
@@ -73,7 +76,7 @@ export const About = () => {
           students as well as upload your own and share them with the world!
         </Paragraph>
         <Paragraph>
-          If you are interested in seeing the code, have a look here{" "}
+          If you are interested in seeing the code, have a look here
           <a href="https://github.com/leelalaim/final-project">
             <GitHub />
           </a>
@@ -82,19 +85,19 @@ export const About = () => {
           Interested speaking to us regarding the project? Let's chat on
           LinkedIn!
           <Paragraph>
-            Malin:{" "}
+            Malin:
             <a href="https://www.linkedin.com/in/malin-vannesjö-57aa9051/">
               <LinkedIn />
             </a>
           </Paragraph>
           <Paragraph>
-            Hannah:{" "}
+            Hannah:
             <a href="https://www.linkedin.com/in/hannah-jesinkey/">
               <LinkedIn />
             </a>
           </Paragraph>
           <Paragraph>
-            Laima:{" "}
+            Laima:
             <a href="https://www.linkedin.com/in/laimaduhovnaja/">
               <LinkedIn />
             </a>

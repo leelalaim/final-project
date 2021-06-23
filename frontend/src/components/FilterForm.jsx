@@ -127,7 +127,9 @@ export const FilterForm = ({ onSubmit }) => {
             }}
           >
             {bootcamps.map((bootcamp) => (
-              <option value={bootcamp}>{bootcamp}</option>
+              <option key={bootcamp} value={bootcamp}>
+                {bootcamp}
+              </option>
             ))}
           </Select>
         </FormControl>
@@ -143,7 +145,9 @@ export const FilterForm = ({ onSubmit }) => {
             }}
           >
             {stacks.map((stack) => (
-              <option value={stack}> {stack}</option>
+              <option key={stack} value={stack}>
+                {stack}
+              </option>
             ))}
           </Select>
         </FormControl>
@@ -159,7 +163,9 @@ export const FilterForm = ({ onSubmit }) => {
             }}
           >
             {weeks.map((week) => (
-              <option value={week}>{week}</option>
+              <option key={week} value={week}>
+                {week}
+              </option>
             ))}
           </Select>
         </FormControl>
