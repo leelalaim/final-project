@@ -131,7 +131,7 @@ const ProjectName = styled.h3`
   left: 0;
   right: 0;
   overflow: 0;
-  background-color: rgba(30, 30, 30, 0.5);
+  background-color: rgba(30, 30, 30, 0.7);
   color: white;
   margin: 0;
   padding: 10px;

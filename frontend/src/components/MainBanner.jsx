@@ -15,9 +15,29 @@ const BannerContainer = styled.div`
 const BannerImage = styled.img`
   object-fit: cover;
   height: 60vh;
-  min-height: 500px;
+  @media (min-width: 768px) {
+    min-height: 600px;
+    height: 70vh;
+    object-position: 50% 80%;
+  }
+  @media (min-width: 1024px) {
+    min-height: 600px;
+    object-position: 50% 80%;
+  }
+
+  @media (min-width: 1280px) {
+    min-height: 600px;
+    height: 70vh;
+    object-position: 50% 80%;
+  }
   @media (min-width: 1440px) {
-    height: 80vh;
+    min-height: 600px;
+    height: 70vh;
+    object-position: 50% 80%;
+  }
+  @media (min-width: 1600px) {
+    height: 70vh;
+    object-position: 50% 80%;
   }
 `;
 const TextContainer = styled.div`
@@ -57,6 +77,10 @@ const BannerHeader = styled.h1`
     line-height: 80px;
   }
   @media (min-width: 1440px) {
+    font-size: 90px;
+    line-height: 90px;
+  }
+  @media (min-width: 1600px) {
     font-size: 100px;
     line-height: 100px;
   }
@@ -67,6 +91,7 @@ const BannerParagraph = styled.p`
   font-weight: 300;
   line-height: 25px;
   letter-spacing: 3px;
+  color: #2a3842;
   @media (min-width: 375px) {
     font-size: 25px;
     font-weight: 300;
@@ -80,8 +105,12 @@ const BannerParagraph = styled.p`
     line-height: 50px;
   }
   @media (min-width: 1440px) {
-    font-size: 60px;
-    line-height: 70px;
+    font-size: 50px;
+    line-height: 50px;
+  }
+  @media (min-width: 1600px) {
+    font-size: 50px;
+    line-height: 50px;
   }
 `;
 

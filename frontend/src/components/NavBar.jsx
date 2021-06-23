@@ -70,6 +70,10 @@ const StyledTypography = styled(Link)`
     font-size: 22px;
     font-weight: 500;
   }
+  :hover {
+    border-bottom: 1px solid #efd22e;
+    color: #e2b92f;
+  }
 `;
 
 const StyledToolbar = styled(Toolbar)`

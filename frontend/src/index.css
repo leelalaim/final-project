@@ -14,13 +14,11 @@ code {
 
 /* PROJECT CARD  */
 
-
-.MuiDialog-container{
+.MuiDialog-container {
   height: 50%;
 }
 
 @media (max-width: 780px) {
-
   .menu-item {
     color: white;
     text-decoration: none;
@@ -44,7 +42,7 @@ code {
 
   /* Color/shape of burger icon bars on hover*/
   .bm-burger-bars-hover {
-    background: #E8C727;
+    background: #e8c727;
   }
 
   /* Position and sizing of clickable cross button */
@@ -95,11 +93,9 @@ code {
   .bm-overlay {
     background: rgba(0, 0, 0, 0.3);
   }
-
 }
 @media (min-width: 781px) {
   .hamburger {
     display: none;
   }
 }
-

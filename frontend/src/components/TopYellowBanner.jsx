@@ -30,7 +30,7 @@ const BannerImage = styled.img`
     height: 65vh;
   }
   @media (min-width: 1400px) {
-    height: 70vh;
+    height: 60vh;
   }
 `;
 

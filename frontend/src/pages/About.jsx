@@ -10,11 +10,6 @@ import { FaGithub } from "react-icons/fa";
 import { FaLinkedin } from "react-icons/fa";
 
 //Styled Components
-const Container = styled.section`
-  @media (min-width: 767px) {
-    height: 100vh;
-  }
-`;
 
 const AboutContainer = styled.section`
   display: flex;
@@ -62,7 +57,7 @@ const LinkedIn = styled(FaLinkedin)`
 //Page
 export const About = () => {
   return (
-    <Container>
+    <section>
       <TopYellowBanner Bannerheader="About devGallery project" />
       <AboutContainer>
         <Header>Our story</Header>
@@ -104,6 +99,6 @@ export const About = () => {
           </Paragraph>
         </Paragraph>
       </AboutContainer>
-    </Container>
+    </section>
   );
 };

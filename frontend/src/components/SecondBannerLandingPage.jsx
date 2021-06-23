@@ -120,6 +120,11 @@ const BannerButtonUpload = styled(Link)`
     padding: 12px 27px;
     border-radius: 35px;
   }
+  :hover {
+    background-color: rgba(255, 255, 255, 0.6);
+    color: #575757;
+    border: 1px solid #575757;
+  }
 `;
 
 export const SecondBannerLandingPage = () => {
