@@ -169,6 +169,7 @@ export const ProjectCard = ({ project }) => {
   const userId = useSelector(
     (store) => store.users.user && store.users.user.id
   );
+
   const projectDeleteSuccess = useSelector(
     (store) => store.users.projectDeleteSuccess
   );
@@ -223,7 +224,7 @@ export const ProjectCard = ({ project }) => {
               </DescriptionSpan>
             </Typography>
             <Typography gutterBottom>
-              <Span>User:</Span> {project.owner.username}
+              {/* <Span>User:</Span> {project.owner.username} */}
             </Typography>
             <Typography gutterBottom>
               <Span>Bootcamp:</Span> {project.bootcamp}
@@ -232,14 +233,14 @@ export const ProjectCard = ({ project }) => {
               <Span>Stack:</Span> {project.stack}
             </Typography>
             <Typography gutterBottom>
-              <Span>Week of bootcamp:</Span>{" "}
+              <Span>Week of bootcamp:</Span>
               {project.week === "" ? "N/A" : project.week}
             </Typography>
             <Typography gutterBottom>
               <Span>Live at:</Span> <a href={project.url}>{project.url}</a>
             </Typography>
             <Typography gutterBottom>
-              <Span>See repository at:</Span>{" "}
+              <Span>See repository at:</Span>
               <a href={project.github}>{project.github}</a>
             </Typography>
           </DialogContent>
