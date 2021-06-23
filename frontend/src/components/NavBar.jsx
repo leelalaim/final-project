@@ -67,7 +67,7 @@ const StyledTypography = styled(Link)`
   font-weight: 600;
   text-decoration: none;
   @media (min-width: 1600px) {
-    font-size: 26px;
+    font-size: 22px;
     font-weight: 500;
   }
 `;

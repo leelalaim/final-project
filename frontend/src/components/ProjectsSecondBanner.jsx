@@ -17,6 +17,7 @@ const Banner = styled.img`
   width: 100vw;
   height: 40vh;
   margin-top: 25px;
+  min-height: 200px;
   @media (min-width: 768px) {
     height: 40vh;
   }
@@ -25,7 +26,11 @@ const Banner = styled.img`
   }
   @media (min-width: 1500px) {
     height: 35vh;
+    object-position: 50% 35%;
   }
+  // @media (min-height: 470px) {
+  //   height: 50vh;
+  // }
 `;
 
 const TextContainer = styled.div`
@@ -35,7 +40,7 @@ const TextContainer = styled.div`
   position: absolute;
   top: 35%;
   left: 10%;
-  @media (min-width: 375px) {
+  padding-bottom: @media (min-width: 375px) {
     top: 32%;
     left: 10%;
   }
@@ -43,13 +48,17 @@ const TextContainer = styled.div`
     top: 36%;
     left: 20%;
   }
+  @media (min-width: 1024px) {
+    top: 36%;
+    left: 30%;
+  }
   @media (min-width: 1280px) {
     top: 36%;
-    left: 5%;
+    left: 30%;
   }
   @media (min-width: 1440px) {
     top: 20%;
-    left: 25%;
+    left: 30%;
   }
 `;
 
@@ -84,8 +93,8 @@ const LowerText = styled(Text)`
     font-size: 35px;
   }
   @media (min-width: 768px) {
-    font-size: 55px;
-    line-height: 57px;
+    font-size: 50px;
+    line-height: 53px;
   }
   @media (min-width: 1440px) {
     font-size: 77px;

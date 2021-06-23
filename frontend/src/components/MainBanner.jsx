@@ -15,6 +15,7 @@ const BannerContainer = styled.div`
 const BannerImage = styled.img`
   object-fit: cover;
   height: 60vh;
+  min-height: 500px;
   @media (min-width: 1440px) {
     height: 80vh;
   }
@@ -22,24 +23,31 @@ const BannerImage = styled.img`
 const TextContainer = styled.div`
   position: absolute;
   top: 27%;
-  left: 6%;
+  left: 10%;
   @media (min-width: 768px) {
-    left: 15%;
+    left: 20%;
+    top: 17%;
   }
   @media (min-width: 1280px) {
-    left: 27%;
+    left: 30%;
   }
   @media (min-width: 1440px) {
     left: 30%;
+    top: 15%;
   }
 `;
 
 const BannerHeader = styled.h1`
   font-weight: 500;
   color: #575757;
-  font-size: 45px;
   letter-spacing: 2px;
-  line-height: 40px;
+  font-size: 33px;
+  line-height: 31px;
+  margin-bottom: 15px;
+  @media (min-width: 375px) {
+    font-size: 45px;
+    line-height: 40px;
+  }
   @media (min-width: 768px) {
     font-size: 70px;
     line-height: 65px;
@@ -55,10 +63,14 @@ const BannerHeader = styled.h1`
 `;
 
 const BannerParagraph = styled.p`
-  font-size: 25px;
+  font-size: 20px;
   font-weight: 300;
-  line-height: 35px;
+  line-height: 25px;
   letter-spacing: 3px;
+  @media (min-width: 375px) {
+    font-size: 25px;
+    font-weight: 300;
+  }
   @media (min-width: 768px) and (max-width: 1023px) {
     font-size: 40px;
     line-height: 40px;
